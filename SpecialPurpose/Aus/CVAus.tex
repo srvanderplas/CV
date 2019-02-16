@@ -1,0 +1,220 @@
+\documentclass[11pt,a4paper,sans]{moderncv}        
+% possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{green}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+\usepackage{enumitem}
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+\setlength{\hintscolumnwidth}{2.3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+
+\usepackage{xstring} % bold individual name in bib entries
+% \usepackage{biblatex} % separate bibliographies
+
+\def\FormatMaidenName#1{%
+  \IfSubStr{#1}{Koons}{\textbf{#1}}{#1}%
+}
+\def\FormatName#1{%
+  \IfSubStr{#1}{VanderPlas}{\textbf{#1}}{\FormatMaidenName{#1}}%
+}
+% Color combination: 0099cc, ccffcc, 66ccff, 003399
+
+
+% Timeline
+\usepackage{moderntimeline}
+\tlmaxdates{2005}{2018} % Set the scale
+\tlwidth{0.8ex} % Set the line width - space under the top label is 1pt more
+\tltext{\tiny} % set label text size
+
+\usepackage{xcolor}
+\definecolor{link}{HTML}{59B34C}
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks, breaklinks,
+            linkcolor=link,
+            urlcolor=link,
+            citecolor=link}
+
+% personal data
+\name{Susan}{VanderPlas}
+% \title{Resumé title}                               % optional, remove / comment the line if not wanted
+\address{802 17th St.}{Auburn, NE 68305}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[mobile]{(515) 509-6613}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+% \phone[fixed]{+2~(345)~678~901}
+% \phone[fax]{+3~(456)~789~012}
+\email{srvanderplas@gmail.com}                               % optional, remove / comment the line if not wanted
+% \homepage{www.srvanderplas.github.io}                         % optional, remove / comment the line if not wanted
+% \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
+% \social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+\social[github]{srvanderplas}                              % optional, remove / comment the line if not wanted
+% \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+% \photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+% \quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+% \usepackage{multibib}
+% \newcites{papers,presentations}{{Publications},{Presentations}}
+
+
+
+
+
+\usepackage[sorting=ydnt,style=authortitle]{biblatex}
+\nocite{*}
+\addbibresource[datatype=bibtex]{AllRefs.bib}
+\begin{document}
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Education}
+\tllabelcventry{2005}{2009}{2005--2009}{Bachelor of Science}{Texas A\&M University}{}{}{Major: Psychology and Applied Mathematical Sciences (Statistics), Minor: Neuroscience}  % arguments 3 to 6 can be left empty
+\tllabelcventry{2009}{2011}{2009--2011}{Master of Science in Statistics}{Iowa State University}{}{}{Creative Component: Nonparametric statistical analysis of Atom Probe Tomography spectra\\ Chair: Dr.~Alyson Wilson, Committee Members: Dr.~Alicia Carriquiry, Dr.~Krishna Rajan}
+\tllabelcventry{2011}{2015}{2011--15}{Doctor of Philosophy in Statistics}{Iowa State University}{}{}{}
+
+\subsection{Dissertation}
+\cvitem{Title}{\emph{The Perception of Statistical Graphics}}
+\cvitem{Committee}{Dr.~Heike Hofmann (Chair), Dr.~Dianne Cook, Dr.~Sarah Nusser, Dr.~Max Morris, Dr.~Erin McDonald, Dr.~Stephen Gilbert}
+\cvitem{Abstract}{\small Research on statistical graphics and visualization generally focuses
+on new types of graphics, new software to create graphics, interactivity, and usability
+studies. Our ability to interpret and use statistical graphics hinges on the interface between
+the graph itself and the brain that perceives and interprets it, and there is substantially less
+research on the interplay between graph, eye, brain, and mind than is sufficient to understand
+the nature of these relationships. This dissertation further explores the interplay between a static
+graph, the translation of that graph from paper to mental representation (the journey from
+eye to brain), and the mental processes that operate on that graph once it is transferred into
+memory (mind). Understanding the perception of statistical graphics will allow researchers
+to create more effective graphs which produce fewer distortions and viewer errors while reducing
+the cognitive load necessary to understand the information presented in the graph.
+}
+
+\section{Research}
+\tltextstart[base]{\tiny}
+% \tlcventry{year1}{year2}{Job Title}{Employer}{City}{}{Description}
+\tllabelcventry{2015.4}{0}{2015}{Independent Research}{}{Auburn, NE}{}{Designed and analysed experiments to understand human perception of statistical graphics and optimised graphics to clearly communicate statistical results.
+\begin{itemize}
+\item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do coloured points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchyColors}{Repository})
+\item Reproducibility of Plots in the 1870 Statistical Atlas (\href{https://github.com/srvanderplas/InfovisStatisticalAtlas}{Working Project})
+\item Bayesian Analysis of Two-Target Statistical Lineups (\href{https://github.com/srvanderplas/FeatureHierarchyColors}{Working Project})
+\end{itemize}}
+
+\tllabelcventry{2015.4}{2016}{Apr - Nov 2015}{Postdoc}{Iowa State University}{}{Ames, IA}{Office of the Vice President for Research\begin{itemize}
+\item Evaluated faculty funding start-up packages to explore links between start-up funding and future productivity.
+\item Explored natural variation and underlying trends in grant receipts across Iowa State over a 20 year period.
+\end{itemize}}
+
+
+\tllabelcventry{2012}{2015.6}{2012 - Jun 2015}{PhD Research}{Iowa State University}{}{Ames, IA}{%
+Designed and conducted experiments to understand human perception of statistical graphics and optimised graphics to clearly communicate statistical results. \begin{itemize}%
+\item The Sine Illusion in Statistical Graphics: How does this common illusion effect the information we take in from graphs?. Won the ASA Student Paper Award (2014) for the Graphics Section (\href{https://github.com/srvanderplas/LieFactorSine}{Paper})
+\item Statistical Graphics and Visual Aptitude: How are spatial reasoning abilities related to the ability to read statistical graphics? (\href{https://github.com/srvanderplas/VisualAptitude/raw/master/Paper/InfoVis2015Revision/TestingVisualAptitude.pdf}{Paper})
+\item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do coloured points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchy/raw/master/FullPaper/Revision/features-jcgs.pdf}{Paper})
+\end{itemize}}%
+
+\tlcventry{2013}{2015}{Research Assistant, USDA Soybean Genome Project}{Iowa State University}{Ames, IA}{}{\begin{itemize}
+\item Analysed large quantities of soybean genetics data to identify inheritance, important genes, single nucleotide polymorphisms, and copy number variation.
+\item Created interactive applets presenting the data and appropriate graphics designed to encourage exploration of the results by biologists.
+\item Assembled a database of known soybean parentage to facilitate further research, and created an interactive applet to display the lineage of any variety in the database.
+\end{itemize}}
+
+\tllabelcventry{2012}{2012.8}{Jan-Aug 2012}{Research Assistant, Iowa Dept. of Transportation}{Iowa State University}{Ames, IA}{}{Developed a hierarchical Bayesian model to determine the effectiveness of road interventions on traffic accidents and fatalities. Discovered a previously unknown error in the data used in prior analyses using exploratory techniques, and developed a method to compensate for the missing data.}
+
+\tlcventry{2010}{2011}{M.S. Research}{Iowa State University}{Ames, IA}{}{Worked with materials scientists and engineers to develop and implement non-parametric methods for automatic peak detection in mass spectroscopy data. Fit systems of differential equations to spectroscopy data based on theoretical concepts from quantum physics to facilitate inference about the atomic structure of a material.}
+
+\tllabelcventry{2009.7}{2010}{Fall 2009}{Research Rotations in Bioinformatics}{Iowa State University}{Ames, IA}{}{Explored applications of the EM algorithm to next-generation sequencing data error detection and modeled the relationship between age and fertility in reptiles. Each project lasted about 6 weeks; rotations were structured to allow new students to explore several facets of bioinformatics, and included wet-lab and computational experiences. }
+
+\tllabelcventry{2009.45}{2009.7}{Summer 2009}{NSF Research Experience for Undergraduates}{Iowa State University}{Ames, IA}{}{Worked with biologists and bioinformaticians to compare homologous gene expression in humans, pigs, and mice.}
+
+\tllabelcventry{2008.45}{2008.7}{Summer 2008}{NSF Research Experience for Undergraduates}{University of Nebraska}{Lincoln, NE}{}{Created a mathematical model describing electrical impulse transmission and decay along neurons with varying states of myelination.}
+
+% \printbibheading[title=Publications]
+\printbibliography[title={Publications},type=article]
+\printbibliography[heading=subbibliography,type=unpublished,title={Presentations}]
+\printbibliography[heading=subbibliography,type=misc,title={Other Projects}]
+\clearpage
+\section{Teaching}
+\tlcventry{2017}{0}{Data Science Competency Center}{Nebraska Public Power District}{Columbus, NE}{}{Designed and conducted workshops to teach R skills to other employees. Led monthly meetings to expand the practice of data science within the company. Helped to identify promising projects and demonstrate the utility of data science in a slow-to-change worplace environment.}
+\tlcventry{2013}{2015}{R Course Instructor}{Iowa State University Stat Dept.}{Ames, IA}{}{Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with dplyr, tidyr, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
+
+\tllabelcventry{2013}{2013.5}{Spring 2013}{Statistical Methods for Research}{Iowa State University Stat Dept.}{Ames, IA}{}{Held office hours and graded labs and tests for Stat 401, a class composed primarily of graduate engineering students.}
+
+\tlcventry{2012}{2013}{Introduction to Business Statistics II}{Iowa State University Stat Dept.}{Ames, IA}{}{Taught undergraduate business students statistical methods and use of JMP statistical software. Responsibilities included holding office hours and evening help sessions, developing lab materials, managing the course website on Blackboard, and grading labs, homework, and tests.}
+
+\tllabelcventry{2011.5}{2012}{Fall 2011}{Statistical Methods for Research}{Iowa State University Stat Dept.}{Ames, IA}{}{Taught graduate social science students statistical methods and use of SAS statistical software. Responsibilities included teaching lab sessions, creating lab materials, holding office hours and grading homework and lab materials.}
+
+\tllabelcventry{2011.5}{2012}{Fall 2011}{Empirical Methods for Comp. Sci.}{Iowa State University Stat Dept.}{Ames, IA}{}{Held office hours and graded homework for Stat 430, a class composed of graduate bioinformatics and computer science students.}
+
+\section{Professional Experience}
+\tllabelcventry{2015.7}{0}{Fall 2015}{Engineering Statistical Analyst}{Cooper Nuclear Station}{Nebraska Public Power District}{}{Analysed power plant business and engineering decisions to increase safety and profitability. Helped to create a data-science competency center and mentored other employees in statistical methods and programming.\begin{itemize}
+\item Modeled employee turnover to identify individuals likely to retire or resign.
+\item Established automated statistical monitoring of site conditions, department turnover, and human performance errors.
+\item Predicted likely direction of tornadoes based on location and topological factors to establish the risk of tornado guided missile debris damaging critical equipment.
+\item Evaluated the risk of climate fluctuations on operational readiness.
+\item Identified site conditions statistically associated with water accumulation in radiation detectors.
+\item Improved engineering margin in thermal limits management in the reactor core.
+\end{itemize}}
+
+\tlcventry{2015}{0}{Consultant}{}{}{}{Developed web applications, interactive data displays, and statistical analyses for clients including the Iowa Soybean Association and Iowa State USDA Extension office. \href{http://srvanderplas.com/Shiny/CornNitrogenDeficiency/}{Example 1: Nitrogen Deficiency in Corn}, \href{http://srvanderplas.com/Shiny/CropYieldForecast/}{Example 2: Crop Yield Forecast}}
+
+\tlcventry{2012}{2015}{Informal Statistical Consultant}{Cooper Nuclear Station}{Nebraska Public Power District}{}{Provided informal statistical recommendations to nuclear engineers on proper methods for bootstrap, k95/95 intervals, probability analysis, and other modeling questions. Helped to estimate capacity factor using block bootstrap, answered questions about probability theory and model assessment, and assessed violations of modeling assumptions. Assembled data sets containing years of hourly power prices to explore down-power timing and market relationships.}
+
+
+% \tllabelcventry{2014.8}{2015.7}{2014-2015}{Statistical Web Development}{Iowa State Extension Service}{Ames, IA}{}{Designed interactive web tools to assist soybean farmers with making informed decisions on planting and cultivar choices for their geographic location. Created clear, easy-to-read statistical graphics with multiple layers of detail, presented using responsive Shiny web applets. (\href{http://www.extension.iastate.edu/CropNews/2015/0416Licht.htm}{Announcement}, \href{http://agron.iastate.edu/CroppingSystemsTools/soybean-decisions.html}{Tool})}
+
+
+% \tllabelcventry{2013.5}{2014}{Fall 2013}{Consultant - Aerospace Engineering}{Iowa State University}{Ames, IA}{}{Provided modeling advice and statistical expertise to aerospace engineering professsors conducting research on active learning.}
+
+
+\section{Software Development}
+
+\tlcventry{2013}{2014}{Statistics Teaching Applets}{Iowa State University}{Ames, IA}{}{Created and redesigned web-based applets to teach statistical techniques interactively. Applets covered topics such as the method of least squares, ANOVA, k-means, regression diagnostics, and t-tests. (\href{http://srvanderplas.com/Shiny/AppStat/}{Applets})}
+
+\tlcventry{2013}{2015}{Animint Developer}{R Project}{Google Summer of Code}{}{Worked to develop the \texttt{animint} package for R to translate \texttt{ggplot2} into d3 interactive JavaScript graphics. Participated in the project in 2013, adding support for all ggplot2 geoms as well as most scales and axes. Returned to serve as a mentor for the project in 2014 and 2015.}
+
+
+% \section{Languages}
+% \cvitemwithcomment{Language 1}{Skill level}{Comment}
+% \cvitemwithcomment{Language 2}{Skill level}{Comment}
+% \cvitemwithcomment{Language 3}{Skill level}{Comment}
+%
+\clearpage
+\section{Technical Skills}
+\cvitem{Statistical Software}{R (programming, graphics, package development, web scraping)\newline SAS (linear and mixed models)\newline JMP (basic analysis and data mining)}
+\cvitem{Languages}{C and C++, JavaScript, SQL, python (for web scraping)}
+\cvitem{Web Development}{Shiny (library for interactive web applets), d3 interactive graphics, \texttt{knitr} and \texttt{pandoc} for integration of code, results, and documentation, Apache and MySQL web server configuration and administration}
+\cvitem{Operating Systems}{Ubuntu (system administration)\newline Windows}
+
+% \cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
+% \cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
+% \cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+
+% \section{Interests}
+% \cvitem{hobby 1}{Description}
+% \cvitem{hobby 2}{Description}
+% \cvitem{hobby 3}{Description}
+
+\section{Awards}
+\cvitemwithcomment{ASA}{Student Paper Award (Graphics)}{2013}
+\cvitemwithcomment{NSF}{IGERT Fellowship}{2009-2011}
+\cvitemwithcomment{Texas A\&M}{Foundation, University, Liberal Arts, Psychology, and Math Honours}{2009}
+\cvitemwithcomment{Texas A\&M}{Undergraduate Research Fellow}{2009}
+\cvitemwithcomment{Texas A\&M}{University Scholar}{2006-2009}
+\cvitemwithcomment{Texas A\&M}{Astronaut Scholar}{2008-2009}
+\cvitemwithcomment{Texas A\&M}{President's Endowed Scholarship}{2005-2009}
+\cvitemwithcomment{Texas A\&M}{Director's Excellence Award}{2005-2009}
+\cvitemwithcomment{Texas A\&M}{National Merit Award}{2005-2009}
+\cvitemwithcomment{}{National Merit Scholar}{2005}
+
+\end{document}

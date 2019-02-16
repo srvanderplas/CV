@@ -1,0 +1,194 @@
+%%% LaTeX Template: Designer's CV
+%%%
+%%% Source: http://www.howtotex.com/
+%%% Feel free to distribute this template, but please keep the referal to HowToTeX.com.
+%%% Date: March 2012
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document properties and packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,12pt,final]{memoir}
+
+% misc
+\renewcommand{\familydefault}{bch}	% font
+\pagestyle{empty}					% no pagenumbering
+\setlength{\parindent}{0pt}			% no paragraph indentation
+
+
+% required packages (add your own)									% column layout
+\usepackage[top=1cm,left=1cm,right=1cm,bottom=1cm]{geometry}% margins
+\usepackage{graphicx}										% figures
+\usepackage{url}											% URLs
+\usepackage[unicode]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor}					% color
+\usepackage{multicol}										% columns env.
+	\setlength{\multicolsep}{0pt}
+\usepackage{paralist}										% compact lists
+\usepackage{tikz}
+\usepackage{amsmath,amssymb}
+
+\hypersetup{colorlinks, breaklinks, 
+            linkcolor=RoyalBlue, 
+            urlcolor=RoyalBlue, 
+            citecolor=RoyalBlue}
+            
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define macros (for convience)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sep}{\vspace{1.5em}}
+\newcommand{\MedSep}{\vspace{1em}}
+\newcommand{\SmallSep}{\vspace{0.5em}}
+
+\newenvironment{AboutMe}
+	{\ignorespaces\textbf{\color{RoyalBlue} About me}}
+	{\MedSep\ignorespacesafterend}
+	
+\newcommand{\CVSection}[1]
+	{\Large\textbf{#1}\par
+	\SmallSep\normalsize\normalfont}
+
+\newcommand{\CVItem}[1]
+	{\textbf{\color{RoyalBlue} #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Left frame
+%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}
+% 	\hfill
+% 	\includegraphics[width=0.6\columnwidth]{photo}
+% 	\vspace{-7cm}
+% \end{figure}
+
+% \begin{flushright}\small
+% 	Susan R. VanderPlas \\
+% 	{\hspace{-24pt}\url{srvanderplas@gmail.com}} \\
+% 	\url{www.github.com/srvanderplas} \\
+% 	(515) 509-6613
+% \end{flushright}\normalsize
+% \framebreak
+
+
+% Right frame
+%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}[t]{.5\linewidth}
+\Huge\bfseries {\color{RoyalBlue} Susan Vanderplas} \\
+% \Large\bfseries  Statistician 
+\end{minipage}\hfill
+\begin{minipage}[t]{.49\linewidth}
+\begin{flushright}\small
+\phantom{\Huge SVP}
+802 17th St., Auburn, NE 68305 $\circ$ (515) 509-6613\\
+\url{srvanderplas@gmail.com} 
+\end{flushright}
+\end{minipage}
+
+\normalsize\normalfont
+\SmallSep
+% About me
+\begin{AboutMe}
+I am a data engineer, that is, I transform data into informed decisions by building and interpreting mathematical models. 
+I work with subject matter experts to understand and quantify prior knowledge, then incorporate data to create robust, accurate predictive models. 
+These skills can be applied to variables such as day-ahead and real-time markets, network congestion, load balancing, megawatt valuation, and rate outlook, which I believe will greatly benefit NPPD.\vspace{-6pt}
+\end{AboutMe}
+
+% Education
+\CVSection{Education}
+\begin{minipage}[t]{.45\linewidth}
+\CVItem{Iowa State University}\\
+2015 - Ph.D. in Statistics; GPA 3.71\\
+2011 - M.S. Statistics; GPA 3.69
+\end{minipage}
+\begin{minipage}[t]{.55\linewidth}
+\CVItem{Texas A\&M University}\\
+2009 - B.S. Psychology and Applied Mathematics; GPA 3.88
+\end{minipage}
+\MedSep
+
+% Skills
+\CVSection{Skills}
+\CVItem{Statistical Techniques}
+\begin{multicols}{3}
+\begin{compactitem}[\color{RoyalBlue}$\bullet$]
+	\item Estimation 
+	\item Prediction (with error bounds)
+	\item Multivariate modeling
+	\item Risk assessment 
+	\item Reliability analysis
+	\item Time Dependent models
+	\item Monte Carlo methods
+	\item ``Big Data'' analysis
+	\item Market Test design
+\end{compactitem}
+\end{multicols}
+\SmallSep
+\CVItem{Computer Skills}
+\begin{multicols}{3}
+\begin{compactitem}[\color{RoyalBlue}$\bullet$]
+	\item R (statistical programming)
+  \item SAS statistical software
+	\item Interactive dashboard design
+	\item C, C++
+	\item JavaScript
+	\item Software development
+	\item Database design (SQL)
+  \item Microsoft Office
+  \item Windows and Linux
+\end{compactitem}
+\end{multicols}
+
+\MedSep 
+
+\CVSection{Experience}
+\CVItem{Industrial Statistics\hfill 2012-2015}
+\begin{compactitem}[\color{RoyalBlue}$\bullet$]\small
+ \item Estimated capacity factor and number of maintenance issues for an industrial site, compensating for a longer length between maintenance cycles. Accurately predicted the number of maintenance outages that occurred during the first 24-month cycle using 18-month cycle data.
+ \item Assembled locational marginal price data from several regional transmission operators to examine the financial impact of scheduling power plant maintenance on weekends and holidays and explore the conditions leading to negative power prices. 
+\end{compactitem}\SmallSep
+\CVItem{Cross-discipline collaboration (with materials engineering)\hfill 2010-2011}\\
+{\small 
+Increased accuracy and efficiency of peak detection (vs. manual identification) using robust quantile analysis.\SmallSep\\}
+\CVItem{Iowa Department of Transportation\hfill 2012}\\
+{\small Examined the effect of road layout and construction on driver safety (collisions, fatalities).\SmallSep\\}
+\CVItem{USDA Soybean Genome Project\hfill 2013 - 2015}\\
+{\small Built models and interactive web applications to explore the influence of genetic mutations on soybean yield.\SmallSep\\}
+\CVItem{Postdoc, Iowa State Office of Vice President for Research\hfill 2015}\\
+{\small Evaluated ROI and profitability of funding models for faculty research.\SmallSep\\}
+\CVItem{Google Summer of Code\hfill Summer 2013, 2014, 2015}\\
+{\small Worked on development of a software package to create interactive web graphics using R, and returned to serve as a mentor for the project in 2014 and 2015.}
+
+% \CVItem{Teaching\hfill 2011-2015}
+% \begin{compactitem}
+%  \item Taught introductory statistics classes for engineers, business majors, and social science students. 
+%  \item Designed and led classes in the use of R statistical software for the Iowa State community, and served as a mentor for those students once the coursework was complete. 
+% \end{compactitem}
+% \SmallSep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+\clearpage
+\section*{LMP Data}
+\subsection{Pinpointing Transmission Line Congestion}
+On April 3, 2013, power prices spiked dramatically with no apparent explanation. SPP provides 5-minute resolution LMP data for power generation and interconnect stations. The power generation stations have known coordinates, which can be used to calculate (weighted) LMP by county, pinpointing (with some obvious error) the location of the congestion. 
+
+\hfil\includegraphics[keepaspectratio=TRUE,width=.5\linewidth]{images/PowerPrices04032013.png}\hfil
+
+\subsection{Examining Power Prices during Summer Holidays}
+I also explored LMP data to determine whether it would be most economical to schedule reduced power periods during summer holidays or during similar non-holiday periods (specifically, July 4). As I had only 5 years of data, I used Memorial Day and Labor Day as well as July 4th, as all three holidays generally involve time spent outdoors with family and friends. 
+
+An initial plot of the summer power prices indicated that the holidays were not typically associated with significantly increased prices, as shown below.
+
+\hfil\includegraphics[keepaspectratio=TRUE,width=.95\linewidth]{images/SummerPowerPrices2009-2013.png}\hfil
+
+Examining the holiday weekends at closer range, and comparing them to non-holiday summer weekends, we can see that if anything, power prices are somewhat lower on Saturday and Sunday during holiday weekends than they are on non-holiday weekends (there are, of course, some spikes in LMP regardless of whether it is a holiday weekend). 
+
+\hfil\includegraphics[keepaspectratio=TRUE,width=.5\linewidth]{images/HolidayWeekendPowerPrices2009-2013.png}\hfil
+
+
+\end{document}

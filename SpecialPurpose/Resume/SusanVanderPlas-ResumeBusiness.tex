@@ -1,0 +1,198 @@
+%%% LaTeX Template: Designer's CV
+%%%
+%%% Source: http://www.howtotex.com/
+%%% Feel free to distribute this template, but please keep the referal to HowToTeX.com.
+%%% Date: March 2012
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document properties and packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,12pt,final]{memoir}
+
+% misc
+\renewcommand{\familydefault}{bch}  % font
+\pagestyle{empty}					% no pagenumbering
+\setlength{\parindent}{0pt}			% no paragraph indentation
+
+
+% required packages (add your own)									% column layout
+\usepackage[top=1cm,left=1cm,right=1cm,bottom=1cm]{geometry}% margins
+\usepackage{graphicx}										% figures
+\usepackage{url}											% URLs
+\usepackage[unicode]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor}					% color
+\usepackage{multicol}										% columns env.
+	\setlength{\multicolsep}{0pt}
+\usepackage{paralist}										% compact lists
+\usepackage{tikz}
+\usepackage{amsmath,amssymb}
+\usepackage{needspace} % Requires X lines for breaking a column/page
+
+\hypersetup{colorlinks, breaklinks,
+            linkcolor=RoyalBlue,
+            urlcolor=RoyalBlue,
+            citecolor=RoyalBlue}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define macros (for convience)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sep}{\vspace{1.5em}}
+\newcommand{\MedSep}{\vspace{1em}}
+\newcommand{\SmallSep}{\vspace{0.5em}}
+
+\newenvironment{AboutMe}
+	{\ignorespaces\textbf{\color{RoyalBlue} About me}}
+	{\MedSep\ignorespacesafterend}
+
+\newcommand{\CVSection}[1]
+	{\Large\textbf{#1}\par
+	\SmallSep\normalsize\normalfont}
+
+\newcommand{\CVItem}[1]
+	{\textbf{\color{RoyalBlue} #1}}
+
+\newcommand{\Experience}[3]{\parbox{\linewidth}{\CVItem{#1\hfill#2}\\*{\small #3\MedSep}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Left frame
+%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}
+% 	\hfill
+% 	\includegraphics[width=0.6\columnwidth]{photo}
+% 	\vspace{-7cm}
+% \end{figure}
+
+% \begin{flushright}\small
+% 	Susan R. VanderPlas \\
+% 	{\hspace{-24pt}\url{srvanderplas@gmail.com}} \\
+% 	\url{www.github.com/srvanderplas} \\
+% 	(515) 509-6613
+% \end{flushright}\normalsize
+% \framebreak
+
+
+% Right frame
+%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}[t]{.5\linewidth}
+\Huge\bfseries {\color{RoyalBlue} Susan Vanderplas} \\
+\Large\bfseries  Data Scientist
+\end{minipage}\hfill
+\begin{minipage}[t]{.5\linewidth}
+\begin{flushright}\small
+\phantom{\Huge SVP}
+802 17th St., Auburn, NE 68305 $\circ$
+(515) 509-6613\\
+\url{srvanderplas@gmail.com}
+\end{flushright}
+\end{minipage}
+
+\normalsize\normalfont
+\SmallSep
+% About me
+\begin{AboutMe}
+I am a data scientist, that is, I transform data into informed decisions by building and interpreting mathematical models.
+I work with subject matter experts to understand and quantify prior knowledge, then incorporate data to create robust, accurate predictive models.
+I offer well-rounded statistical skills, programming expertise, and experience communicating statistical information to those outside the field.
+\end{AboutMe}
+
+% Education
+\CVSection{Education}
+%% Use minipage to get unequal width columns
+\begin{minipage}[t]{.35\linewidth}
+\CVItem{Iowa State University}\\
+2015 - Ph.D. in Statistics; GPA 3.71\\
+2011 - M.S. Statistics; GPA 3.69
+\end{minipage}\hfill
+\begin{minipage}[t]{.5\linewidth}
+\CVItem{Texas A\&M University}\\
+2009 - B.S. Psychology and Applied Math; GPA 3.88
+\end{minipage}\hfill
+\MedSep
+
+
+% Skills
+\CVSection{Skills}
+\CVItem{Statistical Techniques}
+\begin{multicols}{3}
+\begin{compactitem}[\color{RoyalBlue}$\bullet$]
+	\item Estimation with error bands
+  \item Prediction
+	\item Risk assessment
+  \item Reliability analysis
+	\item Time-series models
+	\item Bayesian methods
+  \item Nonparametric statistics
+	\item Data mining
+	\item Experimental design
+\end{compactitem}
+\end{multicols}
+\SmallSep
+\CVItem{Computer Skills}
+\begin{multicols}{3}
+\begin{compactitem}[\color{RoyalBlue}$\bullet$]
+	\item R and SAS statistical software
+	\item Data dashboard design
+	\item C, C++
+	\item JavaScript
+	\item SQL/MySQL database
+  \item Web server administration
+\end{compactitem}
+\end{multicols}
+\MedSep
+
+\CVSection{Experience}
+\begin{multicols}{2}
+\Experience{Engineering Statistician}
+{Aug. 2015-present}
+{Consulted on engineering and business decisions for Nebraska Public Power District and Cooper Nuclear Station. Optimized maintenance schedules for critical equipment, identified conditions associated with equipment failure, improved engineering margin using statistical modeling, and evaluated operational risk.}
+
+\Experience{Statistical Consulting}{Aug. 2015 - present}{
+Developed web applets to display statistical data and models for non-technical users. Clients: Iowa Soybean Association, Iowa State USDA Extension.}
+
+\Experience{Postdoc, ISU Office of VP for Research}
+{2015}
+{Evaluated ROI and profitability of funding for research.}
+
+\Experience{Statistical Visualization Research}
+{2012-2017}
+{Modeled effectiveness of graphical designs for accurate communication of statistical results.}
+
+\Experience{USDA Soybean Genome Project}
+{2013 - 2015}
+{Identified important features of soybean genetic data, including genes which contribute to disease resistance and increased yield. Created dynamic reports, interactive data dashboards, and other tools to communicate results effectively.}
+
+\Experience{Google Summer of Code}
+{Summers 2013-15}
+{Worked to develop the \texttt{animint} package for R, translating R graphics into d3 interactive JavaScript graphics. Participated in the project in 2013, and returned to serve as a mentor for the project in 2014 and 2015.}
+
+\Experience{R Course Instructor}
+{2013 - 2015}
+{Designed and conducted workshops to teach statistical computing to members of the university and local business community.}
+
+% \Experience{Statistics Education Applets}
+% {2013 - 2014}
+% {Created web-based applets to teach statistical techniques interactively.
+% Link: \href{http://vanderplas.dyndns-remote.com:3838/}{Applets}}
+
+\Experience{Industrial Statistics}
+{2012 - 2015}
+{Served as an informal consultant to a public utility. Accurately predicted the number of plant outages that occurred during the first 24-month plant cycle using 18-month cycle data. }
+
+\Experience{Iowa Department of Transportation}
+{2012}
+{Examined the effect of road layout and construction on driver safety (collisions, fatalities).}
+
+\Experience{Materials Science Collaboration}
+{2010-2011}
+{Increased accuracy and efficiency of peak detection (vs. manual identification) using robust quantile analysis. }
+\end{multicols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

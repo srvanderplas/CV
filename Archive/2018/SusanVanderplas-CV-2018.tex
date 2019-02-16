@@ -1,0 +1,506 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Susan VanderPlas
+%
+% This is an example of a complete CV using the 'moderncv' package
+% and the 'timeline' package. For more information on those, please
+% access:
+% https://www.ctan.org/tex-archive/macros/latex/contrib/moderntimeline
+% https://www.ctan.org/tex-archive/macros/latex/contrib/moderncv
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, letterpaper, sans]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.85]{geometry}    % Width of the entire CV
+\setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
+\usepackage{pdfpages}
+\usepackage{moderntimeline}
+\usepackage{xpatch}
+\usepackage{color, graphicx}
+\usepackage[unicode]{hyperref}
+\usepackage{xcolor}
+\definecolor{link}{HTML}{3873B3}
+\hypersetup{colorlinks, breaklinks,
+            linkcolor=link,
+            urlcolor=link,
+            citecolor=link}
+
+\tlmaxdates{2005}{2020}              % Beginning and start of your timeline
+
+\clubpenalty=500
+
+\newcommand{\cvreferencecolumn}[2]{%
+  \cvitem[0.8em]{}{%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
+    }%
+}
+
+\newcommand{\cvreference}[8]{%
+    \textbf{#1}\newline% Name
+    \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+    \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{\href{mailto:#6}{\nolinkurl{#6}}}\newline}%
+    \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
+    \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
+
+
+\usepackage{xstring} % bold individual name in bib entries
+\def\FormatMaidenName#1{%
+  \IfSubStr{#1}{Koons}{\textbf{#1}}{#1}%
+}
+\def\FormatName#1{%
+  \IfSubStr{#1}{VanderPlas}{\textbf{#1}}{\FormatMaidenName{#1}}%
+}
+
+\usepackage{filecontents}
+\begin{filecontents}{publications.bib}
+
+@Article{featurehierarchyjcgs,
+  Title                    = {Clusters Beat Trend!? Testing Feature Hierarchy in Statistical Graphics},
+  Author                   = {Susan VanderPlas and Heike Hofmann},
+  Journal                  = {Journal of Computational and Graphical Statistics},
+  Year                     = {2017},
+  Number                   = {2},
+  Pages                    = {231-242},
+  Volume                   = {26},
+  Doi                      = {10.1080/10618600.2016.1209116},
+  Eprint                   = { http://dx.doi.org/10.1080/10618600.2016.1209116},
+  Url                      = { http://dx.doi.org/10.1080/10618600.2016.1209116}
+}
+@Article{rutter2017ggenealogy,
+  Title                    = {ggeanealogy: An {R} Package for Visualizing Genealogical Data},
+  Author                   = {Lindsay Rutter and Susan VanderPlas and Dianne Cook and Michelle Graham},
+  Journal                  = {Journal of Statistical Software},
+  Year                     = {2017},
+  Url                      = {https://github.com/lrutter/ggenealogyPaper},
+  Keywords                 = {genlit}
+}
+@Article{animintjcgs,
+  Title                    = {Extending ggplot2 for linked and dynamic web graphics},
+  Author                   = {Carson Sievert and J Cai and Susan VanderPlas and F Khan and K Ferris and Toby Hocking},
+  Journal                  = {Journal of Computational and Graphical Statistics},
+  Year                     = {2018}
+}
+@Article{visualaptitude,
+  Title                    = {Spatial Reasoning and Data Displays},
+  Author                   = {Susan VanderPlas and Heike Hofmann},
+  Journal                  = {IEEE Transactions on Visualization and Computer Graphics},
+  Year                     = {2016}
+}
+@Article{hull2009near,
+  Title                    = {Near-infrared spectroscopy and cortical responses to speech production},
+  Author                   = {Rachel Hull and Heather Bortfeld and Susan Koons},
+  Journal                  = {The open neuroimaging journal},
+  Year                     = {2009},
+  Pages                    = {26},
+  Volume                   = {3},
+
+  Publisher                = {Bentham Science Publishers}
+}
+@Article{framed,
+  Title                    = {Framed! Reproducing 150 year old plots},
+  Author                   = {Susan VanderPlas and Ryan Goluch and Heike Hofmann},
+  Journal                  = {Journal of Computational and Graphical Statistics},
+  Year                     = {2018}
+}
+@article{donohoresponse,
+  title={All of This Has Happened Before. All of This Will Happen Again: Data Science},
+  author={Hofmann, Heike and VanderPlas, Susan},
+  journal={Journal of Computational and Graphical Statistics},
+  volume={26},
+  number={4},
+  pages={775--778},
+  year={2017},
+  publisher={Taylor \& Francis}
+}
+@Article{towfic2010detection,
+  Title                    = {Detection of gene orthology from gene co-expression and protein interaction networks},
+  Author                   = {Fadi Towfic and Susan VanderPlas and Casey A Oliver and Oliver Couture and Christopher K Tuggle and M Heather West Greenlee and Vasant Honavar},
+  Journal                  = {BMC bioinformatics},
+  Year                     = {2010},
+  Number                   = {Suppl 3},
+  Pages                    = {S7},
+  Volume                   = {11},
+
+  Publisher                = {BioMed Central Ltd}
+}
+@Article{sineillusionjcgs,
+  Title                    = {Signs of the Sine Illusion - why we need to care},
+  author                   = {Susan VanderPlas and Heike Hofmann},
+  journal                  = {Journal of Computational and Graphical Statistics},
+  volume = {24},
+  number = {4},
+  pages = {1170-1190},
+  year = {2015},
+  doi = {10.1080/10618600.2014.951547},
+  URL = {http://dx.doi.org/10.1080/10618600.2014.951547},
+  eprint = {http://dx.doi.org/10.1080/10618600.2014.951547}
+}
+
+\end{filecontents}
+
+
+
+% Personal Information
+\name{Susan}{VanderPlas}
+\title{\emph{Curriculum Vitae}}
+\address{801 Onyx Cir}{Ames, IA 50010}{}
+\phone[mobile]{515-509-6613}
+%\phone[fixed]{+55~(11)~3091~2722}
+% \email{srvanderplas@gmail.com}                % optional, remove / comment the line if not wanted
+\email{srvander@iastate.edu}                % optional, remove / comment the line if not wanted
+% \homepage{srvanderplas.com}                   % optional, remove / comment the line if not wanted
+%\social[linkedin]{}                          % optional, remove / comment the line if not wanted
+%\social[twitter]{srvanderplas}               % optional, remove / comment the line if not wanted
+\social[github]{srvanderplas}                 % optional, remove / comment the line if not wanted
+%\extrainfo{\emailsymbol \emaillink{}}
+
+%\quote{Dubitando ad veritatem parvenimus - \emph{Cicerone}}
+
+\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+
+%----------------------------------------------------------------
+% Bold name(s) of author in bibliography
+\usepackage{xstring} % bold individual name in bib entries
+% \usepackage{biblatex} % separate bibliographies
+%\usepackage[backend=biber]{biblatex}
+%\nocite{*}
+\def\FormatMaidenName#1{%
+  \IfSubStr{#1}{Koons}{\textbf{#1}}{#1}%
+}
+\def\FormatName#1{%
+  \IfSubStr{#1}{VanderPlas}{\textbf{#1}}{\FormatMaidenName{#1}}%
+}
+%----------------------------------------------------------------
+
+\begin{document}
+
+\makecvtitle
+
+\section{Education}
+\tllabelcventry{2011}{2015}{2011--15}{Doctor of Philosophy in Statistics}{Iowa State University}{}{}{Dissertation: The Perception of Statistical Graphics}
+\tllabelcventry{2009}{2011}{2009--2011}{Master of Science in Statistics}{Iowa State University}{}{}{}
+\vspace{-12pt}
+\tllabelcventry{2005}{2009}{2005--2009}{Bachelor of Science}{Texas A\&M University}{}{}{Major: Psychology and Applied Mathematical Sciences (Statistics), Minor: Neuroscience}  % arguments 3 to 6 can be left empty
+\medskip
+
+\section{Professional Experience}
+
+\tlcventry{2018/3}{0}{Research Assistant Professor}{Center for Statistics and Applications in Forensic Evidence}{}{Iowa State University}{}%
+% \begin{itemize}
+% \item Developed an analysis pipeline to process thousands of shoeprint images, in order to identify important features, examine wear over time, and assess methods for automatic identification of shoeprint matches.
+% \item Developed software to automate uploads of bullet scans to NIST databases
+% \item Supervised creation of a convolutional neural net for identification of class characteristics on shoe soles.
+% \item Facilitated creation of a database front-end to provide access to longitudinal shoe outsole image data. \end{itemize}
+% }
+
+% \tlcventry{2018/2}{0}{Statistical Consultant}{Nebraska Public Power District}{}{}{Provided individual mentoring and project leadership to continue the Business Intelligence Embedded Agent program and provide support for R-related projects.}
+
+\tlcventry{2015/6}{2018/2}{Statistical Analyst}{Nebraska Public Power District}{}{}{
+Conducted analyses to improve data-driven decision making, including analysis of safety, profitability, and reliability data. Designed the Business Intelligence Embedded Agent program to train employees in statistical programming, data analysis, data visualization, and basic statistical modeling.}%
+% \begin{itemize}
+% \item Worked with IT and Strategic Management to develop a plan for analytics/data science maturity at NPPD.
+% \item Designed a mentoring program to train individuals as embedded data scientists to increase the ability of NPPD to effectively utilize data.
+% \item Modeled employee turnover to identify individuals likely to retire or resign.
+% \item Established automated statistical monitoring of plant conditions, department turnover, and human performance errors.
+% \item Predicted likely direction of tornadoes based on location and topological factors to establish the risk of tornado guided missle debris damaging critical equipment.
+% \item Evaluated the risk of climate fluctuations on operational readiness.
+% \item Identified site conditions statistically associated with water accumulation in radiation detectors at a nuclear plant.
+% \item Improved engineering margin in thermal limits management in a nuclear reactor core.
+% \end{itemize}
+% }
+
+\tllabelcventry{2015/4}{2015/10}{2015}{Postdoc}{Iowa State University Office of the Vice President for Research}{}{Ames, IA}{Evaluated the relationship between faculty start-up packages and future productivity.}%
+% \begin{itemize}
+% \item Evaluated faculty funding start-up packages to explore links between start-up funding and future productivity.
+% \item Explored natural variation and underlying trends in grant receipts across Iowa State over a 20 year period.
+% \end{itemize}
+% }
+
+\tlcventry{2014}{0}{Consultant}{}{}{}{Developed web applications, interactive data displays, and statistical analyses for clients including the Iowa Soybean Association, ISU Agronomy Labs, and the USDA.\newline\href{https://www.iasoybeans.com/news/articles/online-risk-calculator-helps-farmers-estimate-late-season-nitrogen-deficiency/}{Nitrogen Deficiency in Corn}, \href{https://crops.extension.iastate.edu/facts/}{Crop Yield Forecast}}
+
+\medskip
+\begin{cvcolumns}
+\section{Research Interests}
+\cvcolumn[.6]{\textbf{\footnotesize{STATISTICAL GRAPHICS \& VISUALIZATION}}}{
+    \begin{itemize}
+    \item Visual Inference
+    \item Human Perception
+    \item Interactive Graphics
+    \item Graphics for ``Big'' Data
+    \end{itemize}
+    }
+
+\cvcolumn[.4]{\textbf{\footnotesize{DATA SCIENCE \& COMPUTING}}}{
+    \begin{itemize}
+    \item Data Mining
+    \item Pattern Recognition
+    \item Computer Vision
+    \item Image Analysis
+    \end{itemize}
+    }
+
+% \cvcolumn{\textbf{\footnotesize{COGNITION}}}{
+%   \begin{itemize}
+%   \item ``Truthiness'' and Charts
+%   \item Perception of Charts and Graphs
+%   \item Optical Illusions in Data Visualization
+%   \item Algorithms to Mimic Human Perception
+%   \end{itemize}
+%   }
+% \cvcolumn[0.4]{\textbf{\footnotesize{COMPUTING \& GRAPHICS}}}{
+%     \begin{itemize}
+%     \item Visual Inference
+%     \item Human Perception
+%     \item Interactive Graphics
+%     \item Image Analysis
+%     \end{itemize}
+%     }
+% \cvcolumn[0.59]{\textbf{\footnotesize{FORENSICS}}}{
+%     \begin{itemize}
+%     \item Statistical Graphics in Court
+%     \item Population Footwear Frequency Estimation
+%     \item Statistical Mimicry of Human Perception
+%     \item Computer Vision
+%     \end{itemize}
+%     }
+\end{cvcolumns}
+
+\clearpage
+
+\section{Teaching}
+\tlcventry{2017}{0}{Business Intelligence Embedded Agent Program}{Nebraska Public Power District}{}{}{Designed a program to mentor employees, providing instruction in data science and opportunities to apply new skills within the company. One-on-one and group mentoring sessions were used to create a sense of community and to reinforce skills learned through online courses.}
+
+\tldatecventry{2017}{R Workshop}{Nebraska Public Power District}{}{}{3-day internal course on using R for data analysis.}
+
+
+\tllabelcventry{2013}{2014}{2013-2014}{R Workshops}{Iowa State}{}{R workshops for the ISU community}{}
+%Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with plyr, reshape2, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
+
+\vspace{-12pt}
+\tllabelcventry{2013}{2013/5}{Spring 2013}{Statistical Methods for Research}{Iowa State}{}{Teaching Assistant}{}
+%Teaching Assistant - Held office hours and graded labs and tests for Stat 401, a class composed primarily of graduate engineering students.}
+\vspace{-12pt}
+\tllabelcventry{2012}{2013}{2012-2013}{Introduction to Business Statistics II}{Iowa State}{}{Teaching Assistant}{}
+%Teaching Assistant - Taught undergraduate business students statistical methods and use of JMP statistical software. Responsibilities included holding office hours and evening help sessions, developing lab materials, managing the course website on Blackboard, and grading labs, homework, and tests.}
+\vspace{-12pt}
+\tldatecventry{2011}{Statistical Methods for Research}{Iowa State}{}{Teaching Assistant}{}
+%Teaching Assistant - Taught graduate social science students statistical methods and use of SAS statistical software. Responsibilities included teaching lab sessions, creating lab materials, holding office hours and grading homework and lab materials.}
+\vspace{-6pt}
+\tldatecventry{2011}{Empirical Methods for Comp. Sci.}{Iowa State}{}{Teaching Assistant}{}
+% Teaching Assistant - Held office hours and graded homework for Stat 430, a class composed of graduate bioinformatics and computer science students.}
+
+\bigskip
+\section{Scholarship}
+\subsection{Publications}
+\nocite{*}
+\bibliographystyle{myplainyr}
+\bibliography{publications}
+\cvitem{In Progress}{
+    \begin{description}
+    \item [Visual Inference for Bayesians] An examination of two-target statistical lineups as the visual analog of Bayes Factors.
+    % \item [Context Mediated Graph Perception] User Study of the influence of contextual information and expertise on the perception of polar plots used to display information in a compass-like setting.
+    \item [Truthiness and Statistical Charts] Evaluating whether the truthiness effect (increased belief in a statement based on the presence of an accompanying picture) holds for statistical charts and maps. 
+    \item [Bullet Signature Resampling] Resampling bullet signatures for use in the calculation of match statistic null distributions.% \href{https://github.com/srvanderplas/bulletsamplr}{Link to project}
+    \item [Bullet Test Set Validation] Validation of a bullet matching algorithm on several test sets used to characterize forensic examiner proficiency. 
+    \item [Footwear Class Characteristic Recognition using Neural Networks] Using convolutional neural networks to identify class characteristics in images of footwear outsoles. These characteristics form a feature set which can be used for automating footwear identification as well as more advanced statistical modeling.
+    \end{description}
+    }
+\subsection{Invited Talks}
+\tldatecventry{2018}{Clusters Beat Trend!? Testing Feature Hierarchy in Statistical Graphics}{SDSS Invited Session}{}{}{}
+\tldatecventry{2015}{Animint: Interactive Web-Based Animations Using Ggplot2's Grammar of Graphics}{JSM Invited Session}{}{}{}
+\tldatecventry{2014}{The curse of three dimensions: Why your brain is lying to you}{JSM Student Paper Award Session}{}{}{}
+\subsection{Contributed Talks}
+\tldatecventry{2018}{Framed! Reproducing 150 year old charts}{JSM Contributed Session}{}{}{}
+
+\tldatecventry{2017}{A Bayesian Approach to Visual Inference}{JSM Contributed Session}{}{}{}
+
+\tldatecventry{2016}{Clusters Beat Trend!? Testing Feature Hierarchy in Statistical Graphics}{JSM Contributed Session}{}{}{}
+
+\tldatecventry{2015}{Visual Aptitude and Statistical Graphics}{InfoVis}{}{}{}
+\tldatecventry{2015}{Animint: Interactive, Web-Ready Graphics with R}{Great Plains R User Group}{}{}{}
+
+\tldatecventry{2014}{Do You See What I See? Using Shiny for User Testing}{JSM Panel}{}{}{}
+
+\tldatecventry{2013}{Signs of the Sine Illusion -- why we need to care}{JSM Contributed Session}{}{}{}
+\subsection{Software}
+\tldatecventry{2018}{\texttt{bulletsamplr}}{Resampling of bullet signatures (active development)}{}{}{}
+\tldatecventry{2018}{\texttt{ImageAlignR}}{Image registration algorithms for forensics (active development)}{}{}{}
+\tldatecventry{2018}{\texttt{bulletxtrctr}}{automated matching of 3d bullet scans (with Heike Hofmann)}{}{}{}
+\tlcventry{2013}{2015}{\texttt{animint}}{animated, interactive web graphics for R using d3.js (with Toby Hocking, Carson Sievert)}{}{}{}
+
+\clearpage
+
+\section{Mentoring and Advising}
+\tlcventry{2018}{0}{Miranda Tilton}{Statistics}{MS Project}{}{Footwear Class Characteristics and Computer Vision}
+\tldatecventry{2018}{Ben Wonderlin and Jenny Kim}{Young Engineers and Scientists}{Summer 2018}{}{Footwear Class Characteristics and Computer Vision}
+
+\bigskip
+\section{Service}
+\tlcventry{2017}{2019}{Graphics Section Representative to the Council of Sections}{ASA}{}{}{}
+
+
+% \section{Theses}
+% \subsection{Dissertation}
+% \cvitem{Title}{\emph{The Perception of Statistical Graphics}}
+% \cvitem{Committee}{Dr.~Heike Hofmann (Chair), Dr.~Dianne Cook, Dr.~Sarah Nusser, Dr.~Max Morris, Dr.~Stephen Gilbert}
+% \cvitem{Abstract}{\small Research on statistical graphics and visualization generally focuses
+% on new types of graphics, new software to create graphics, interactivity, and usability
+% studies. Our ability to interpret and use statistical graphics hinges on the interface between
+% the graph itself and the brain that perceives and interprets it, and there is substantially less
+% research on the interplay between graph, eye, brain, and mind than is sufficient to understand
+% the nature of these relationships. This dissertation further explores the interplay between a static
+% graph, the translation of that graph from paper to mental representation (the journey from
+% eye to brain), and the mental processes that operate on that graph once it is transferred into
+% memory (mind). Understanding the perception of statistical graphics will allow researchers
+% to create more effective graphs which produce fewer distortions and viewer errors while reducing
+% the cognitive load necessary to understand the information presented in the graph.
+% }
+% 
+% \medskip
+% 
+% \subsection{MS Creative Component}
+% \cvitem{Title}{\emph{Nonparametric statistical analysis of Atom Probe Tomography spectra}}
+% \cvitem{Committee}{Dr.~Alyson Wilson (Chair), Dr.~Alicia Carriquiry, Dr.~Krishna Rajan}
+% 
+% \medskip
+
+% \cvitem{Software}
+% \begin{itemize}
+% \item animint - animated, interactive web graphics for R using d3.js
+% \item bulletsamplr - resampling bullet signatures (in progress)
+% \item ImageAlignR - image registration in R (in progress)
+% \item bulletxtrctr - automated matching of 3d bullet scans (with Eric Hare, Heike Hofmann)
+% \end{itemize}
+% 
+% 
+% \section{Research Projects}
+% 
+% \medskip
+% \subsection{Forensics}
+% \tllabelcventry{2018/1}{0}{2018}{CSAFE}{}{Ames, IA}{}{
+% \begin{itemize}
+% \item Image Registration - automatic alignment of images (shoeprints, fingerprints)
+% \item Computer Vision - Convolutional Neural Networks applied to footwear outsoles in order to identify class characteristics.
+% \item Bullet Matching - bulletxtrctr package, bulletsamplr package
+% \end{itemize}}
+% 
+% \subsection{Perception of Statistical Graphics}
+% \tlcventry{2015/4}{2018}{2015}{Independent Research}{}{}{Designed and analyzed experiments to understand human perception of statistical graphics and optimized graphics to clearly communicate statistical results.%
+% \begin{itemize}
+% \item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do colored points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchy/raw/master/FullPaper/Revision/features-jcgs.pdf}{Paper}) \phantom{\cite{featurehierarchyjcgs}}
+% \item Reproducibility of Plots in the 1870 Statistical Atlas (\href{https://github.com/srvanderplas/InfovisStatisticalAtlas}{Paper})
+% \item Bayesian Analysis of Statistical Lineups (\href{https://github.com/heike/bayesian-vinference}{Working Project})
+% \end{itemize}%
+% }
+% \medskip
+% \tllabelcventry{2012}{2015/6}{2012--2015}{PhD Research}{Iowa State University}{}{Ames, IA}{Designed and analyzed experiments to understand human perception of statistical graphics and optimized graphics to clearly communicate statistical results. %\phantom{\cite{jsm2014userpanel}}%
+% \begin{itemize}%
+% \item The \href{https://github.com/heike/sine-illusion}{Sine Illusion} in Statistical Graphics: How does this common illusion effect the information we take in from graphs? \phantom{\cite{sineillusionjcgs}}%
+%  \begin{itemize}%
+%    \item Won the ASA Student Paper Award (2014) for the Graphics Section (\href{https://github.com/srvanderplas/LieFactorSine}{Paper})
+%    \item Created Shiny applets to \href{http://glimmer.rstudio.com/srvanderplas/SineIllusion/}{demonstrate the illusion} and \href{http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/}{test it's effect}.
+%  \end{itemize}
+% \item Statistical Graphics and Visual Aptitude: How are spatial reasoning abilities related to the ability to read statistical graphics? (\href{https://github.com/srvanderplas/VisualAptitude/raw/master/Paper/InfoVis2015Revision/TestingVisualAptitude.pdf}{Paper}) \phantom{\cite{visualaptitude}}
+% \item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do colored points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchy/raw/master/FullPaper/Revision/features-jcgs.pdf}{Paper}) \phantom{\cite{featurehierarchyjcgs}}
+% \end{itemize}
+% }
+% % \cvitem{Advisor:}{Dr. Heike Hofmann}
+% \bigskip
+% \subsection{Visualization of Genetics Data}
+% \tlcventry{2013}{2015}{Research Assistant, USDA Soybean Genome Project}{Iowa State University}{Ames, IA}{}{
+% \begin{itemize}
+% \item Analyzed large quantities of soybean genetics data to identify inheritance, important genes, single nucleotide polymorphisms, and copy number variation.
+% \item Created interactive applets presenting the data and appropriate graphics designed to encourage exploration of the results by biologists.
+% \item Assembled a database of known soybean parantage to facilitate further research, and created an interactive applet to display the lineage of any variety in the database.\phantom{\cite{rutter2017ggenealogy}}
+% \end{itemize}
+% }
+% \cvitem{Advisor:}{Dr.~Dianne Cook, Dr.~Michelle Graham}
+% \bigskip
+% \subsection{Software Development}
+% \tldatecventry{2018}{\texttt{bulletxtrctr}}{CSAFE}{Iowa State University}{Ames, IA}{Redesigned the `bulletr` package to be more efficient and maintainable, expanded the features used for bullet matching, designed a testing framework for validation of package results suitable for use in a legal setting.}
+% \tldatecventry{2018}{\texttt{ImageAlignr}}{CSAFE}{Iowa State University}{Ames, IA}{A collection of utilities for image alignment in a forensic context, with applications to shoeprint and fingerprint analysis.}
+% \tlcventry{2013}{2014}{Statistics Teaching Applets}{Iowa State University}{Ames, IA}{}{Created and redesigned web-based applets to teach statistical techniques interactively. Applets covered topics such as the method of least squares, ANOVA, k-means, regression diagnostics, and t-tests.}
+% 
+% \tlcventry{2013}{2015}{Animint Developer}{R Project}{Google Summer of Code}{}{Worked to develop the \texttt{animint} package for R to translate \texttt{ggplot2} into d3 interactive JavaScript graphics. Participated in the project in 2013, adding support for all ggplot2 geoms as well as most scales and axes. Returned to serve as a mentor for the project in 2014 and 2015.}
+% \bigskip
+% \subsection{Materials Informatics}
+% \tlcventry{2010}{2011}{M.S. Research}{Iowa State University}{Ames, IA}{}{Worked with materials scientists and engineers to develop and implement nonparametric methods for automatic peak detection in mass spectroscopy data. Fit systems of differential equations to spectroscopy data based on theoretical concepts from quantum physics to facilitate inference about the atomic structure of a material.}
+% \bigskip
+% \clearpage
+% \subsection{Other}
+% \tldatecventry{2012}{Research Assistant, Iowa Dept. of Transportation}{Iowa State University}{Ames, IA}{}{Developed a hierarchical Bayesian model to determine the effectiveness of road interventions on traffic accidents and fatalities. Discovered a previously unknown error in the data used in prior analyses using exploratory techniques, and developed a method to compensate for the missing data.}
+% \medskip
+% 
+% \tldatecventry{2009}{Research Rotations in Bioinformatics}{Iowa State University}{Ames, IA}{}{Explored applications of the EM algorithm to next-generation sequencing data error detection and modeled the relationship between age and fertility in reptiles. Each project lasted about 6 weeks; rotations were structured to allow new students to explore several facets of bioinformatics, and included wet-lab and computational experiences. }
+% \medskip
+% 
+% \tldatecventry{2009}{NSF Research Experience for Undergraduates}{Iowa State University}{Ames, IA}{}{Worked with biologists and bioinformaticians to compare homologous gene expression in humans, pigs, and mice.\phantom{\cite{towfic2010detection}}}
+% \medskip
+% 
+% \tldatecventry{2008}{NSF Research Experience for Undergraduates}{University of Nebraska}{Lincoln, NE}{}{Created a mathematical model describing electrical impulse transmission and decay along neurons with varying states of myelination.}
+% \bigskip
+
+
+\end{document}
+% \section{References}
+% 
+% \begin{cvcolumns}
+%     \cvcolumn{Heike Hofmann}{
+%     Professor \\
+%     Department of Statistics \\
+%     Iowa State University \\
+%     2413 Snedecor Hall \\
+%     Ames, IA 50011  \\
+%     \emailsymbol hofmann@iastate.edu \\
+%     \phonesymbol 515-294-8948}
+%     \cvcolumn{Dianne Cook}{
+%     Professor\\
+%     Department of Econometrics and \\
+%     Business Statistics \\
+%     Monash University \\
+%     E762A Menzies Building \\
+%     20 Chancellors Walk \\
+%     Clayton, VIC 3800 \\
+%     \emailsymbol dicook@monash.edu \\
+%     \phonesymbol +61 (0)3990 52608 }
+% \end{cvcolumns}
+% \begin{cvcolumns}
+%     \cvcolumn{Michelle Graham}{
+%     Scientist\\
+%     United States Dept of Agriculture\\
+%     Iowa State University\\
+%     1575 Agronomy Bldg\\
+%     Ames, IA 50011 \\
+%     \emailsymbol michelle.graham@ars.usda.gov \\
+%     \phonesymbol 515-294-3626}
+%     \cvcolumn{Alyson Wilson}{
+%     Professor\\
+%     Department of Statistics\\
+%     North Carolina State University\\
+%     2311 Stinson Drive\\
+%     Campus Box 8203\\
+%     Raleigh, NC 27695-8203\\
+%     \emailsymbol alyson\_wilson@ncsu.edu\\
+%     \phonesymbol 919-515-1901}
+% \end{cvcolumns}
+% \begin{cvcolumns}
+%     \cvcolumn{Jason Rosenkranz}{
+%     Strategic Management Process Manager\\
+%     Nebraska Public Power District\\
+%     1414 15th Street\\
+%     PO Box 499\\
+%     Columbus, NE 68602-0499\\
+%     \emailsymbol jdrosen@nppd.com \\
+%     \phonesymbol 402-563-5537}
+% \end{cvcolumns}
+
+
+
+\clearpage
+
