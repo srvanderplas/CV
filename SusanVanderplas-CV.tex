@@ -12,6 +12,9 @@
 \documentclass[12pt, letterpaper, sans]{moderncv}
 \moderncvstyle{classic}
 \moderncvcolor{blue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extra packages, settings, etc.
+
 \usepackage[utf8]{inputenc}
 \usepackage[scale=0.85]{geometry}    % Width of the entire CV
 \setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
@@ -28,10 +31,13 @@
             citecolor=link}
 \usepackage{varwidth}
 
-\tlmaxdates{2008}{2021}              % Beginning and start of your timeline
-
 \clubpenalty=500
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New commands
+% ------------------------------------------------------------------------------
+% CV references
 \newcommand{\cvreferencecolumn}[2]{%
   \cvitem[0.8em]{}{%
     \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
@@ -49,7 +55,6 @@
     \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{\href{mailto:#6}{\nolinkurl{#6}}}\newline}%
     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
     \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
-
 %-------------------------------------------------------------------------------
 % Numeric CV bibliography
 \newif\ifnumericCVbibliography
@@ -70,7 +75,6 @@
   \number\numexpr\value{bibitemtotal}+1-#1\relax}
   \DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}
   \DeclareFieldFormat{labelnumberwidth}{#1}
-
   \newcommand{\printbibnumber}{%\hspace* here has no effect so I removed it
       \llap{\printtext[labelnumberwidth]{%
               \printfield{labelprefix}%
@@ -104,22 +108,94 @@
   % to be re-set or it keeps the numeric  version value if that has been run before   
 \fi
 \addbibresource{\jobname.bib} 
-
 %-------------------------------------------------------------------------------
-% bold author names
-
+% bold author names in bibliography
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}
     {\textbf{#1}}
     {#1}}
-
 \renewcommand*{\mkbibnamefamily}[1]{%
   \ifitemannotation{highlight}
     {\textbf{#1}}
     {#1}}
+% ------------------------------------------------------------------------------
+% Introductory notes for papers
+\makeatletter
+\newcommand*{\intronote}[2]{%
+  \csdef{cbx@#1@intronote}{#2}%
+}
+\renewbibmacro*{begentry}{%
+  \ifcsdef{cbx@\thefield{entrykey}@intronote}{%
+    \textit{\csuse{cbx@\thefield{entrykey}@intronote}}\addperiod\space\newline
+  }{%
+  }%
+}
+\makeatother
+% ------------------------------------------------------------------------------
+% Notes at the end and hopefully on a new line and in footnotesize
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=note, final]
+      \step[fieldset=addendum, origfieldval, final]
+      \step[fieldset=note, null]
+    }
+  }
+}
+% \DeclareFieldFormat{url}{\footnotesize\addspace#1}
+\DeclareFieldFormat{addendum}{\newline{\footnotesize\textbf{Contribution:}\addspace#1}}
+% \input{|"biber CV-fancypubs"}
 %-------------------------------------------------------------------------------
-
-
+% timeline for bibliography
+\makeatletter 
+\newcommand*{\cventryV}[1][.25em]{}
+\newcommand{\tldatecventryV}[2][color1]{%
+\issincefalse
+\tl@formatstartyear{#2}
+\cventryV{\tikz[baseline=0pt]{
+    \useasboundingbox (0ex,0ex) rectangle (\hintscolumnwidthV,1ex); 
+    %changed origin of boundingbox. previous was (2ex,0ex) but this 
+    % creates alignment problems when switching between numeric and non numeric.
+    \fill [\tl@runningcolor] (0,0)
+       rectangle (\hintscolumnwidthV,\tl@runningwidth);
+    \fill [#1] (0,0)
+       ++(\tl@startfraction*\hintscolumnwidthV,0pt)
+       node [tl@singleyear] {#2}
+       node {$\bullet$};
+  }}}
+\makeatother
+\defbibenvironment{bibliography}
+  {\list
+   {\printbibnumber% here you see the macro in action
+    \tldatecventryV{%
+      \thefield{year} % actual year from bibitem
+       }}
+       {%
+        \setlength{\topsep}{0pt}% layout parameters based on moderncvstyleclassic.sty
+        \addtolength\hintscolumnwidthV{-\labelnumberwidth}% num - changes timeline image length
+        \addtolength\hintscolumnwidthV{\labelkern}% num  - changes timeline image length
+        \setlength{\bibhang}{\hintscolumnwidthV} % custom bibhang
+        \setlength{\labelsep}{\separatorcolumnwidth} %  horizontal distance between label and entry
+        \setlength{\leftmargin}{\hintscolumnwidth} % sets where the left margin is
+        \addtolength{\leftmargin}{\separatorcolumnwidth} %
+        \setlength{\itemindent}{-\bibhang} % this sets indentation of the second line of the entry.
+        % changing it moves also the first line left or right
+        \addtolength{\itemindent}{-\separatorcolumnwidth} % to align the second line exactly
+        \setlength{\itemsep}{\bibitemsep} % vertical distance between bib items
+        \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+\AtEveryBibitem{\clearfield{year}\clearfield{note}\clearfield{eprint}\clearfield{file}} 
+% reverse numbering of publications
+% Count total number of entries in each refsection
+\AtDataInput{%
+  \csnumgdef{entrycount:\strfield{keyword}}{%
+    \csuse{entrycount:\strfield{keyword}}+1}}
+%-------------------------------------------------------------------------------
+\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bib Info
 \usepackage{filecontents}\begin{filecontents}{\jobname.bib}
   @article{machinelearningforensics2019,
   author = {Carriquiry, Alicia and Hofmann, Heike and Tai, Xiao Hui and VanderPlas, Susan},
@@ -256,92 +332,12 @@
 }
 \end{filecontents}
 
-% ------------------------------------------------------------------------------
-% Introductory notes for papers
-
-\makeatletter
-
-\newcommand*{\intronote}[2]{%
-  \csdef{cbx@#1@intronote}{#2}%
-}
-
-\renewbibmacro*{begentry}{%
-  \ifcsdef{cbx@\thefield{entrykey}@intronote}{%
-    \textit{\csuse{cbx@\thefield{entrykey}@intronote}}\addperiod\space\newline
-  }{%
-  }%
-}
-
 \intronote{rutter2017ggenealogy}{Accepted March 2017. Awaiting publication}
 \intronote{donohoresponse}{Submitted as an invited response to Donoho's ``50 years of Data Science"}
 
-% ------------------------------------------------------------------------------
-% Notes at the end and hopefully on a new line and in footnotesize
-
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldsource=note, final]
-      \step[fieldset=addendum, origfieldval, final]
-      \step[fieldset=note, null]
-    }
-  }
-}
-% \DeclareFieldFormat{url}{\footnotesize\addspace#1}
-\DeclareFieldFormat{addendum}{\newline{\footnotesize\textbf{Contribution:}\addspace#1}}
-% \input{|"biber CV-fancypubs"}
-%-----------------------------------------------------------
-% timeline for bibliography
-
-\makeatletter 
-\newcommand*{\cventryV}[1][.25em]{}
-\newcommand{\tldatecventryV}[2][color1]{%
-\issincefalse
-\tl@formatstartyear{#2}
-\cventryV{\tikz[baseline=0pt]{
-    \useasboundingbox (0ex,0ex) rectangle (\hintscolumnwidthV,1ex); 
-    %changed origin of boundingbox. previous was (2ex,0ex) but this 
-    % creates alignment problems when switching between numeric and non numeric.
-    \fill [\tl@runningcolor] (0,0)
-       rectangle (\hintscolumnwidthV,\tl@runningwidth);
-    \fill [#1] (0,0)
-       ++(\tl@startfraction*\hintscolumnwidthV,0pt)
-       node [tl@singleyear] {#2}
-       node {$\bullet$};
-  }}}
-\makeatother
-
-\defbibenvironment{bibliography}
-  {\list
-   {\printbibnumber% here you see the macro in action
-    \tldatecventryV{%
-      \thefield{year} % actual year from bibitem
-       }}
-       {%
-        \setlength{\topsep}{0pt}% layout parameters based on moderncvstyleclassic.sty
-        \addtolength\hintscolumnwidthV{-\labelnumberwidth}% num - changes timeline image length
-        \addtolength\hintscolumnwidthV{\labelkern}% num  - changes timeline image length
-        \setlength{\bibhang}{\hintscolumnwidthV} % custom bibhang
-        \setlength{\labelsep}{\separatorcolumnwidth} %  horizontal distance between label and entry
-        \setlength{\leftmargin}{\hintscolumnwidth} % sets where the left margin is
-        \addtolength{\leftmargin}{\separatorcolumnwidth} %
-        \setlength{\itemindent}{-\bibhang} % this sets indentation of the second line of the entry.
-        % changing it moves also the first line left or right
-        \addtolength{\itemindent}{-\separatorcolumnwidth} % to align the second line exactly
-        \setlength{\itemsep}{\bibitemsep} % vertical distance between bib items
-        \setlength{\parsep}{\bibparsep}}}
-  {\endlist}
-  {\item}
-
-
-\AtEveryBibitem{\clearfield{year}\clearfield{note}\clearfield{eprint}\clearfield{file}} 
-% reverse numbering of publications
-% Count total number of entries in each refsection
-\AtDataInput{%
-  \csnumgdef{entrycount:\strfield{keywords}}{%
-    \csuse{entrycount:\strfield{keywords}}+1}}
-%-------------------------------------------------------------------------------
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Personal Information/Other Options
+\tlmaxdates{2008}{2021}              % Beginning and start of your timeline
 
 % Personal Information
 \name{Susan}{Vanderplas}
@@ -357,34 +353,16 @@
 \social[github]{srvanderplas}                 % optional, remove / comment the line if not wanted
 %\extrainfo{\emailsymbol \emaillink{}}
 
-%\quote{Dubitando ad veritatem parvenimus - \emph{Cicerone}}
-
-\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
-
-% %----------------------------------------------------------------
-% % Bold name(s) of author in bibliography
-% \usepackage{xstring} % bold individual name in bib entries
-% % \usepackage{biblatex} % separate bibliographies
-% %\usepackage[backend=biber]{biblatex}
-% %\nocite{*}
-% \def\FormatMaidenName#1{%
-%   \IfSubStr{#1}{Koons}{\textbf{#1}}{#1}%
-% }
-% \def\FormatName#1{%
-%   \IfSubStr{#1}{Vanderplas}{\textbf{#1}}{\FormatMaidenName{#1}}%
-% }
-% 
-% %----------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
 \makecvtitle
 
 \section{Education}
 \tldatecventry{2015}{PhD}{Statistics}{Iowa State University}{}{Dissertation: The Perception of Statistical Graphics}
 \tldatecventry{2011}{MS}{Statistics}{Iowa State University}{}{}
-% \vspace{-12pt}
-\tldatecventry{2009}{BS}{Psychology \& Applied Mathematical Sciences}{Texas A\&M University}{}{}  % arguments 3 to 6 can be left empty
+\tldatecventry{2009}{BS}{Psychology \& Applied Mathematical Sciences}{Texas A\&M University}{}{}
 \medskip
 
 \section{Professional Experience}
@@ -456,7 +434,9 @@
 % \subsection{Publications}
 \cvitem{}{\footnotesize Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful.}
 \nocite{*}
-\printbibliography[heading=subbibliography,title={Journal Publications}]
+\printbibliography[heading=subbibliography,keyword=pr,title={Journal Publications}]
+\smallskip
+\printbibliography[heading=subbibliography,keyword=npr,resetnumbers=true,title={Other Publications}]
 \medskip
 % \bibliographystyle{myplainyr}
 % \bibliography{publications}
@@ -473,6 +453,7 @@
     }
 
 \subsection{Grants}
+\tldatecventry{2019}{NIJ R\&D in Forensic Science}{Automatic Acquisition and Identification of Footwear Class Characteristics}{PI}{Under review (Submitted April 2019) \$386,984}{}
 \tldatecventry{2018}{NIJ R\&D in Forensic Science}{Statistical Infrastructure for the Use of Error Rate Studies in the Interpretation of Forensic Evidence}{Collaborator}{Funded for FY 2019, \$197,699 total, \$57,596 ISU sub-award}{}
 \tldatecventry{2018}{NIJ R\&D in Forensic Science}{Passive Acquisition of Footwear Class Characteristics in
 Local Populations}{PI}{Not funded, \$383,104}{}
@@ -499,10 +480,10 @@ Local Populations}{PI}{Not funded, \$383,104}{}
 \tldatecventry{2013}{Signs of the Sine Illusion -- why we need to care}{JSM}{}{Montreal, ON}{}
 \medskip
 \subsection{Software}
+\tlcventry{2018}{0}{\texttt{bulletxtrctr}}{automated matching of 3d bullet scans}{}{}{}
+\tlcventry{2018}{0}{\texttt{x3ptools}}{Reading, manipulating, and visualizing x3p files}{}{}{}
 \tldatecventry{2018}{\texttt{bulletsamplr}}{Resampling of bullet signatures}{}{}{}
 \tldatecventry{2018}{\texttt{ImageAlignR}}{Image registration algorithms for forensics}{}{}{}
-\tldatecventry{2018}{\texttt{bulletxtrctr}}{automated matching of 3d bullet scans}{}{}{}
-\tldatecventry{2018}{\texttt{x3ptools}}{Reading, manipulating, and visualizing x3p files}{}{}{}
 \tlcventry{2013}{2015}{\texttt{animint}}{animated, interactive web graphics for R using d3.js}{}{}{}
 
 % \bigskip
@@ -522,37 +503,43 @@ Design and implement a program to mentor employees, providing instruction in dat
 \tlcventry{2013}{2014}{R Workshops}{Iowa State}{}{}{Introduction to R, ggplot2, data management and cleaning, package development, literate programming, and Shiny.}
 %Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with plyr, reshape2, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
 
-% \tldatecventry{2013}{R Workshops}{Iowa State}{}{}{Introduction to R, ggplot2, data management and cleaning, package development, literate programming, and Shiny.}
-%Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with plyr, reshape2, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
-
-% \vspace{-12pt}
-\tldatecventry{2013}{Statistical Methods for Research}{Iowa State}{}{TA}{Stat 401}
+\tldatecventry{2013}{Statistical Methods for Research}{Iowa State}{}{TA}{}%Stat 401}
 %TA - Held office hours and graded labs and tests for Stat 401, a class composed primarily of graduate engineering students.}
 % \vspace{-12pt}
-\tldatecventry{2013}{Introduction to Business Statistics II}{Iowa State}{}{TA}{Stat 326}
+\tlcventry{2012}{2013}{Introduction to Business Statistics II}{Iowa State}{}{TA}{}%Stat 326}
 %TA - Taught undergraduate business students statistical methods and use of JMP statistical software. Responsibilities included holding office hours and evening help sessions, developing lab materials, managing the course website on Blackboard, and grading labs, homework, and tests.}
 % \vspace{-12pt}
-\tldatecventry{2012}{Introduction to Business Statistics II}{Iowa State}{}{TA}{Stat 326}
+% \tldatecventry{2012}{Introduction to Business Statistics II}{Iowa State}{}{TA}{}%Stat 326}
 %TA - Taught undergraduate business students statistical methods and use of JMP statistical software. Responsibilities included holding office hours and evening help sessions, developing lab materials, managing the course website on Blackboard, and grading labs, homework, and tests.}
 % \vspace{-12pt}
-\tldatecventry{2011}{Statistical Methods for Research}{Iowa State}{}{TA}{Stat 401}
+\tldatecventry{2011}{Statistical Methods for Research}{Iowa State}{}{TA}{}%Stat 401}
 %TA - Taught graduate social science students statistical methods and use of SAS statistical software. Responsibilities included teaching lab sessions, creating lab materials, holding office hours and grading homework and lab materials.}
 % \vspace{-6pt}
-\tldatecventry{2011}{Empirical Methods for Computer Science}{Iowa State}{}{TA}{Stat 430}
+\tldatecventry{2011}{Empirical Methods for Computer Science}{Iowa State}{}{TA}{}%Stat 430}
 % TA - Held office hours and graded homework for Stat 430, a class composed of graduate bioinformatics and computer science students.}
 % \clearpage
     
 \section{Mentoring and Advising}
+\subsection{Graduate Students}
 \tlcventry{2018}{0}{Miranda Tilton}{Statistics}{Ph.D}{}{Footwear Class Characteristics and Computer Vision. Completed MS (Spring 2019).}
+\smallskip
+\subsection{Undergraduate Students}
 \tlcventry{2019}{0}{Jason Seo}{Computer Science and Statistics}{Undergraduate Research}{}{R package for visualization of neural networks using the python library keras-vis.}
 \tlcventry{2019}{0}{Jenny Ha}{Computer Science}{Undergraduate Research}{}{Database design for storing bullet scans and intermediate analysis products.}
 \tlcventry{2018}{0}{Talen Fisher}{Computer Engineering}{Undergraduate Research}{}{Tools for working with x3p files, database design for storing bullet scans and intermediate analysis products.}
+\smallskip
+\subsection{Summer Research Programs}
+\tldatecventry{2019}{Molly McDermott and Andrew Maloney}{Research Experience for Undergraduates}{Summer 2019}{}{Bullet Scan Quality and Machine Learning}
+
 \tldatecventry{2018}{Ben Wonderlin and Jenny Kim}{Young Engineers and Scientists}{Summer 2018}{}{Footwear Class Characteristics and Computer Vision}
+
+
 
 
 \bigskip
 \section{Service}
-\tldatecventry{2019}{Gertrude Cox Scholarship Committee Member}{ASA}{}{}{}
+\tldatecventry{2019}{Organizing Committee}{Uncoast Unconference}{Des Moines, IA}{}{Organized the first R Uncoast Unconference to bring R developers in flyover country together for a 3-day event. Over 50\% of the participants at the conference were women or minorities, and participants included students, academics, and industry R programmers with a variety of experience levels in R programming. }
+\tldatecventry{2019}{Gertrude Cox Scholarship Committee Member}{ASA}{}{}{Assisted with selection of the Gertrude Cox Scholarship recipients and honorable mentions. }
 \tlcventry{2017}{2019}{Graphics Section Representative to the Council of Sections}{ASA}{}{}{}
 
 
@@ -578,84 +565,5 @@ Design and implement a program to mentor employees, providing instruction in dat
 % \subsection{MS Creative Component}
 % \cvitem{Title}{\emph{Nonparametric statistical analysis of Atom Probe Tomography spectra}}
 % \cvitem{Committee}{Dr.~Alyson Wilson (Chair), Dr.~Alicia Carriquiry, Dr.~Krishna Rajan}
-% 
-% \medskip
-
-% \cvitem{Software}
-% \begin{itemize}
-% \item animint - animated, interactive web graphics for R using d3.js
-% \item bulletsamplr - resampling bullet signatures (in progress)
-% \item ImageAlignR - image registration in R (in progress)
-% \item bulletxtrctr - automated matching of 3d bullet scans (with Eric Hare, Heike Hofmann)
-% \end{itemize}
-% 
-% 
-% \section{Research Projects}
-% 
-% \medskip
-% \subsection{Forensics}
-% \tllabelcventry{2018/1}{0}{2018}{CSAFE}{}{Ames, IA}{}{
-% \begin{itemize}
-% \item Image Registration - automatic alignment of images (shoeprints, fingerprints)
-% \item Computer Vision - Convolutional Neural Networks applied to footwear outsoles in order to identify class characteristics.
-% \item Bullet Matching - bulletxtrctr package, bulletsamplr package
-% \end{itemize}}
-% 
-% \subsection{Perception of Statistical Graphics}
-% \tlcventry{2015/4}{2018}{2015}{Independent Research}{}{}{Designed and analyzed experiments to understand human perception of statistical graphics and optimized graphics to clearly communicate statistical results.%
-% \begin{itemize}
-% \item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do colored points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchy/raw/master/FullPaper/Revision/features-jcgs.pdf}{Paper}) \phantom{\cite{featurehierarchyjcgs}}
-% \item Reproducibility of Plots in the 1870 Statistical Atlas (\href{https://github.com/srvanderplas/InfovisStatisticalAtlas}{Paper})
-% \item Bayesian Analysis of Statistical Lineups (\href{https://github.com/heike/bayesian-vinference}{Working Project})
-% \end{itemize}%
-% }
-% \medskip
-% \tllabelcventry{2012}{2015/6}{2012--2015}{PhD Research}{Iowa State University}{}{Ames, IA}{Designed and analyzed experiments to understand human perception of statistical graphics and optimized graphics to clearly communicate statistical results. %\phantom{\cite{jsm2014userpanel}}%
-% \begin{itemize}%
-% \item The \href{https://github.com/heike/sine-illusion}{Sine Illusion} in Statistical Graphics: How does this common illusion effect the information we take in from graphs? \phantom{\cite{sineillusionjcgs}}%
-%  \begin{itemize}%
-%    \item Won the ASA Student Paper Award (2014) for the Graphics Section (\href{https://github.com/srvanderplas/LieFactorSine}{Paper})
-%    \item Created Shiny applets to \href{http://glimmer.rstudio.com/srvanderplas/SineIllusion/}{demonstrate the illusion} and \href{http://glimmer.rstudio.com/srvanderplas/SineIllusionShiny/}{test it's effect}.
-%  \end{itemize}
-% \item Statistical Graphics and Visual Aptitude: How are spatial reasoning abilities related to the ability to read statistical graphics? (\href{https://github.com/srvanderplas/VisualAptitude/raw/master/Paper/InfoVis2015Revision/TestingVisualAptitude.pdf}{Paper}) \phantom{\cite{visualaptitude}}
-% \item Hierarchy of Graphical Features: Which features of statistical graphics dominate the perceptual experience? Do colored points matter more than trend lines? (\href{https://github.com/srvanderplas/FeatureHierarchy/raw/master/FullPaper/Revision/features-jcgs.pdf}{Paper}) \phantom{\cite{featurehierarchyjcgs}}
-% \end{itemize}
-% }
-% % \cvitem{Advisor:}{Dr. Heike Hofmann}
-% \bigskip
-% \subsection{Visualization of Genetics Data}
-% \tlcventry{2013}{2015}{Research Assistant, USDA Soybean Genome Project}{Iowa State University}{Ames, IA}{}{
-% \begin{itemize}
-% \item Analyzed large quantities of soybean genetics data to identify inheritance, important genes, single nucleotide polymorphisms, and copy number variation.
-% \item Created interactive applets presenting the data and appropriate graphics designed to encourage exploration of the results by biologists.
-% \item Assembled a database of known soybean parantage to facilitate further research, and created an interactive applet to display the lineage of any variety in the database.\phantom{\cite{rutter2017ggenealogy}}
-% \end{itemize}
-% }
-% \cvitem{Advisor:}{Dr.~Dianne Cook, Dr.~Michelle Graham}
-% \bigskip
-% \subsection{Software Development}
-% \tldatecventry{2018}{\texttt{bulletxtrctr}}{CSAFE}{Iowa State University}{Ames, IA}{Redesigned the `bulletr` package to be more efficient and maintainable, expanded the features used for bullet matching, designed a testing framework for validation of package results suitable for use in a legal setting.}
-% \tldatecventry{2018}{\texttt{ImageAlignr}}{CSAFE}{Iowa State University}{Ames, IA}{A collection of utilities for image alignment in a forensic context, with applications to shoeprint and fingerprint analysis.}
-% \tlcventry{2013}{2014}{Statistics Teaching Applets}{Iowa State University}{Ames, IA}{}{Created and redesigned web-based applets to teach statistical techniques interactively. Applets covered topics such as the method of least squares, ANOVA, k-means, regression diagnostics, and t-tests.}
-% 
-% \tlcventry{2013}{2015}{Animint Developer}{R Project}{Google Summer of Code}{}{Worked to develop the \texttt{animint} package for R to translate \texttt{ggplot2} into d3 interactive JavaScript graphics. Participated in the project in 2013, adding support for all ggplot2 geoms as well as most scales and axes. Returned to serve as a mentor for the project in 2014 and 2015.}
-% \bigskip
-% \subsection{Materials Informatics}
-% \tlcventry{2010}{2011}{M.S. Research}{Iowa State University}{Ames, IA}{}{Worked with materials scientists and engineers to develop and implement nonparametric methods for automatic peak detection in mass spectroscopy data. Fit systems of differential equations to spectroscopy data based on theoretical concepts from quantum physics to facilitate inference about the atomic structure of a material.}
-% \bigskip
-% \clearpage
-% \subsection{Other}
-% \tldatecventry{2012}{Research Assistant, Iowa Dept. of Transportation}{Iowa State University}{Ames, IA}{}{Developed a hierarchical Bayesian model to determine the effectiveness of road interventions on traffic accidents and fatalities. Discovered a previously unknown error in the data used in prior analyses using exploratory techniques, and developed a method to compensate for the missing data.}
-% \medskip
-% 
-% \tldatecventry{2009}{Research Rotations in Bioinformatics}{Iowa State University}{Ames, IA}{}{Explored applications of the EM algorithm to next-generation sequencing data error detection and modeled the relationship between age and fertility in reptiles. Each project lasted about 6 weeks; rotations were structured to allow new students to explore several facets of bioinformatics, and included wet-lab and computational experiences. }
-% \medskip
-% 
-% \tldatecventry{2009}{NSF Research Experience for Undergraduates}{Iowa State University}{Ames, IA}{}{Worked with biologists and bioinformaticians to compare homologous gene expression in humans, pigs, and mice.\phantom{\cite{towfic2010detection}}}
-% \medskip
-% 
-% \tldatecventry{2008}{NSF Research Experience for Undergraduates}{University of Nebraska}{Lincoln, NE}{}{Created a mathematical model describing electrical impulse transmission and decay along neurons with varying states of myelination.}
-% \bigskip
-
 
 \end{document}
