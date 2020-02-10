@@ -9,7 +9,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\documentclass[12pt, letterpaper, sans]{moderncv}
+\documentclass[11pt, letterpaper, sans]{moderncv}
 \moderncvstyle{classic}
 \moderncvcolor{blue}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,6 +197,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bib Info
 \usepackage{filecontents}\begin{filecontents}{\jobname.bib}
+%Need to add book chapter when book comes out...
+@article{vanderplasComparisonThreeSimilarity2020,
+  AUTHOR+an = {1=highlight},
+	title = {Comparison of three similarity scores for bullet {LEA} matching},
+	doi = {10.1016/j.forsciint.2020.110167},
+	journal = {Forensic Science International},
+	author = {Vanderplas, Susan and Nally, Melissa and Klep, Tylor and Cadevall, Cristina and Hofmann, Heike},
+	month = jan,
+	year = {2020},
+	keywords = {3D microscopy, cross correlation, Forensic science, land engraved areas (LEAs), random forest, Toolmark},
+  keywords = {pr},
+  addendum = {Programming and analysis (20\%), Writing (55\%)}
+}
+@article{vanderplasTestingStatisticalCharts2020,
+	title = {Testing {Statistical} {Charts}: {What} {Makes} a {Good} {Graph}?},
+	volume = {7},
+	shorttitle = {Testing {Statistical} {Charts}},
+	doi = {10.1146/annurev-statistics-031219-041252},
+	number = {1},
+	journal = {Annual Review of Statistics and Its Application},
+	author = {Vanderplas, Susan and Cook, Dianne and Hofmann, Heike},
+	month = mar,
+	year = {2020},
+	pages = {13.1-13.28},
+  keywords = {pr},
+  AUTHOR+an = {1=highlight},
+  addendum = {Writing (85\%)}
+}
+
 @Article{rutter2019ggenealogy,
 	title = {ggenealogy: {An} {R} {Package} for {Visualizing} {Genealogical} {Data}},
 	volume = {89},
@@ -207,6 +236,7 @@
 	number = {13},
 	journal = {Journal of Statistical Software},
 	author = {Rutter, Lindsay and VanderPlas, Susan and Cook, Dianne and Graham, Michelle},
+  AUTHOR+an = {2=highlight},
 	year = {2019},
 	keywords = {data visualization, exploratory data analysis, statistical graphics, genealogy, interactive, R},
 	pages = {1--31},
@@ -222,7 +252,8 @@
   pages = {29-35},
   url = {https://doi.org/10.1111/j.1740-9713.2019.01252.x},
   year = {2019},
-  keywords = {npr}
+  keywords = {npr},
+  addendum = {Writing (50\%)},
   }
 @article{framedjcgs,
 	title = {Framed! {Reproducing} and {Revisiting} 150 year old charts},
@@ -342,16 +373,18 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Personal Information/Other Options
-\tlmaxdates{2008}{2021}              % Beginning and start of your timeline
+\tlmaxdates{2008}{2023}              % Beginning and start of your timeline
 
 % Personal Information
 \name{Susan}{Vanderplas}
 \title{\emph{Curriculum Vitae}}
-\address{195C Durham Center}{613 Morrill Rd}{Ames, IA 50011}
-\phone[mobile]{515-509-6613}
+\address{349a Hardin Hall North Wing}{3310 Holdrege Street}{Lincoln, NE 58483-0961}
+\phone[office]{402-472-7290}
+% \phone[mobile]{515-509-6613}
 %\phone[fixed]{+55~(11)~3091~2722}
+\email{susan.vanderplas@unl.edu}
 % \email{srvanderplas@gmail.com}                % optional, remove / comment the line if not wanted
-\email{srvander@iastate.edu}                % optional, remove / comment the line if not wanted
+% \email{srvander@iastate.edu}                % optional, remove / comment the line if not wanted
 % \homepage{srvanderplas.com}                   % optional, remove / comment the line if not wanted
 %\social[linkedin]{}                          % optional, remove / comment the line if not wanted
 %\social[twitter]{srvanderplas}               % optional, remove / comment the line if not wanted
@@ -363,7 +396,7 @@
 
 \begin{document}
 \makecvtitle
-
+\vspace{-1cm}
 \section{Education}
 \tldatecventry{2015}{PhD}{Statistics}{Iowa State University}{}{Dissertation: The Perception of Statistical Graphics}
 \tldatecventry{2011}{MS}{Statistics}{Iowa State University}{}{}
@@ -372,7 +405,8 @@
 
 \section{Professional Experience}
 
-\tlcventry{2018/2}{0}{Research Assistant Professor}{Center for Statistics and Applications in Forensic Evidence}{}{Iowa State University}{}%
+\tlcventry{2020}{0}{Assistant Professor}{Statistics Department}{}{University of Nebraska, Lincoln}{}%
+\tlcventry{2018/2}{2019}{Research Assistant Professor}{Center for Statistics and Applications in Forensic Evidence}{}{Iowa State University}{}%
 % \begin{itemize}
 % \item Developed an analysis pipeline to process thousands of shoeprint images, in order to identify important features, examine wear over time, and assess methods for automatic identification of shoeprint matches.
 % \item Developed software to automate uploads of bullet scans to NIST databases
@@ -380,7 +414,7 @@
 % \item Facilitated creation of a database front-end to provide access to longitudinal shoe outsole image data. \end{itemize}
 % }
 
-\tlcventry{2018/2}{0}{Statistical Consultant}{Nebraska Public Power District}{}{}{Provided individual mentoring and project leadership to continue the Business Intelligence Embedded Agent program and provide support for R-related projects.}
+\tlcventry{2018/2}{2019}{Statistical Consultant}{Nebraska Public Power District}{}{}{Provided individual mentoring and project leadership to continue the Business Intelligence Embedded Agent program and provide support for R-related projects.}
 
 \tlcventry{2015/6}{2018/2}{Statistical Analyst}{Nebraska Public Power District}{}{}{
 %Conduct statistical analyses to improve NPPD's data-driven decision making (safety, profitability, and equipment reliability). Design and implement a program to train employees in statistical programming, data analysis, data visualization, and basic statistical modeling.
@@ -406,8 +440,8 @@
 % \end{itemize}
 % }
 
-\tlcventry{2014}{0}{Consultant}{}{}{}{Develop web applications, interactive data displays, and statistical analyses for clients including the Iowa Soybean Association, ISU Agronomy Labs, and the USDA.%\newline\href{https://www.iasoybeans.com/news/articles/online-risk-calculator-helps-farmers-estimate-late-season-nitrogen-deficiency/}{Nitrogen Deficiency in Corn}, \href{https://crops.extension.iastate.edu/facts/}{Crop Yield Forecast}
-}
+% \tlcventry{2014}{2019}{Consultant}{}{}{}{Develop web applications, interactive data displays, and statistical analyses for clients including the Iowa Soybean Association, ISU Agronomy Labs, and the USDA.%\newline\href{https://www.iasoybeans.com/news/articles/online-risk-calculator-helps-farmers-estimate-late-season-nitrogen-deficiency/}{Nitrogen Deficiency in Corn}, \href{https://crops.extension.iastate.edu/facts/}{Crop Yield Forecast}
+% }
 
 % \bigskip
 % \section{Research Interests}
@@ -448,9 +482,7 @@
 \cvitem{In Progress}{
     \begin{description}
     \item [A Convolutional Neural Network for Outsole Recognition] Use CNNs to automate identification of class characteristics in images of footwear outsoles. Submitted to Forensic Science International, July 2019.
-    \item [Testing Statistical Charts: What makes a good graph?] A review of research relating to the testing of statistical graphics across different domains and disciplines. Submitted to Annual Reviews, Accepted August 2019.
     \item [Firearms Examination] (Book Chapter) An overview of statistical methods for firearms examination. Submitted July 2019; Under Review.
-    \item [Bullet Test Set Validation] Validate an algorithm for bullet matching on several test sets used to test forensic examiner proficiency. Submitted to Forensic Science International, August 2019.
     \item [Visual Inference for Bayesians] Visual Inference analyses for Bayesians, including estimation of the selection probability of null plots.
     % \item [Truthiness and Statistical Charts] Evaluate whether the truthiness effect (increased belief in a statement based on the presence of an accompanying picture) holds for statistical charts and maps. 
     \item [Longitudinal Shoe Database] Design a database for sharing longitudinal shoe wear data, including powder prints, 2D scans, 3D scans, pictures, and crime-scene style casts and prints.
@@ -469,6 +501,8 @@ of Life and Community Services in Smart \& Connected Small Communities}{PI}{Unde
 \tldatecventry{2018}{NIJ R\&D in Forensic Science}{Evaluating Photogrammetry for 3D Footwear Impression Recovery}{PI}{Not funded, \$281,755}{}
 \medskip
 \subsection{Invited Talks}
+\tldatecventry{2020}{One of these things is not like the others: Visual Statistics and Testing in Statistical Graphics}{Data Science Symposium}{South Dakota State University}{Brookings, SD}{}
+\tldatecventry{2020}{Big Data, Big Experiments, and Big Problems}{}{Plant and Animal Genome}{San Diego, CA}{}
 \tldatecventry{2019}{Statistical Lineups for Bayesians}{JSM}{Section on Statistical Graphics}{Denver, CO}{}
 \tldatecventry{2018}{Clusters Beat Trend!? Testing Feature Hierarchy in Statistical Graphics}{SDSS}{}{Reston, VA}{}
 \tldatecventry{2015}{Animint: Interactive Web-Based Animations Using Ggplot2's Grammar of Graphics}{JSM}{}{Seattle, WA}{}
@@ -505,6 +539,7 @@ of Life and Community Services in Smart \& Connected Small Communities}{PI}{Unde
 % \tldatecventry{2014}{ASA Section on Statistical Graphics}{Student Paper Award}{}{}{}
 % \clearpage
 \section{Teaching}
+\tldatecventry{2020}{Stat 218 - Introduction to Statistics}{University of Nebraska, Lincoln}{}{}{}
 \tldatecventry{2019}{Stat 585 - Data Technologies for Statistical Analysis}{Iowa State University}{}{}{Co-taught, assisted with curriculum development. Mean evaluation: 4.92, Median: 5.0 }
 \tlcventry{2017}{2018}{Business Intelligence Embedded Agent Program}{Nebraska Public Power District}{}{}{
 Design and implement a program to mentor employees, providing instruction in data science and opportunities to apply new skills within the company. Lead one-on-one and group mentoring sessions to create a sense of community and reinforce skills learned through online courses. Class size: 16
@@ -531,18 +566,18 @@ Design and implement a program to mentor employees, providing instruction in dat
 \tldatecventry{2011}{Empirical Methods for Computer Science}{Iowa State}{}{TA}{}%Stat 430}
 % TA - Held office hours and graded homework for Stat 430, a class composed of graduate bioinformatics and computer science students.}
 % \clearpage
-    
+\clearpage
 \section{Mentoring and Advising}
 \subsection{Graduate Students}
-\tlcventry{2018}{0}{Miranda Tilton}{Statistics}{Ph.D}{}{Footwear Class Characteristics and Computer Vision. Completed MS (Spring 2019).}
-\tlcventry{2019}{0}{Charlotte Roiger}{Statistics}{MS}{}{Detection of Topological Features of Bullet Lands using Computer Vision. Estimated MS completion in Spring 2020. Co-advised with Heike Hofmann.}
-\tlcventry{2019}{0}{Joseph Zemmels}{Statistics}{MS}{}{Analysis and Matching of Cartridge Cases. Estimated MS completion in Summer 2020. Co-advised with Heike Hofmann.}
-\tlcventry{2019}{0}{Eryn Blagg}{Statistics}{MS}{}{Analysis of Wear Development in Three-Dimensional Shoe Scans. Estimated MS completion in Fall 2020.}
+\tlcventry{2019}{2020}{Joseph Zemmels}{Statistics}{MS}{}{Analysis and Matching of Cartridge Cases. Estimated MS completion in Spring 2020. Co-advised with Heike Hofmann.}
+\tlcventry{2019}{2020}{Eryn Blagg}{Statistics}{MS}{}{Analysis of Wear Development in Three-Dimensional Shoe Scans. Estimated MS completion in Spring 2020. Co-advised with Heike Hofmann}
+\tlcventry{2018}{2019}{Miranda Tilton}{Statistics}{Ph.D}{}{Footwear Class Characteristics and Computer Vision. Completed MS (Spring 2019).}
+\tldatecventry{2019}{Charlotte Roiger}{Statistics}{MS}{}{Detection of Topological Features of Bullet Lands using Computer Vision. Estimated MS completion in Spring 2020. Co-advised with Heike Hofmann.}
 \smallskip
 \subsection{Undergraduate Students}
 \tldatecventry{2019}{Jason Seo}{Computer Science and Statistics}{Undergraduate Research}{}{R package for visualization of neural networks using the python library keras-vis.}
 % \tldatecventry{2019}{Jenny Ha}{Computer Science}{Undergraduate Research}{}{Database design for storing bullet scans and intermediate analysis products.}
-\tlcventry{2018}{0}{Talen Fisher}{Computer Engineering}{Undergraduate Research}{}{Tools for working with x3p files, database design for storing bullet scans and intermediate analysis products.}
+\tlcventry{2018}{2019}{Talen Fisher}{Computer Engineering}{Undergraduate Research}{}{Tools for working with x3p files, database design for storing bullet scans and intermediate analysis products.}
 \smallskip
 \subsection{Summer Research Programs}
 \tldatecventry{2019}{Molly McDermott and Andrew Maloney}{Research Experience for Undergraduates}{Summer 2019}{}{Bullet Scan Quality and Machine Learning}
@@ -553,6 +588,7 @@ Design and implement a program to mentor employees, providing instruction in dat
 
 \section{Service}
 \tldatecventry{2020}{Graphics Section Program Chair}{ASA}{}{}{}
+\tldatecventry{2020}{Program Committee (Graphics)}{Symposium on Data Science and Statistics 2020}{}{}{}
 \tldatecventry{2019}{Uncoast Unconference Organizing Committee}{}{Des Moines, IA}{}{Organized the first R Uncoast Unconference to bring R developers in flyover country together for a 3-day event. Over 50\% of the participants at the conference were women or minorities, and participants included students, academics, and industry R programmers with a variety of experience levels in R programming. }
 \tldatecventry{2019}{Gertrude Cox Scholarship Committee Member}{ASA}{}{}{Assisted with selection of the Gertrude Cox Scholarship recipients and honorable mentions. }
 \tlcventry{2017}{2019}{Graphics Section Representative to the Council of Sections}{ASA}{}{}{}
