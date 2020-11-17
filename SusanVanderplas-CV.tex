@@ -30,6 +30,7 @@
             urlcolor=link,
             citecolor=link}
 \usepackage{varwidth}
+\usepackage[normalem]{ulem}
 
 \clubpenalty=500
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,6 +198,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bib Info
 \usepackage{filecontents}\begin{filecontents}{\jobname.bib}
+@preamble{ " \newcommand{\noop}[1]{} " }
+@article{inconclusives,
+  AUTHOR+an = {2=highlight},
+	title = {Treatment of Inconclusives in the AFTE Range of Conclusions},
+	doi = {},
+	journal = {Law, Probability, and Risk},
+	author = {Hofmann, Heike and Vanderplas, Susan and Carriquiry, Alicia},
+	month = {},
+	year = {2021},
+  keywords = {pr},
+  addendum = {Writing (50\%)},
+  note = {Submitted Oct 2020, Accepted with revision Nov 2020}
+}
 @article{stat2020,
   AUTHOR+an = {1=highlight},
 	title = {Statistical Significance Calculations for Scenarios in Visual Inference},
@@ -513,21 +527,23 @@
     }
 
 \subsection{Grants}
+\tlcventry{2021}{2022}{NIJ R\&D in Forensic Science}{Automatic Acquisition and Identification of Footwear Class Characteristics}{PI}{Funded, \$380,650 total}{}
 \tlcventry{2020}{2025}{NIST}{Center for Statistics and Applications in Forensic Evidence}{PI}{Funded (\$20 million total, \$456,930 sub-award)}{}
-\tlcventry{2020}{2023}{USDA CIGOFF}{Improving the Economic and Ecological Sustainability of US Crop Production through On-Farm Precision Experimentation}{PI}{Funded (\$4,000,000 total)}{}
-\tldatecventry{2020}{USDA NIFA AFRI}{Corn Residue Adaptive Grazing Strategies}{Collaborator}{Submitted April 2020, \$300,000}{}
-\tldatecventry{2020}{USDA NIFA AFRI}{Practical Framework to Facilitate Adoption of In-Season N Management Technology in Commercial Fields}{Collaborator}{Submitted April 2020, \$300,000}{}
-\tldatecventry{2020}{NSF}{AI Institute: AgroAI: The Institute for Advancing Agriculture and Food in a Changing World Using AI}{Collaborator}{Not Funded, UNL subcontract request \$3,555,327}{}
-\tlcventry{2020}{2021}{NIJ R\&D in Forensic Science}{Automatic Acquisition and Identification of Footwear Class Characteristics}{PI}{Funded for 2020-2021 (\$386,984 total); paused during transfer to UNL}{}
+\tlcventry{2020}{2023}{USDA CIGOFF}{Improving the Economic and Ecological Sustainability of US Crop Production through On-Farm Precision Experimentation}{PI}{Funded (\$4,000,000 total, ~\$400,000 UNL subcontract split between 3 UNL PIs)}{}
+\tlcventry{2021}{2022}{USDA NIFA AFRI}{Corn Residue Adaptive Grazing Strategies}{Collaborator}{Funded, \$300,000}{}
+\tldatecventry{2020}{USDA NIFA AFRI}{Practical Framework to Facilitate Adoption of In-Season N Management Technology in Commercial Fields}{Collaborator}{Not funded, \$300,000}{}
+\tldatecventry{2020}{NSF}{AI Institute: AgroAI: The Institute for Advancing Agriculture and Food in a Changing World Using AI}{Collaborator}{Not Funded, Total grant \$20 million, UNL subcontract request \$3,555,327}{}
+% \tlcventry{2020}{2021}{NIJ R\&D in Forensic Science}{Automatic Acquisition and Identification of Footwear Class Characteristics}{PI}{Funded for 2020-2021 (\$386,984 total); paused during transfer to UNL}{}
+\tlcventry{2020}{2023}{NSF}{Overcoming the Rural Data Deficit to Improve Quality of Life and Community Services in Smart \& Connected Small Communities}{PI}{Funded (\$1,500,000 total, \$123,445 subcontract)}{}
 \tldatecventry{2019}{USDA AFRI-SAS}{A Cyber-Physical System for Data-Intensive Farm Management}{PI}{Not funded, \$3,000,000 total}{}
-\tldatecventry{2019}{NSF}{Overcoming the Rural Data Deficit to Improve Quality of Life and Community Services in Smart \& Connected Small Communities}{PI}{Funded for 2020-2023 (\$1,500,000 total, \$123,445 subcontract)}{}
 % \tlcventry{2019}{2021}{USDA National Institute of Food and Agriculture}{Understanding Opioid Risks in Rural and Micropolitan Communities: Economic Restructuring, Social Disorganization, and Local Responses.}{PI}{Award number: 2018-68006-27640. Funded for FY 2018-2021, \$498,401.00}{}
 \tldatecventry{2019}{NIJ R\&D in Forensic Science}{Statistical Infrastructure for the Use of Error Rate Studies in the Interpretation of Forensic Evidence}{Collaborator}{Funded for FY 2019, \$197,699 total, \$57,596 ISU sub-award}{}
 \tldatecventry{2018}{NIJ R\&D in Forensic Science}{Passive Acquisition of Footwear Class Characteristics in Local Populations}{PI}{Not funded, \$383,104}{}
 \tldatecventry{2018}{NIJ R\&D in Forensic Science}{Evaluating Photogrammetry for 3D Footwear Impression Recovery}{PI}{Not funded, \$281,755}{}
 \medskip
 \subsection{Invited Talks}
-\tldatecventry{2020}{Do You See What I See? Leveraging Human Perception in Computer Vision Tasks.}{JSM}{Section on Statistical Graphics}{Online}{Session Cancelled}
+\tldatecventry{2021}{How do you define a circle? Perception and Computer Vision Diagnostics}{JSM}{Section on Statistical Graphics}{Seattle, WA}{}
+\tldatecventry{2020}{\sout{Do You See What I See? Leveraging Human Perception in Computer Vision Tasks.}}{JSM}{Section on Statistical Graphics}{Online, Session Cancelled due to COVID-related issues.}{}
 \tldatecventry{2020}{Perception and Visual Communication in a Global Pandemic}{Data Science, Statistics, and Visualization}{SAMSI}{Online}{}
 \tldatecventry{2020}{One of these things is not like the others: Visual Statistics and Testing in Statistical Graphics}{Data Science Symposium}{South Dakota State University}{Brookings, SD}{}
 \tldatecventry{2020}{Big Data, Big Experiments, and Big Problems}{}{Plant and Animal Genome}{San Diego, CA}{}
@@ -536,6 +552,7 @@
 \tldatecventry{2015}{Animint: Interactive Web-Based Animations Using Ggplot2's Grammar of Graphics}{JSM}{}{Seattle, WA}{}
 \tldatecventry{2014}{The curse of three dimensions: Why your brain is lying to you}{JSM}{Section on Statistical Graphics Student Paper Session}{Boston, MA}{}
 \medskip
+% \clearpage
 \subsection{Contributed Talks}
 \tldatecventry{2018}{Framed! Reproducing 150 year old charts}{JSM}{}{Vancouver, BC}{}
 
@@ -551,40 +568,41 @@
 \tldatecventry{2013}{Signs of the Sine Illusion -- why we need to care}{JSM}{}{Montreal, ON}{}
 \medskip
 \subsection{Software}
+\cvitem{}{\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}
 % \tlcventry{2019}{0}{\texttt{LegoR}}{Acquisition of data about lego packages from Brickfinder, Lego.com, and Rebrickable}{}{}{}
-\tlcventry{2020}{0}{\texttt{vinference}}{Analysis of visual inference experiments}{}{}{}
-\tlcventry{2019}{0}{\texttt{ShoeScrubR}}{Cleaning shoe print data for future statistical analysis}{}{}{}
-\tlcventry{2019}{0}{\texttt{groovefinder}}{Identification of grooves in scans of bullet land engraved areas}{}{}{}
-\tlcventry{2018}{0}{\texttt{ShoeScrapeR}}{Acquisition of Shoe Images and Metadata from Online Retailers}{}{}{}
-\tlcventry{2018}{0}{\texttt{bulletxtrctr}}{Automated matching of 3d bullet scans}{}{}{}
-\tlcventry{2018}{0}{\texttt{x3ptools}}{Reading, manipulating, and visualizing x3p files}{}{}{}
-% \tldatecventry{2018}{\texttt{bulletsamplr}}{Resampling of bullet signatures}{}{}{}
-% \tldatecventry{2018}{\texttt{ImageAlignR}}{Image registration algorithms for forensics}{}{}{}
+\tldatecventry{2020}{\texttt{vinference}}{Analysis of visual inference experiments}{}{}{}
+\tldatecventry{2019}{\texttt{ShoeScrubR}}{Cleaning shoe print data for future statistical analysis}{}{}{}
+\tldatecventry{2019}{\texttt{groovefinder}}{Identification of grooves in scans of bullet land engraved areas}{}{}{}
+\tldatecventry{2018}{\texttt{ShoeScrapeR}}{Acquisition of Shoe Images and Metadata from Online Retailers}{}{}{}
+\tldatecventry{2018}{\texttt{bulletxtrctr}}{Automated matching of 3d bullet scans}{}{}{}
+\tldatecventry{2018}{\texttt{x3ptools}}{Reading, manipulating, and visualizing x3p files}{}{}{}
+\tldatecventry{2018}{\texttt{bulletsamplr}}{Resampling of bullet signatures}{}{}{}
+\tldatecventry{2018}{\texttt{ImageAlignR}}{Image registration algorithms for forensics}{}{}{}
 \tlcventry{2013}{2015}{\texttt{animint}}{animated, interactive web graphics for R using d3.js}{}{}{}
 
 % \bigskip
 
 % \section{Awards and Honors}
 % \tldatecventry{2014}{ASA Section on Statistical Graphics}{Student Paper Award}{}{}{}
-% \clearpage
+\clearpage
 \section{Teaching}
 \tldatecventry{2020}{Stat 850 - Computing Tools for Statisticians}{University of Nebraska, Lincoln}{}{Course materials: https://srvanderplas.github.io/unl-stat850/}{}
 \tldatecventry{2020}{Stat 218 - Introduction to Statistics}{University of Nebraska, Lincoln}{}{}{Mean evaluation: 4.2, Median: 4.0}
 \tldatecventry{2019}{Stat 585 - Data Technologies for Statistical Analysis}{Iowa State University}{}{}{Co-taught, assisted with curriculum development. Mean evaluation: 4.92, Median: 5.0 }
 \tlcventry{2017}{2018}{Business Intelligence Embedded Agent Program}{Nebraska Public Power District}{}{}{
-Design and implement a program to mentor employees, providing instruction in data science and opportunities to apply new skills within the company. Lead one-on-one and group mentoring sessions to create a sense of community and reinforce skills learned through online courses. Class size: 16
+Design and implement a program to mentor employees, providing instruction in data science and opportunities to apply new skills within the company. Lead one-on-one and group mentoring sessions to create a sense of community and reinforce skills learned through online courses. 16 students.
 }
-\tldatecventry{2017}{R Workshop}{Nebraska Public Power District}{}{}{
-3-day internal course on using R for data analysis.
-}
+% \tldatecventry{2017}{R Workshop}{Nebraska Public Power District}{}{}{
+% 3-day internal course on using R for data analysis. 10 students.
+% }
 
 \tlcventry{2013}{2014}{R Workshops}{Iowa State}{}{}{Introduction to R, ggplot2, data management and cleaning, package development, literate programming, and Shiny.}
 %Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with plyr, reshape2, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
 
-\tlcventry{2011}{2013}{Statistical Methods for Research}{Iowa State}{}{TA}{}%Stat 401}
+% \tlcventry{2011}{2013}{Statistical Methods for Research}{Iowa State}{}{TA}{}%Stat 401}
 %TA - Held office hours and graded labs and tests for Stat 401, a class composed primarily of graduate engineering students.}
 % \vspace{-12pt}
-\tlcventry{2012}{2013}{Introduction to Business Statistics II}{Iowa State}{}{TA}{}%Stat 326}
+% \tlcventry{2012}{2013}{Introduction to Business Statistics II}{Iowa State}{}{TA}{}%Stat 326}
 %TA - Taught undergraduate business students statistical methods and use of JMP statistical software. Responsibilities included holding office hours and evening help sessions, developing lab materials, managing the course website on Blackboard, and grading labs, homework, and tests.}
 % \vspace{-12pt}
 % \tldatecventry{2012}{Introduction to Business Statistics II}{Iowa State}{}{TA}{}%Stat 326}
@@ -593,36 +611,36 @@ Design and implement a program to mentor employees, providing instruction in dat
 % \tldatecventry{2011}{Statistical Methods for Research}{Iowa State}{}{TA}{}%Stat 401}
 %TA - Taught graduate social science students statistical methods and use of SAS statistical software. Responsibilities included teaching lab sessions, creating lab materials, holding office hours and grading homework and lab materials.}
 % \vspace{-6pt}
-\tldatecventry{2011}{Empirical Methods for Computer Science}{Iowa State}{}{TA}{}%Stat 430}
+% \tldatecventry{2011}{Empirical Methods for Computer Science}{Iowa State}{}{TA}{}%Stat 430}
 % TA - Held office hours and graded homework for Stat 430, a class composed of graduate bioinformatics and computer science students.}
-% \clearpage
-\clearpage
+
 \section{Mentoring and Advising}
 \subsection{Graduate Students}
-\tldatecventry{2020}{Emily Robinson}{Statistics}{Ph.D}{}{Perception and Visual Inference. Co-advised with Reka Howard.}
-\tldatecventry{2020}{Denise Bradford}{Statistics}{Ph.D}{}{Data Science and Interactive Graphics.}
-\tldatecventry{2019}{Joseph Zemmels}{Statistics}{MS, Ph.D}{}{Analysis and Matching of Cartridge Cases.  Completed MS (Spring 2020). Co-advised with Heike Hofmann.}
-\tlcventry{2019}{2020}{Eryn Blagg}{Statistics}{MS, Ph.D}{}{Analysis of Wear Development in Three-Dimensional Shoe Scans. Completed MS (Spring 2020). Co-advised with Heike Hofmann}
-\tlcventry{2018}{2019}{Miranda Tilton}{Statistics}{MS}{}{Footwear Class Characteristics and Computer Vision. Completed MS (Spring 2019).}
+\tldatecventry{2020}{Emily Robinson}{Statistics}{Ph.D}{Perception and Visual Inference}{Co-advised with Reka Howard}
+\tldatecventry{2020}{Denise Bradford}{Statistics}{Ph.D}{Data Science and Interactive Graphics}{}
+\tlcventry{2020}{2020}{Ved Piyush}{Statistics}{MS}{Machine Learning and Computer Vision}{}
+\tldatecventry{2019}{Joseph Zemmels}{Statistics}{MS, Ph.D}{Analysis and Matching of Cartridge Cases}{ Completed MS (Spring 2020). Co-advised with Heike Hofmann.}
+\tlcventry{2019}{2020}{Eryn Blagg}{Statistics}{MS, Ph.D}{Analysis of Wear Development in Three-Dimensional Shoe Scans. }{Completed MS (Spring 2020). Co-advised with Heike Hofmann}
+\tlcventry{2018}{2019}{Miranda Tilton}{Statistics}{MS}{Footwear Class Characteristics and Computer Vision. }{Completed MS (Spring 2019).}
 % \tldatecventry{2019}{Charlotte Roiger}{Statistics}{MS}{}{Detection of Topological Features of Bullet Lands using Computer Vision. Estimated MS completion in Spring 2020. Co-advised with Heike Hofmann.}
 \smallskip
 \subsection{Undergraduate Students}
-\tldatecventry{2019}{Jason Seo}{Computer Science and Statistics}{Undergraduate Research}{}{R package for visualization of neural networks using the python library keras-vis.}
+\tldatecventry{2019}{Jason Seo}{Computer Science and Statistics}{Undergraduate Research}{R package for visualization of neural networks using the python library keras-vis.}{}
 % \tldatecventry{2019}{Jenny Ha}{Computer Science}{Undergraduate Research}{}{Database design for storing bullet scans and intermediate analysis products.}
-\tlcventry{2018}{2019}{Talen Fisher}{Computer Engineering}{Undergraduate Research}{}{Tools for working with x3p files, database design for storing bullet scans and intermediate analysis products.}
+\tlcventry{2018}{2019}{Talen Fisher}{Computer Engineering}{Undergraduate Research}{Tools for working with x3p files, database design for storing bullet scans and intermediate analysis products.}{}
 \smallskip
 \subsection{Summer Research Programs}
-\tldatecventry{2019}{Molly McDermott and Andrew Maloney}{Research Experience for Undergraduates}{Summer 2019}{}{Bullet Scan Quality and Machine Learning}
-\tldatecventry{2019}{Syema Ailia, Emmanuelle Hernandez Morales, Tiger Ji}{Research Experience for Undergraduates}{Summer 2019}{}{Rapid Quality Control Tools for Confocal Microscopy Scans}
-\tldatecventry{2018}{Ben Wonderlin and Jenny Kim}{Young Engineers and Scientists}{Summer 2018}{}{Footwear Class Characteristics and Computer Vision}
+\tldatecventry{2019}{Molly McDermott and Andrew Maloney}{Research Experience for Undergraduates}{Summer 2019}{Bullet Scan Quality and Machine Learning}{}
+\tldatecventry{2019}{Syema Ailia, Emmanuelle Hernandez Morales, Tiger Ji}{Research Experience for Undergraduates}{Summer 2019}{Rapid Quality Control Tools for Confocal Microscopy Scans}{}
+\tldatecventry{2018}{Ben Wonderlin and Jenny Kim}{Young Engineers and Scientists}{Summer 2018}{Footwear Class Characteristics and Computer Vision}{}
 
 \medskip
 
 \section{Service}
-\tldatecventry{2020}{Graphics Section Program Chair}{ASA}{}{}{}
-\tldatecventry{2020}{Program Committee (Graphics)}{Symposium on Data Science and Statistics 2020}{}{}{}
-\tlcventry{2019}{2021}{Gertrude Cox Scholarship Committee Member}{ASA}{}{}{Assisted with selection of the Gertrude Cox Scholarship recipients and honorable mentions. }
-\tldatecventry{2019}{Uncoast Unconference Organizing Committee}{}{Des Moines, IA}{}{Organized the first R Uncoast Unconference to bring R developers in flyover country together for a 3-day event. Over 50\% of the participants at the conference were women or minorities, and participants included students, academics, and industry R programmers with a variety of experience levels in R programming. }
+\tlcventry{2020}{2022}{Graphics Section Program Chair (2021)}{ASA}{Official duties include planning JSM sessions in 2020 and running the Data Expo in 2022}{}{}
+\tldatecventry{2020}{Program Committee (Graphics)}{Symposium on Data Science and Statistics 2020}{Visualization Track co-chair}{}{}
+\tlcventry{2019}{2021}{Gertrude Cox Scholarship Committee Member}{ASA}{}{}{Assisted with selection of the Gertrude Cox Scholarship recipients and honorable mentions}
+\tldatecventry{2019}{Uncoast Unconference Organizing Committee}{}{Des Moines, IA}{}{Organized the first R Uncoast Unconference to bring R developers in flyover country together for a 3-day event. Over 50\% of the participants at the conference were women or minorities, and participants included students, academics, and industry R programmers with a variety of experience levels in R programming.}
 \tlcventry{2017}{2019}{Graphics Section Representative to the Council of Sections}{ASA}{}{}{}
 
 % Reviews
