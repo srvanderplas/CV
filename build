@@ -1,0 +1,3 @@
+build command: 
+
+latexmk -pdf -pv SusanVanderplas-CV.tex

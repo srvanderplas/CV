@@ -32,6 +32,8 @@
 \usepackage{varwidth}
 \usepackage[normalem]{ulem}
 
+\usepackage{doi}% suppose to force DOI as verbatim
+
 \clubpenalty=500
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -66,7 +68,7 @@
 \ifnumericCVbibliography
   \setlength\labelkern{-2ex}
   \usepackage[backend = biber,
-              style   = nature, 
+              style   = authoryear-comp, 
               defernumbers,
               sorting = none,
               maxbibnames=99
@@ -138,9 +140,9 @@
 \DeclareSourcemap{
   \maps[datatype=bibtex]{
     \map{
-      \step[fieldsource=note, final]
+      % \step[fieldsource=note, final]
       \step[fieldset=addendum, origfieldval, final]
-      \step[fieldset=note, null]
+      % \step[fieldset=note, null]
     }
   }
 }
@@ -187,7 +189,9 @@
         \setlength{\parsep}{\bibparsep}}}
   {\endlist}
   {\item}
-\AtEveryBibitem{\clearfield{year}\clearfield{note}\clearfield{eprint}\clearfield{file}} 
+\AtEveryBibitem{\clearfield{year}
+% \clearfield{note}
+\clearfield{eprint}\clearfield{file}} 
 % reverse numbering of publications
 % Count total number of entries in each refsection
 \AtDataInput{%
@@ -202,10 +206,9 @@
 @article{inconclusives,
   AUTHOR+an = {2=highlight},
 	title = {Treatment of Inconclusives in the AFTE Range of Conclusions},
-	doi = {},
 	journal = {Law, Probability, and Risk},
 	author = {Hofmann, Heike and Vanderplas, Susan and Carriquiry, Alicia},
-	month = {},
+	month = {In press},
 	year = {2021},
   keywords = {pr},
   addendum = {Writing (50\%)},
@@ -226,7 +229,7 @@
 @incollection{vanderplasIntroductionFirearmsExamination2020,
   AUTHOR+an = {1=highlight},
 	title = {An introduction to firearms examination for researchers in statistics},
-	url = {https://doi.org/10.1201/9780367527709},
+	doi = {10.1201/9780367527709},
 	booktitle = {Handbook of {Forensic} {Statistics}},
 	publisher = {New York: Chapman and Hall/CRC},
 	author = {Vanderplas, Susan and Carriquiry, Alicia and Hofmann, Heike and Hamby, James and Tai, Xiao Hui},
@@ -267,9 +270,7 @@
 	title = {ggenealogy: {An} {R} {Package} for {Visualizing} {Genealogical} {Data}},
 	volume = {89},
 	issn = {1548-7660},
-	url = {https://www.jstatsoft.org/v089/i13},
 	doi = {10.18637/jss.v089.i13},
-	abstract = {This paper introduces ggenealogy (Rutter, Vanderplas, and Cook 2019), a developing R software package that provides tools for searching through genealogical data, generating basic statistics on their graphical structures using parent and child connections, parsing and performing calculations on branches of interest, and displaying the results. It is possible to draw the genealogy in relation to variables related to the nodes, and to determine and display the shortest path distances between the nodes. Production of pairwise distance matrices and genealogical diagrams constrained on generation are also available in the visualization toolkit. The tools are being tested on a dataset with milestone cultivars of soybean varieties (Hymowitz, Newell, and Carmer 1977) as well as on a web-based database of the academic genealogy of mathematicians (North Dakota State University and American Mathematical Society 2010). The latest stable package version is available in source and binary form on the Comprehensive R Archive Network (CRAN).},
 	number = {13},
 	journal = {Journal of Statistical Software},
 	author = {Rutter, Lindsay and VanderPlas, Susan and Cook, Dianne and Graham, Michelle},
@@ -287,20 +288,19 @@
   volume = {16},
   number = {2},
   pages = {29-35},
-  url = {https://doi.org/10.1111/j.1740-9713.2019.01252.x},
+  doi = {10.1111/j.1740-9713.2019.01252.x},
   year = {2019},
   keywords = {npr},
   addendum = {Writing (50\%)},
   }
 @article{framedjcgs,
 	title = {Framed! {Reproducing} and {Revisiting} 150 year old charts},
-	url = {https://doi.org/10.1080/10618600.2018.1562937},
 	journal = {Journal of Computational and Graphical Statistics},
 	author = {VanderPlas, Susan and Goluch, Ryan and Hofmann, Heike},
   AUTHOR+an = {1=highlight},
 	year = {2019},
   addendum = {Programming and analysis (60\%), writing (50\%)},
-	annote = {doi: 10.1080/10618600.2018.1562937},
+	doi = {10.1080/10618600.2018.1562937},
 	keywords = {pr}
 }
 @article{sievert2018extending,
@@ -313,7 +313,7 @@
   pages = {299-308},
   year  = {2019},
   publisher = {Taylor & Francis},
-  URL = {https://doi.org/10.1080/10618600.2018.1513367},
+  doi = {10.1080/10618600.2018.1513367},
   keywords = {pr}
 }
 @Article{featurehierarchyjcgs,
@@ -326,7 +326,7 @@
   Pages                    = {231-242},
   Volume                   = {26},
   addendum = {Programming and analysis (90\%), writing (50\%)},
-  Url                      = { https://doi.org/10.1080/10618600.2016.1209116},
+  doi                      = {10.1080/10618600.2016.1209116},
   keywords = {pr}
 }
 @article{donohoresponse,
@@ -334,7 +334,7 @@
   author={Heike Hofmann and Susan Vanderplas},  
   AUTHOR+an = {2=highlight},
   journal={Journal of Computational and Graphical Statistics},
-  url={https://doi.org/10.1080/10618600.2017.1385474},
+  doi={10.1080/10618600.2017.1385474},
   volume={26},
   number={4},
   pages={775--778},
@@ -348,7 +348,7 @@
   Author                   = {Susan Vanderplas and Heike Hofmann},
   AUTHOR+an = {1=highlight},
   Journal                  = {IEEE Transactions on Visualization and Computer Graphics},
-  url = {https://doi.org/10.1109/TVCG.2015.2469125},
+  doi = {10.1109/TVCG.2015.2469125},
   addendum = {Programming and analysis (90\%), writing (75\%)},
   Year                     = {2016},
   keywords = {pr}
@@ -363,7 +363,7 @@
   pages = {1170-1190},
   year = {2015},
   addendum = {Programming and analysis (50\%), writing (60\%)},
-  URL = {https://doi.org/10.1080/10618600.2014.951547},
+  doi = {10.1080/10618600.2014.951547},
   keywords = {pr}
 }
 @article{budrus2013tennis,
@@ -376,7 +376,7 @@
   pages={35--38},
   year={2013},
   publisher={Wiley Online Library},
-  URL = {https://doi.org/10.1111/j.1740-9713.2013.00665.x},
+  doi = {10.1111/j.1740-9713.2013.00665.x},
   keywords = {npr}
 }
 @Article{towfic2010detection,
@@ -389,7 +389,7 @@
   Pages                    = {S7},
   Volume                   = {11},
   Publisher                = {BioMed Central Ltd},
-  url = {https://doi.org/10.1186%2F1471-2105-11-S3-S7},
+  doi = {10.1186%2F1471-2105-11-S3-S7},
   keywords = {pr}
 }
 @Article{hull2009near,
@@ -397,7 +397,7 @@
   Author                   = {Rachel Hull and Heather Bortfeld and Susan Koons},
   AUTHOR+an = {3=highlight},
   Journal                  = {The open neuroimaging journal},
-  url = {https://doi.org/10.2174%2F1874440000903010026},
+  doi = {10.2174%2F1874440000903010026},
   Year                     = {2009},
   Pages                    = {26},
   Volume                   = {3},
