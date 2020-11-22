@@ -1,6 +1,6 @@
 %!TEX root = SusanVanderplas-CV.tex
 % ------------------------------------------------------------------------------
-% CV references
+% CV personal references
 \newcommand{\cvreferencecolumn}[2]{%
   \cvitem[0.8em]{}{%
     \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
@@ -44,7 +44,7 @@
               \printfield{labelnumber}.
               }\kern\labelkern% to reduce space between label and timeline image
             }%
-  }  
+  }                                  
   \makeatletter
     \patchcmd{\blx@printbibliography}
       {\blx@bibliography\blx@tempa}
@@ -68,7 +68,7 @@
   \newcommand{\printbibnumber}{\relax} % do nothing   
   \setlength\labelkern{0ex} 
   \setlength\hintscolumnwidthV{\hintscolumnwidth} % this length needs 
-  % to be re-set or it keeps the numeric  version value if that has been run before   
+  % to be re-set or it keeps the numeric version value if that has been run before   
 \fi
 \addbibresource{\jobname.bib} 
 %-------------------------------------------------------------------------------
@@ -97,19 +97,8 @@
 \makeatother
 % ------------------------------------------------------------------------------
 % Notes at the end and hopefully on a new line and in footnotesize
-
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldsource=note, final]
-      \step[fieldset=addendum, origfieldval, final]
-      \step[fieldset=note, null]
-    }
-  }
-}
-% \DeclareFieldFormat{url}{\footnotesize\addspace#1}
 \DeclareFieldFormat{addendum}{\newline{\footnotesize\textbf{Contribution:}\addspace#1}}
-% \input{|"biber CV-fancypubs"}
+
 %-------------------------------------------------------------------------------
 % timeline for bibliography
 \makeatletter 
@@ -129,33 +118,29 @@
        node {$\bullet$};
   }}}
 \makeatother
+
 \defbibenvironment{bibliography}
   {\list
    {\printbibnumber% here you see the macro in action
     \tldatecventryV{%
       \thefield{year} % actual year from bibitem
        }}
-       {%
-        \setlength{\topsep}{0pt}% layout parameters based on moderncvstyleclassic.sty
+       {%     
+        \setlength{\topsep}{0pt}% layout parameters based on moderncvstyleclassic.sty      
         \addtolength\hintscolumnwidthV{-\labelnumberwidth}% num - changes timeline image length
         \addtolength\hintscolumnwidthV{\labelkern}% num  - changes timeline image length
         \setlength{\bibhang}{\hintscolumnwidthV} % custom bibhang
         \setlength{\labelsep}{\separatorcolumnwidth} %  horizontal distance between label and entry
-        \setlength{\leftmargin}{\hintscolumnwidth} % sets where the left margin is
+        \setlength{\leftmargin}{\hintscolumnwidth} % sets where the left margin is 
         \addtolength{\leftmargin}{\separatorcolumnwidth} %
-        \setlength{\itemindent}{-\bibhang} % this sets indentation of the second line of the entry.
+        \setlength{\itemindent}{-\bibhang} % this sets indentation of the second line of the entry. 
         % changing it moves also the first line left or right
         \addtolength{\itemindent}{-\separatorcolumnwidth} % to align the second line exactly
         \setlength{\itemsep}{\bibitemsep} % vertical distance between bib items
         \setlength{\parsep}{\bibparsep}}}
   {\endlist}
-  {\item}
-% \AtEveryBibitem{
-% % \clearfield{year}
-% % \clearfield{note}
-% \clearfield{eprint}\clearfield{file}}
+  {\item}    
 
-\AtEveryBibitem{\clearfield{year}} 
 % reverse numbering of publications
 % Count total number of entries in each refsection
 \AtDataInput{%
@@ -163,3 +148,4 @@
     \csuse{entrycount:\strfield{keyword}}+1}}
 %-------------------------------------------------------------------------------
 \makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+
