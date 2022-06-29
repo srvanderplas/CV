@@ -31,10 +31,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bib Info
  
-\addbibresource{\jobname.bib} 
+\addbibresource{\jobname.bib}  
 
 \intronote{donohoresponse}{Submitted as an invited response to Donoho's ``50 years of Data Science"}
-\intronote{VanderPlas2021Designing}{Submitted as an invited response to Hullman \& Gelman's ``Designing for Interactive Exploratory Data Analysis Requires Theories of Graphical Inference"}
+
+\intronote{vanderplasDesigningGraphicsRequires2021}{Submitted as an invited response to Hullman \& Gelman's  ``Designing for Interactive Exploratory Data Analysis Requires Theories of Graphical Inference"}
 % \DeclareFieldFormat{date}{\textbf{#1}}
 % \renewbibmacro*{date}{\printtext[date]{\printdate}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -80,17 +81,19 @@
 % \item Facilitated creation of a database front-end to provide access to longitudinal shoe outsole image data. \end{itemize}
 % }
 
-\tlcventry{2018/2}{2019}{Statistical Consultant}{Nebraska Public Power District}{}{}{Provided individual mentoring and project leadership to continue the Business Intelligence Embedded Agent program and provide support for R-related projects.}
+\tlcventry{2018/2}{2019}{Statistical Consultant}{Nebraska Public Power District}{}{}{
+%Provided individual mentoring and project leadership to continue the Business Intelligence Embedded Agent program and provide support for R-related projects.
+}
 
 \tlcventry{2015/6}{2018/2}{Statistical Analyst}{Nebraska Public Power District}{}{}{
 %Conduct statistical analyses to improve NPPD's data-driven decision making (safety, profitability, and equipment reliability). Design and implement a program to train employees in statistical programming, data analysis, data visualization, and basic statistical modeling.
-}%
+}% 
 % \begin{itemize}
 % \item Worked with IT and Strategic Management to develop a plan for analytics/data science maturity at NPPD.
 % \item Designed a mentoring program to train individuals as embedded data scientists to increase the ability of NPPD to effectively utilize data.
 % \item Modeled employee turnover to identify individuals likely to retire or resign.
 % \item Established automated statistical monitoring of plant conditions, department turnover, and human performance errors.
-% \item Predicted likely direction of tornadoes based on location and topological factors to establish the risk of tornado guided missle debris damaging critical equipment.
+% \item Predicted likely direction of tornadoes based on location and topological factors to establish the risk of tornado guided missile debris damaging critical equipment.
 % \item Evaluated the risk of climate fluctuations on operational readiness.
 % \item Identified site conditions statistically associated with water accumulation in radiation detectors at a nuclear plant.
 % \item Improved engineering margin in thermal limits management in a nuclear reactor core.
@@ -148,15 +151,18 @@
 \cvitem{In Progress}{
     \begin{description}
     \item [Generalized Parallel Coordinate Plots: ggpcp] An R package for creation of generalized parallel coordinate plots
-    \item [Perception of Log Scales] Assessment of perception and use of log scales to display exponential growth. Data collection stage.
+    \item [A Study in Reproducibility: The CMC Algorithm and cmcR package] Development of the cmcR package for open-source cartridge case comparisons and what it says about reproducibility. Revision under review at the R Journal.
+    \item [Perception of Log Scales] Assessment of perception and use of log scales to display exponential growth. Several manuscripts in preparation; one under review at JCGS.
     \item [A Convolutional Neural Network for Outsole Recognition] Use CNNs to automate identification of class characteristics in images of footwear outsoles. Revision stage.
     % \item [Truthiness and Statistical Charts] Evaluate whether the truthiness effect (increased belief in a statement based on the presence of an accompanying picture) holds for statistical charts and maps. 
     % \item [Longitudinal Shoe Database] Design a database for sharing longitudinal shoe wear data, including powder prints, 2D scans, 3D scans, pictures, and crime-scene style casts and prints. Submitted to Forensic Science International, Oct 2020.
     \item [Bullet Signature Resampling] Method for resampling bullet signatures used to calculate match and non-match score distributions.% \href{https://github.com/srvanderplas/bulletsamplr}{Link to project}
+    \item [Testing in Statistical Graphics] A guide to human testing of the perception of statistical graphics using various experimental methods. Submitted to TestVis 2022.% \href{https://github.com/srvanderplas/bulletsamplr}{Link to project}
     \end{description}
     }
 
 \subsection{Grants}
+\tldatecventry{2022}{NIJ R\&D in Forensic Science}{Physical Simulation of Lower Body Biomechanics for Artificial Shoe Wear and Forensics Analysis}{Co-PI}{Under Review, \$73,693 UNL budget, \$299,859 total}{}
 \tlcventry{2021}{2022}{NIJ R\&D in Forensic Science}{Automatic Acquisition and Identification of Footwear Class Characteristics}{PI}{Funded, \$380,650 total}{}
 \tlcventry{2020}{2025}{NIST}{Center for Statistics and Applications in Forensic Evidence}{PI}{Funded (\$20 million total, \$456,930 sub-award)}{}
 \tlcventry{2020}{2023}{USDA CIGOFF}{Improving the Economic and Ecological Sustainability of US Crop Production through On-Farm Precision Experimentation}{PI}{Funded (\$4,000,000 total, ~\$400,000 UNL subcontract split between 3 UNL PIs)}{}
@@ -185,6 +191,8 @@
 \medskip
 % \clearpage
 \subsection{Contributed Talks}
+\tldatecventry{2022}{An Introduction to the Automatic and Objective Firearm Evidence Identification}{International Association for Identification}{}{Omaha, NE}{}
+\tldatecventry{2022}{Local Population Footwear Class Characteristics - An End-to-End Pipeline for Automatic Data Acquisition and Analysis}{International Association for Identification}{}{Omaha, NE}{}
 \tldatecventry{2021}{Welcome to Forensic Statistics}{Data Mishaps Night}{}{Online}{}
 
 \tldatecventry{2018}{Framed! Reproducing 150 year old charts}{JSM}{}{Vancouver, BC}{}
@@ -211,15 +219,18 @@
 
 \subsection{Software}
 \cvitem{}{\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}
+<<<<<<< HEAD
 \tldatecventry{2021}{\texttt{ggpcp}}{Generalized parallel coordinate plots}{}{}{}
 \tldatecventry{2020}{\texttt{vinference}}{Analysis of visual inference experiments}{}{}{}
-\tlcventry{2019}{2020}{\texttt{ShoeScrubR}}{Cleaning shoe print data for future statistical analysis}{}{}{}
+% \tlcventry{2019}{2020}{\texttt{ShoeScrubR}}{Cleaning shoe print data for future statistical analysis}{}{}{}
+% \tlcventry{2019}{0}{\texttt{LegoR}}{Acquisition of data about lego packages from Brickfinder, Lego.com, and Rebrickable}{}{}{}
 \tldatecventry{2019}{\texttt{groovefinder}}{Identification of grooves in scans of bullet land engraved areas}{}{}{}
-\tldatecventry{2018}{\texttt{ShoeScrapeR}}{Acquisition of Shoe Images and Metadata from Online Retailers}{}{}{}
+\tldatecventry{2019}{\texttt{cmcR}}{Automated matching of 3d cartridge case scans using the congruent matching cells algorithm}{}{}{}
 \tldatecventry{2018}{\texttt{bulletxtrctr}}{Automated matching of 3d bullet scans}{}{}{}
 \tldatecventry{2018}{\texttt{x3ptools}}{Reading, manipulating, and visualizing x3p files}{}{}{}
 \tldatecventry{2018}{\texttt{bulletsamplr}}{Resampling of bullet signatures}{}{}{}
-\tldatecventry{2018}{\texttt{ImageAlignR}}{Image registration algorithms for forensics}{}{}{}
+\tlcventry{2018}{2020}{\texttt{ShoeScrapeR}}{Acquisition of Shoe Images and Metadata from Online Retailers}{}{}{}
+\tlcventry{2018}{2020}{\texttt{ImageAlignR}}{Image registration algorithms for forensics}{}{}{}
 \tlcventry{2013}{2015}{\texttt{animint}}{animated, interactive web graphics for R using d3.js}{}{}{}
 
 % \bigskip
@@ -227,6 +238,7 @@
 % \tldatecventry{2014}{ASA Section on Statistical Graphics}{Student Paper Award}{}{}{}
 
 \section{Teaching}
+\tldatecventry{2022}{Stat 151 - Introduction to Statistical Computing}{University of Nebraska, Lincoln}{Hybrid, flipped classroom, synchronous}{Statistical programming in R and python. Course materials: https://srvanderplas.github.io/Stat151/}{}
 \tldatecventry{2021}{Stat 850 - Computing Tools for Statisticians}{University of Nebraska, Lincoln}{Hybrid, flipped classroom, synchronous}{Course materials: https://srvanderplas.github.io/unl-stat850/}{Mean evaluation: 4.76, Median: 5.0}
 \tldatecventry{2021}{Stat 218 - Introduction to Statistics}{University of Nebraska, Lincoln}{Online, asynchronous}{}{Mean evaluation: 4.0, Median: 4.0}
 \tldatecventry{2020}{Stat 850 - Computing Tools for Statisticians}{University of Nebraska, Lincoln}{Hybrid, flipped classroom, synchronous}{Course materials: https://srvanderplas.github.io/unl-stat850/}{Mean evaluation: 4.76, Median: 5.0}
@@ -237,7 +249,7 @@ Design and implement a program to mentor employees, providing instruction in dat
 }
 % \tldatecventry{2017}{R Workshop}{Nebraska Public Power District}{}{}{
 % 3-day internal course on using R for data analysis. 10 students.
-% }
+% }  
 
 \tlcventry{2013}{2014}{R Workshops}{Iowa State}{}{In person synchronous}{Introduction to R, ggplot2, data management and cleaning, package development, literate programming, and Shiny.}
 %Designed and conducted workshops to teach R skills to the members of the university and local business community. Workshop topics included an introduction to R, ggplot2, data management with plyr, reshape2, and stringr, package development, document creation with knitr, linear models, and creating web applets with Shiny.}
@@ -259,6 +271,8 @@ Design and implement a program to mentor employees, providing instruction in dat
 
 \section{Mentoring and Advising}
 \subsection{Graduate Students}
+\tldatecventry{2022}{Tyler Wiederich}{Statistics}{MS}{Perception of Three-Dimensional Graphics}{}
+\tldatecventry{2022}{Muxin Ha}{Statistics}{MS}{Automatic Recognition of Shoe Class Characteristics}{}
 \tlcventry{2021}{2022}{Jayden Stack}{Statistics}{MS}{Automatic Recognition of Shoe Class Characteristics}{}
 \tlcventry{2021}{0}{Rachel Rogers}{Statistics}{Ph.D.}{Explainable Machine Learning for Forensics in Courtrooms}{}
 \tlcventry{2021}{0}{Alison Kleffner}{Statistics}{Ph.D.}{Spatial Statistics and Visualization in Ecology and Agriculture}{Co-advised with Yawen Guan}
@@ -311,9 +325,11 @@ Design and implement a program to mentor employees, providing instruction in dat
 \tlcventry{2019}{2020}{Undergraduate Program Committee}{}{}{}{Design an undergraduate statistics major and submit the proposal to the university.}
 
 \section{Training \& Professional Development}
+\tlcventry{2022}{2023}{Nebraska Governance and Technology Center}{Faculty Fellow}{}{}{}
 \tlcventry{2021}{2022}{Peer Review of Teaching Program}{}{}{}{Create a course portfolio for Stat 850 in order to assess course design and analyze student engagement and learning}
 \tldatecventry{2020}{New Faculty Development Program}{}{}{}{}
 \tldatecventry{2020}{Summer Institute for Online Teaching}{}{}{}{Online course structure and backwards design principles}
+
 % Reviews
 % - JASA
 % - JCGS
