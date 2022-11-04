@@ -63,6 +63,8 @@
   \usepackage[backend = biber,
               style   = authoryear, 
               sorting = none,
+              dashed = false,
+              firstinits = true,
               maxbibnames=99
              ]{biblatex}  
   \newcommand{\printbibnumber}{\relax} % do nothing   
@@ -70,13 +72,18 @@
   \setlength\hintscolumnwidthV{\hintscolumnwidth} % this length needs 
   % to be re-set or it keeps the numeric version value if that has been run before   
 \fi
+\DeclareNameAlias{sortname}{last-first}
 \addbibresource{\jobname.bib} 
 %-------------------------------------------------------------------------------
 % bold author names in bibliography
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}
-    {\textbf{#1}}
-    {#1}}
+    { \textbf{#1} }
+    { #1\ifitemannotation{student}
+        {$^\ast$}
+        {} 
+    }
+}
 \renewcommand*{\mkbibnamefamily}[1]{%
   \ifitemannotation{highlight}
     {\textbf{#1}}
