@@ -1,7 +1,10 @@
+#!/usr/bin/Rscript
+
 # Script to convert spreadsheet into CV sections
 library(dplyr)
 library(lubridate)
 library(googlesheets4)
+library(scales)
 
 # Update to match your info
 sheet_link <- "https://docs.google.com/spreadsheets/d/1zOKie2rqIcxQMuAzn1g7K-2_O5yOhHo2QD7EAGjeFzs/edit?usp=sharing"
@@ -17,7 +20,7 @@ outreach_data <- read_sheet(sheet_link, sheet = "Outreach")
 
 
 # Functions used to build CV files
-source("build_functions.R")
+source("build_functions.R") 
 
 # --- Process Talks ------------------------------------------------------------
 # Create columns for year - CV doesn't need that much detail

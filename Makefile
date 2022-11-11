@@ -12,7 +12,7 @@ $(COMPONENTS): build_functions.R build_tex_files.R
 	echo 'Component files built'
 
 
-%.pdf: %.tex $(COMPONENTS)
+%.pdf: %.tex $(COMPONENTS) %.bib
 	latexmk --xelatex -g -pv -pdf $<
 
 
