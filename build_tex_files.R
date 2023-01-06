@@ -84,10 +84,6 @@ info <- teaching_data %>%
 writeLines(unlist(print_teaching(info)), con = "_teaching.tex")
 
 # --- Process Mentoring --------------------------------------------------------
-mentoring_fn <- function(.) {
-  print_generic("tlcventry", .$year_start, .$year_end, 
-                .$name, .$school, .$description, .$note)
-}
 
 tmp <- mentoring_data %>%
   mutate(across(where(is.character), ~ifelse(is.na(.), "", .))) %>%

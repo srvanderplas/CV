@@ -74,7 +74,7 @@ print_teaching <- function(df){
 
 
 print_mentoring <- function(df){
-  datefields <- ifelse(df$year_start == df$year_end, 
+  datefields <- ifelse(df$year_start != df$year_end, 
                        sprintf("\\tlcventry{%d}{%d}", df$year_start, df$year_end), 
                        sprintf("\\tldatecventry{%d}", df$year_start))
   sprintf("%s{%s}{%s}{%s}{%s}{%s}", datefields, 
