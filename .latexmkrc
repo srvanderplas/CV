@@ -1,1 +1,1 @@
-$pdf_previewer = ’start okular %O %S’;
+$pdf_previewer = 'start okular %O %S';
