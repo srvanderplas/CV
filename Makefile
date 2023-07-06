@@ -12,7 +12,7 @@ $(COMPONENTS): build_functions.R build_tex_files.R
 
 
 %.pdf: %.tex $(COMPONENTS) %.bib
-	/home/susan/.TinyTeX/bin/x86_64-linux/latexmk --xelatex -g -pv -pdf $<
+	/home/susan/.TinyTeX/bin/x86_64-linux/latexmk -xelatex -g -pv -pdf $<
 
 
 clean:
