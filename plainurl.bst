@@ -890,6 +890,8 @@ FUNCTION {webpage}
 
 FUNCTION {article}
 { output.bibitem
+  note output
+  new.block
   format.authors "author" output.check
   new.block
   title empty$ 'skip$ 'possibly.setup.inlinelink if$ % urlbst
@@ -904,8 +906,6 @@ FUNCTION {article}
       format.pages output
     }
   if$
-  new.block
-  note output
   fin.entry
 }
 
