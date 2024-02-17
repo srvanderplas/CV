@@ -1,19 +1,45 @@
 # How to use Make on Windows:
 # https://stackoverflow.com/questions/2532234/how-to-run-a-makefile-in-windows
-.PHONY: default
+.PHONY: clean clean-deps clean-bib all
 
-default: SusanVanderplas-CV.pdf
+# These are the R scripts which are used to make the components
+RCODE = code/build_functions.R code/build_tex_files.R 
+DATA = CV.xlsx
 
-COMPONENTS = _talks.tex _grants.tex _software.tex _teaching.tex _mentoring.tex
+# These are essential prerequisites that have to be updated
+COMPONENTS = tex-deps/check
+# In order to have only one file dependency, we create a "check" file
+# in the dependency folder that is updated when the files are rewritten
 
-$(COMPONENTS): build_functions.R build_tex_files.R
-	/usr/bin/Rscript "build_tex_files.R"
-	echo 'Component files built'
+# -----------------------------------------------------------------------------
+# This defines the files/targets you intend to make use of
+all: CV.pdf
 
+# -----------------------------------------------------------------------------
+# This command creates the components and updates the tex-deps/check file
+$(COMPONENTS): $(RCODE) $(DATA)
+	Rscript "code/build_tex_files.R" \
+	echo 'Component files built' 
+	touch $(COMPONENTS)
 
-%.pdf: %.tex $(COMPONENTS) %.bib
-	/home/susan/.TinyTeX/bin/x86_64-linux/latexmk -xelatex -g -pv -pdf $<
+	
+# -----------------------------------------------------------------------------
+# This command builds the PDF target (CV.pdf) from dependencies CV.tex, CV.bib,
+# and the components above
+%.pdf: %.tex %.bib $(COMPONENTS)
+	latexmk -xelatex -g -pv -pdf $<
 
+%.bib: 
+	biber --tool -V $< 2>&1 $<.bibcheck
 
-clean:
-	rm -f *.pdf *.out *aux *bbl *blg *log *toc *bcf *run.xml *.ptb *.tod *.fls *.fdb_latexmk *.lof *out.ps *blg
+# -----------------------------------------------------------------------------
+# This removes all dependencies/build files. Invoke with "make clean"
+clean: clean-deps clean-bib
+	rm -f *.pdf *.out *blg *log *toc *run.xml *.ptb *.tod *.fls *.fdb_latexmk *.lof *out.ps
+
+clean-bib: 
+	rm -f *aux *bbl *bcf 
+	
+clean-deps:
+	rm -f tex-deps/*.tex tex-deps/check
+
