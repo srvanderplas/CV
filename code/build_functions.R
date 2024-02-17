@@ -16,6 +16,18 @@ escapeLatexSpecials <- function(x) {
   return(x)
 }
 
+determine_datenames <- function(data, datenames) {
+  data %>% select(any_of(datenames)) %>%
+    mutate(row = row_number()) %>%
+    nest(data = -row) %>%
+    mutate(
+      nvals = map_int(data, ~length(unique(unlist(.)))),
+      na_present = map_lgl(data, ~sum(is.na(unlist(.))) > 0),
+      datenames = if_else(nvals == 1, list("start"), list(c("start", "end")))
+    ) %>%
+    select(datenames)
+}
+
 add_heading <- function(entries, heading) {
   c(heading, entries)
 }

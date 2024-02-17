@@ -42,11 +42,22 @@ if (nrow(exp_data) > 0) {
   exp_data %>%
     mutate(across(c(start, end), ymd)) %>%
     filter(include) %>%
+    mutate(end = if_else(is.na(end), today(), end)) %>%
     arrange(desc(end), desc(start)) %>%
+    mutate(end = if_else(end == today(), NA, end)) %>%
     mutate(across(c(start, end), year)) %>%
-    make_generic(datenames = c("start", "end"),
-                 fieldnames = c("position", "department", "location", "other"), 
-                 get_year = F) %>%
+    mutate(datenames = if_else(start != end, list(c("start", "end")), list("end")) %>%
+             if_else(is.na(end), list(c("start", "end")), .)) %>%
+    nest(data = -datenames) %>%
+    mutate(texlines = 
+             map2(data, datenames, 
+                  ~make_generic(.x, datenames = .y, 
+                                fieldnames = c("position", "department", 
+                                               "location", "other"),
+                                span = "show_span",
+                                get_year = F))) %>%
+    extract2("texlines") %>%
+    unlist() %>%
     add_heading(make_heading("Professional Experience", "section")) %>%
     add_spacing("\\medskip") %>%
     writeLines(con = "tex-deps/exp.tex")
@@ -76,7 +87,8 @@ if (nrow(grant_data) > 0) {
            grant_total_str = dollar_format()(grant_total),
            sub_total_str = dollar_format()(sub_total),
            amount_sub = sprintf("Total: %s, Sub: %s (%s)", grant_total_str, sub_total_str, sub_note) %>%
-             gsub(" \\(\\)$", "", .),
+             gsub(" \\(\\)$", "", .) %>%
+             gsub(" \\(NA\\)", "", .),
            amount_nosub = sprintf("Total: %s", grant_total_str),
            amount = ifelse(subaward, amount_sub, amount_nosub))
 
@@ -84,11 +96,12 @@ if (nrow(grant_data) > 0) {
     nest(data = -status) %>%
     mutate(
       header = make_heading(status),
-      texlines = .$data %>% 
-        map(~make_generic(., datenames = c("start", "end"),
-                          fieldnames = c("funding", "grant_title", 
-                                         "grant_role", "amount"), 
-                          get_year = F)),
+      datenames = ifelse(status != "Funded", "year_applied", list(c("start", "end"))),
+      texlines = map2(data, datenames, 
+                      ~make_generic(.x, datenames = .y,
+                                    fieldnames = c("funding", "grant_title", 
+                                                   "grant_role", "amount"), 
+                                    get_year = F)),
       texlines = map2(texlines, header, add_heading)
     ) %>%
     unnest(status) %>%
@@ -103,9 +116,9 @@ if (nrow(grant_data) > 0) {
 if(nrow(talk_data) > 0) {
   talk_data %>%
     mutate(Type = factor(Type, levels = talk_order, ordered = T)) %>%
-    mutate(titleLink = ifelse(nchar(Link) > 0, 
-                              sprintf("\\href{%s}{%s}", Link, Title),
-                              Title)) %>%
+    mutate(slideLink = ifelse(is.na(Link), "", 
+                              sprintf("\\href{%s}{\\faIcon{chalkboard}}", Link)),
+           Title = paste(Title, slideLink)) %>%
     arrange(Type, desc(Date)) %>%
     mutate(across(c(Date), year)) %>%
     nest(data = -Type) %>%
@@ -114,13 +127,14 @@ if(nrow(talk_data) > 0) {
       texlines = .$data %>% 
         map(
           ~make_generic(., span = F, datenames = c("Date"),
-                        fieldnames = c("titleLink", "Event", "Event2", "Location"),
+                        fieldnames = c("Title", "Event", "Event2", "Location"),
                         get_year = F)),
       texlines = map2(texlines, header, add_heading)
     ) %>%
     tidyr::unnest(Type) %>%
     magrittr::extract2("texlines") %>%
     unlist() %>%
+    add_entry_top("\\cvitem{}{\\small\\faIcon{chalkboard} provides a link to slides, where available}") %>%
     add_heading(make_heading("Talks", "section")) %>%
     writeLines(con = "tex-deps/talks.tex")
 }
