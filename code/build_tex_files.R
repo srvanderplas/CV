@@ -29,7 +29,7 @@ if (nrow(edu_data) > 0) {
     mutate(across(c(start, end), ymd)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(across(c(start, end), year)) %>%
-    make_generic(datenames = c("end"), 
+    make_generic(datenames = c("start", "end"), 
                  fieldnames = c("degree", "major", "school", "other"),
                  get_year = F) %>%
     add_heading(make_heading("Education", "section")) %>%
@@ -45,17 +45,9 @@ if (nrow(exp_data) > 0) {
     mutate(end = if_else(is.na(end), today(), end)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(end = if_else(end == today(), NA, end)) %>%
-    mutate(across(c(start, end), year)) %>%
-    mutate(datenames = if_else(start != end, list(c("start", "end")), list("end")) %>%
-             if_else(is.na(end), list(c("start", "end")), .)) %>%
-    nest(data = -datenames) %>%
-    mutate(texlines = 
-             map2(data, datenames, 
-                  ~make_generic(.x, datenames = .y, 
-                                fieldnames = c("position", "department", 
-                                               "location", "other"),
-                                span = "show_span",
-                                get_year = F))) %>%
+    mutate(texlines = make_generic(., datenames = c("start", "end"), 
+                                   fieldnames = c("position", "department", 
+                                                  "location", "other"))) %>%
     extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Professional Experience", "section")) %>%
@@ -81,7 +73,7 @@ if (nrow(grant_data) > 0) {
   grant_data_fix <- grant_data %>%
     mutate(across(ends_with("_total"), as.numeric)) %>%
     mutate(status = factor(status, levels = grant_order, ordered = T)) %>%
-    arrange(status, desc(year_applied)) %>%
+    arrange(status, desc(year_applied), desc(end), desc(start)) %>%
     # Lots more info here, so have to do some extra formatting...
     mutate(funding = paste(funding_org, funding_title, sep = ": "),
            grant_total_str = dollar_format()(grant_total),
@@ -90,18 +82,18 @@ if (nrow(grant_data) > 0) {
              gsub(" \\(\\)$", "", .) %>%
              gsub(" \\(NA\\)", "", .),
            amount_nosub = sprintf("Total: %s", grant_total_str),
-           amount = ifelse(subaward, amount_sub, amount_nosub))
+           amount = if_else(subaward, amount_sub, amount_nosub),
+           start = if_else(status != "Funded", year_applied, start),
+           end = if_else(status != "Funded", year_applied, end))
 
   grant_data_fix %>% 
     nest(data = -status) %>%
     mutate(
       header = make_heading(status),
-      datenames = ifelse(status != "Funded", "year_applied", list(c("start", "end"))),
-      texlines = map2(data, datenames, 
-                      ~make_generic(.x, datenames = .y,
-                                    fieldnames = c("funding", "grant_title", 
-                                                   "grant_role", "amount"), 
-                                    get_year = F)),
+      texlines = purrr::map(data, ~make_generic(., 
+        datenames = c("start", "end"),
+        fieldnames = c("funding", "grant_title", 
+                       "grant_role", "amount"))),
       texlines = map2(texlines, header, add_heading)
     ) %>%
     unnest(status) %>%
@@ -118,17 +110,17 @@ if(nrow(talk_data) > 0) {
     mutate(Type = factor(Type, levels = talk_order, ordered = T)) %>%
     mutate(slideLink = ifelse(is.na(Link), "", 
                               sprintf("\\href{%s}{\\faIcon{chalkboard}}", Link)),
-           Title = paste(Title, slideLink)) %>%
+           Title = paste(Title, slideLink),
+           start = Date,
+           end = Date) %>%
     arrange(Type, desc(Date)) %>%
-    mutate(across(c(Date), year)) %>%
     nest(data = -Type) %>%
     mutate(
       header = make_heading(Type),
       texlines = .$data %>% 
         map(
-          ~make_generic(., span = F, datenames = c("Date"),
-                        fieldnames = c("Title", "Event", "Event2", "Location"),
-                        get_year = F)),
+          ~make_generic(., datenames = c("start", "end"), get_year = T,
+                        fieldnames = c("Title", "Event", "Event2", "Location"))),
       texlines = map2(texlines, header, add_heading)
     ) %>%
     tidyr::unnest(Type) %>%
@@ -146,7 +138,7 @@ if (nrow(sw_data) > 0) {
     arrange(desc(date_start)) %>%
     make_generic(datenames = c("date_start", "date_end"),
                  fieldnames = c("package", "description", "link"),
-                 span = T, get_year = F) %>%
+                 get_year = F) %>%
     add_entry_top("\\cvitem{}{\\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}") %>%
     add_heading(make_heading("Software", "subsection")) %>%
     add_spacing("\\medskip") %>%
@@ -154,13 +146,15 @@ if (nrow(sw_data) > 0) {
 }
 # --- Process Teaching ---------------------------------------------------------
 teach_data %>%
-  mutate(semester = factor(semester, levels = c("Spring", "Fall"), ordered = T)) %>%
+  mutate(semester = factor(semester, levels = c("Spring", "Fall"), ordered = T),
+         label = paste(semester, year)) %>%
   mutate(course = paste(course_prefix, course_number)) %>%
   mutate(note = ifelse(!is.na(eval_mean),
                        paste(note, sprintf("Evals: %.2f (mean), %.0f (median)", eval_mean, eval_median), sep = ". "),
                        note)) %>%
   arrange(desc(year), semester, course_number) %>%
-  make_generic(span = F, timeline = T, datenames = "year", fieldnames = c("course", "course_title", "location", "note")) %>%
+  make_generic(timeline = T, datenames = c("year"),
+               fieldnames = c("course", "course_title", "location", "note")) %>%
   add_heading(make_heading("Teaching", "section")) %>%
   add_spacing("\\medskip") %>%
   writeLines(con = "tex-deps/teaching.tex")
@@ -246,7 +240,6 @@ if(nrow(outreach_data) > 0) {
       texlines = 
         map(data, 
             ~make_generic(., datenames = c("start_date", "end_date"), 
-                          span = "show_span",
                           get_year = F,
                           fieldnames = c("description", "location", "ex1", "ex2", "ex3"))) %>%
         map2(., header, add_heading)
@@ -270,7 +263,6 @@ if(nrow(workshop_data) > 0) {
       texlines = 
         map(data, 
             ~make_generic(., datenames = c("Date"), 
-                          span = F,
                           fieldnames = c("Title", "length", "Event", "Location", "Notes"))) %>%
         map2(., header, add_heading)
     ) %>%
