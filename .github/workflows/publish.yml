@@ -9,9 +9,6 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
-    permissions:                
-      contents: write           # 'write' access to repository contents
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
