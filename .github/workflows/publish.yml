@@ -30,6 +30,7 @@ jobs:
         uses: r-lib/actions/setup-tinytex@v2
       
       - name: add TeX deps
+        shell: Rscript {0}
         run: |
           tinytex::tlmgr_install(pkgs = c("moderncv", "moderntimeline"))
       
