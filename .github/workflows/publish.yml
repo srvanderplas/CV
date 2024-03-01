@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build_latex:
+  build-latex:
     permissions:                # Job-level permissions configuration starts here
       contents: write           # 'write' access to repository contents
       pull-requests: write      # 'write' access to pull requests
