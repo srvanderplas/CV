@@ -1,0 +1,8 @@
+.git
+.Rproj.user
+Archive
+data
+old_files
+SpecialPurpose
+tex-deps
+code/escape_latex.R
