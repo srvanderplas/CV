@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 # # Update to match your info
 # sheet_link <- "https://docs.google.com/spreadsheets/d/1zOKie2rqIcxQMuAzn1g7K-2_O5yOhHo2QD7EAGjeFzs/edit#gid=1325854112"
 
-sheet_link <- "CV.xlsx"
+sheet_link <- "data/CV.xlsx"
 
 name_map <- tibble(
   tab_name = c("Education", "Experience", "Grants", "PRS", "Awards", 

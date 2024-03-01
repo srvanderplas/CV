@@ -4,7 +4,7 @@
 
 # These are the R scripts which are used to make the components
 RCODE = code/build_functions.R code/build_tex_files.R 
-DATA = CV.xlsx
+DATA = data/CV.xlsx
 
 # These are essential prerequisites that have to be updated
 COMPONENTS = tex-deps/check
@@ -26,7 +26,7 @@ $(COMPONENTS): $(RCODE) $(DATA)
 # -----------------------------------------------------------------------------
 # This command builds the PDF target (CV.pdf) from dependencies CV.tex, CV.bib,
 # and the components above
-%.pdf: %.tex %.bib $(COMPONENTS)
+%.pdf: %.tex data/%.bib $(COMPONENTS)
 	latexmk -xelatex -g -pv -pdf $<
 
 %.bib: 
