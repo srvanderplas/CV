@@ -28,10 +28,11 @@ jobs:
       
       - name: Setup tlmgr
         run: |
-          sudo apt install texlive-base texlive-bibtex-extra texlive-xetex
+          sudo apt install xzdec texlive-base texlive-bibtex-extra texlive-xetex
       
       - name: add TeX deps
         run: |
+          tlmgr init-usertree
           tlmgr install moderncv moderntimeline
       
       - name: Compile PDF
