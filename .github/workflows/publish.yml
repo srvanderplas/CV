@@ -6,7 +6,7 @@ on:
 name: Publish CV
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
