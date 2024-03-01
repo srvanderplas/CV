@@ -27,7 +27,7 @@ jobs:
           cache-version: 1
       
       - name: Setup tinytex
-        uses: r-lib/actions/setup-tinytex@master
+        uses: r-lib/actions/setup-tinytex
       
       - name: add TeX deps
         run: |

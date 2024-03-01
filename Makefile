@@ -4,7 +4,10 @@
 
 # These are the R scripts which are used to make the components
 RCODE = code/build_functions.R code/build_tex_files.R code/escape_latex.R code/get_data.R
-DATA = data/CV.xlsx data/CV.bib
+
+# CV DATA
+DATA = data/CV.xlsx 
+BIB = data/CV.bib
 
 # These are essential prerequisites that have to be updated
 COMPONENTS = tex-deps/check
@@ -29,11 +32,12 @@ $(COMPONENTS): $(RCODE) $(DATA)
 # -----------------------------------------------------------------------------
 # This command builds the PDF target (CV.pdf) from dependencies CV.tex, CV.bib,
 # and the components above
-%.pdf: %.tex $(DATA) $(COMPONENTS) 
+$(BIB): 
+	biber --tool -V $< 2>&1 $<.bibcheck
+
+%.pdf: %.tex $(BIB) $(COMPONENTS) 
 	latexmk -xelatex -g -pv -pdf $< 
 
-%.bib: 
-	biber --tool -V $< 2>&1 $<.bibcheck
 
 # -----------------------------------------------------------------------------
 # This removes all dependencies/build files. Invoke with "make clean"
@@ -41,7 +45,7 @@ clean: clean-deps clean-bib
 	rm -f *.pdf *.out *blg *log *toc *run.xml *.ptb *.tod *.fls *.fdb_latexmk *.lof *out.ps
 
 clean-bib: 
-	rm -f *aux *bbl *bcf 
+	rm -f *bib *aux *bbl *bcf 
 	
 clean-deps:
 	rm -f tex-deps/*.tex tex-deps/check
