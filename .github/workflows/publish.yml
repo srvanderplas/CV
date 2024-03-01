@@ -29,7 +29,7 @@ jobs:
       - name: Setup TeX Live
         uses: teatimeguest/setup-texlive-action@v3
         with:
-          packages: scheme-basic biber xetex moderncv moderntimeline
+          packages: scheme-basic latexmk biber xetex moderncv moderntimeline
       
       - name: Compile PDF
         run: |
