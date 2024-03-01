@@ -3,17 +3,21 @@
 .PHONY: clean clean-deps clean-bib all
 
 # These are the R scripts which are used to make the components
-RCODE = code/build_functions.R code/build_tex_files.R 
-DATA = data/CV.xlsx
+RCODE = code/build_functions.R code/build_tex_files.R code/escape_latex.R code/get_data.R
+DATA = data/CV.xlsx data/CV.bib
 
 # These are essential prerequisites that have to be updated
 COMPONENTS = tex-deps/check
 # In order to have only one file dependency, we create a "check" file
 # in the dependency folder that is updated when the files are rewritten
 
+EXECUTABLES = Rscript latexmk biber
+K := $(foreach exec,$(EXECUTABLES),\
+        $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH")))
+
 # -----------------------------------------------------------------------------
 # This defines the files/targets you intend to make use of
-all: CV.pdf
+all: CV.pdf data/CV.bib
 
 # -----------------------------------------------------------------------------
 # This command creates the components and updates the tex-deps/check file
@@ -22,12 +26,11 @@ $(COMPONENTS): $(RCODE) $(DATA)
 	echo 'Component files built' 
 	touch $(COMPONENTS)
 
-	
 # -----------------------------------------------------------------------------
 # This command builds the PDF target (CV.pdf) from dependencies CV.tex, CV.bib,
 # and the components above
-%.pdf: %.tex data/%.bib $(COMPONENTS)
-	latexmk -xelatex -g -pv -pdf $<
+%.pdf: %.tex $(DATA) $(COMPONENTS) 
+	latexmk -xelatex -g -pv -pdf $< 
 
 %.bib: 
 	biber --tool -V $< 2>&1 $<.bibcheck

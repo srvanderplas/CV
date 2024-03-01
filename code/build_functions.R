@@ -191,7 +191,7 @@ eval_date_command <- function(df) {
 
 fix_dd <- function(x) {
   lubridate::date_decimal(x) %>%
-    format.Date("%y/%m") %>%
+    format.Date("%Y/%m") %>%
     stringr::str_replace("/0", "/")
 }
 
