@@ -26,8 +26,9 @@ jobs:
         with:
           cache-version: 1
       
-      # - name: Setup tinytex
-      #   uses: r-lib/actions/setup-tinytex@v2
+      - name: Setup tlmgr
+        run: |
+          sudo apt install texlive-base texlive-bibtex-extra texlive-xetex
       
       - name: add TeX deps
         run: |
