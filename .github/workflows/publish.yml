@@ -1,16 +1,17 @@
-name: 'Rebuild CV'
-
 on:
   workflow_dispatch:
   push:
     branches: master
 
+name: Publish CV
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
     permissions:                
       contents: write           # 'write' access to repository contents
-      pull-requests: write      # 'write' access to pull requests
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
