@@ -23,6 +23,8 @@ talk_order <- c("Invited", "Contributed", "Seminars")
 grant_order <- c("Under Review", "Funded", "Not Funded")
 service_order <- c("discipline", "institution", "department")
 
+if (!dir.exists("tex-deps")) dir.create("tex-deps")
+
 # --- Process Education --------------------------------------------------------
 if (nrow(edu_data) > 0) {
   edu_data %>%
