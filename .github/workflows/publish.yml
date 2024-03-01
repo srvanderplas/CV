@@ -26,14 +26,10 @@ jobs:
         with:
           cache-version: 1
       
-      - name: Setup tlmgr
-        run: |
-          sudo apt install xzdec texlive-base texlive-bibtex-extra texlive-xetex
-      
-      - name: add TeX deps
-        run: |
-          tlmgr init-usertree
-          tlmgr install moderncv moderntimeline
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: scheme-basic biber xelatex moderncv moderntimeline
       
       - name: Compile PDF
         run: |
