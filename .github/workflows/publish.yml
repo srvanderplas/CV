@@ -26,15 +26,12 @@ jobs:
         with:
           cache-version: 1
       
-      - name: Setup tinytex
-        uses: r-lib/actions/setup-tinytex@v2
+      # - name: Setup tinytex
+      #   uses: r-lib/actions/setup-tinytex@v2
       
       - name: add TeX deps
-        shell: Rscript {0}
         run: |
-          install.packages("tinytex")
-          tinytex::install_tinytex()
-          tinytex::tlmgr_install(pkgs = c("moderncv", "moderntimeline"))
+          tlmgr install moderncv moderntimeline
       
       - name: Compile PDF
         run: |
