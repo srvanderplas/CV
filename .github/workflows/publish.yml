@@ -1,6 +1,10 @@
 name: 'Rebuild CV'
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   build_latex:
     permissions:                # Job-level permissions configuration starts here
