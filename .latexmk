@@ -3,4 +3,4 @@ $pdf_mode = 1;
 $dvi_mode = 0;
 $postscript_mode = 0;
 $pdf_previewer = 'okular %O %S';
-$bibtex = 'bibtex -include-directory=data %O %S';
+$bibtex = 'bibtex -include-directory=../data %O %S';

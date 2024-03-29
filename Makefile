@@ -2,6 +2,7 @@
 # https://stackoverflow.com/questions/2532234/how-to-run-a-makefile-in-windows
 .PHONY: clean clean-deps clean-bib all
 
+
 # These are the R scripts which are used to make the components
 RCODE = code/build_functions.R code/build_tex_files.R code/escape_latex.R code/get_data.R
 
@@ -32,12 +33,11 @@ $(COMPONENTS): $(RCODE) $(DATA)
 # -----------------------------------------------------------------------------
 # This command builds the PDF target (CV.pdf) from dependencies CV.tex, CV.bib,
 # and the components above
-$(BIB): 
-	biber --tool -V $< 2>&1 $<.bibcheck
+
 
 %.pdf: %.tex $(BIB) $(COMPONENTS) 
-	latexmk -xelatex -g -pv -pdf $< 
-
+	env BIBINPUTS='./data:' latexmk -xelatex -bibtex -g -pv $< 
+ 
 
 # -----------------------------------------------------------------------------
 # This removes all dependencies/build files. Invoke with "make clean"
@@ -45,7 +45,7 @@ clean: clean-deps clean-bib
 	rm -f *.pdf *.out *blg *log *toc *run.xml *.ptb *.tod *.fls *.fdb_latexmk *.lof *out.ps
 
 clean-bib: 
-	rm -f *bib *aux *bbl *bcf 
+	rm -f *.bib *.aux *.bbl *.bcf 
 	
 clean-deps:
 	rm -f tex-deps/*.tex tex-deps/check
