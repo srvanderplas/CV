@@ -43,8 +43,9 @@ if (nrow(edu_data) > 0) {
 if (nrow(exp_data) > 0) {
   exp_data %>%
     mutate(across(c(start, end), ymd)) %>%
-    filter(include) %>%
+    filter(include == 1) %>%
     mutate(end = if_else(is.na(end), today(), end)) %>%
+    mutate(end = if_else(end==0, today(), end)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(end = if_else(end == today(), NA, end)) %>%
     mutate(texlines = make_generic(., datenames = c("start", "end"), 
