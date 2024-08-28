@@ -14,6 +14,7 @@
 
 ## Intermediate documents:
 *.dvi
+*.xdv
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -89,3 +90,4 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
+tex-deps/*
