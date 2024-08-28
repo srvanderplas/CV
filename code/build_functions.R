@@ -49,7 +49,8 @@ make_cvitem <- function(x, y) {
 #' @return a vector the same length as x
 #' @importFrom stringr str_replace_all
 clean_na <- function(x, rep = "{}") {
-  str_replace_all(x, "\\{ ?NA ?\\}", rep)
+  str_replace_all(x, "\\{ ?NA ?\\}", rep) %>%
+    str_replace_all("///NA ", "///Present")
 }
 
 
