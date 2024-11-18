@@ -40,11 +40,20 @@ if (nrow(edu_data) > 0) {
 }
 
 # --- Process Experience -------------------------------------------------------
+fix_date <- function(x) {
+  if (is.numeric(x)) {
+    # Assume origin is excel
+    return(as.Date(x, origin = "1899-12-30"))
+  } else {
+    return(ymd(x))
+  }
+}
+
 if (nrow(exp_data) > 0) {
   exp_data %>%
-    mutate(across(c(start, end), ymd)) %>%
+    mutate(across(c(start, end), fix_date)) %>%
     filter(include == 1) %>%
-    mutate(end = if_else(is.na(end), today(), end)) %>%
+    mutate(end = if_else(is.na(end) | end == ymd("1899-12-30"), today(), end)) %>%
     mutate(end = if_else(end==0, today(), end)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(end = if_else(end == today(), NA, end)) %>%
