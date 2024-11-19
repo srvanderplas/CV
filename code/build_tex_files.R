@@ -31,7 +31,8 @@ if (nrow(edu_data) > 0) {
     mutate(across(c(start, end), ymd)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(across(c(start, end), year)) %>%
-    make_generic(datenames = c("start", "end"), 
+    make_generic(datenames = c("start", "end"),
+                 labelname = "datelabel",
                  fieldnames = c("degree", "major", "school", "other"),
                  get_year = F) %>%
     add_heading(make_heading("Education", "section")) %>%
@@ -49,15 +50,18 @@ fix_date <- function(x) {
   }
 }
 
+
 if (nrow(exp_data) > 0) {
   exp_data %>%
-    mutate(across(c(start, end), fix_date)) %>%
+    mutate(across(c(start, end), ~fix_date(.))) %>%
+    # mutate(across(c(start, end), ~floor_date(., "year"))) %>%
     filter(include == 1) %>%
-    mutate(end = if_else(is.na(end) | end == ymd("1899-12-30"), today(), end)) %>%
+    mutate(end = if_else(is.na(end) | end < ymd("1990-01-01"), today(), end)) %>%
     mutate(end = if_else(end==0, today(), end)) %>%
     arrange(desc(end), desc(start)) %>%
     mutate(end = if_else(end == today(), NA, end)) %>%
     mutate(texlines = make_generic(., datenames = c("start", "end"), 
+                                   labelname = "datelabel",
                                    fieldnames = c("position", "department", 
                                                   "location", "other"))) %>%
     extract2("texlines") %>%
@@ -99,6 +103,7 @@ if (nrow(grant_data) > 0) {
            end = if_else(status != "Funded", year_applied, end))
 
   grant_data_fix %>% 
+    filter(status!= "Not Funded") %>%
     nest(data = -status) %>%
     mutate(
       header = make_heading(status),
@@ -149,6 +154,7 @@ if (nrow(sw_data) > 0) {
     mutate(deprecated = is.na(date_end)) %>%
     arrange(desc(date_start)) %>%
     make_generic(datenames = c("date_start", "date_end"),
+                 labelname = "datelabel",
                  fieldnames = c("package", "description", "link"),
                  get_year = F) %>%
     add_entry_top("\\cvitem{}{\\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}") %>%

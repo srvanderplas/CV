@@ -1,4 +1,4 @@
-%!TEX root = SusanVanderplas-CV.tex
+%!TEX root = CV.tex
 % ------------------------------------------------------------------------------
 % CV personal references
 \newcommand{\cvreferencecolumn}[2]{%
@@ -112,7 +112,6 @@
 \newcommand*{\cventryV}[1][.25em]{}
 \newcommand{\tldatecventryV}[2][color1]{%
 \issincefalse
-\tl@formatstartyear{#2}
 \cventryV{\tikz[baseline=0pt]{
     \useasboundingbox (0ex,0ex) rectangle (\hintscolumnwidthV,1ex); 
     %changed origin of boundingbox. previous was (2ex,0ex) but this 
@@ -123,7 +122,10 @@
        ++(\tl@startfraction*\hintscolumnwidthV,0pt)
        node [tl@singleyear] {#2}
        node {$\bullet$};
-  }}}
+  }}
+  
+\tl@formatstartyear{#2}
+}
 \makeatother
 
 \defbibenvironment{bibliography}
@@ -156,3 +158,8 @@
 %-------------------------------------------------------------------------------
 \makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
 
+%-------------------------------------------------------------------------------
+% Fix alignment of text labels
+
+%https://tex.stackexchange.com/questions/83571/moderntimeline-alignment-of-text-on-start-and-end-of-bars
+% 

@@ -49,6 +49,7 @@ make_cvitem <- function(x, y) {
 #' @return a vector the same length as x
 #' @importFrom stringr str_replace_all
 clean_na <- function(x, rep = "{}") {
+  # TODO: add in macro \tlsince from moderntimeline to replace start with \tlsince(start)???
   str_replace_all(x, "\\{ ?NA ?\\}", rep) %>%
     str_replace_all("///NA ", "///Present")
 }
@@ -107,7 +108,7 @@ make_generic <- function(data,
 #' Handle date formatting more intelligently
 #' 
 #' @param dates one or two columns of numeric or POSIX data
-#' @param label optional column of labels to use for dates
+#' @param labelcol optional column of labels to use for dates
 #' @param timeline default TRUE, whether to use timeline
 #' @param get_year default FALSE, whether only the year should be displayed.
 #'                 This will result in dates being truncated to the year, 
@@ -134,16 +135,19 @@ handle_dates <- function(dates, labelcol, timeline = T, get_year = F) {
     num_dates <- dates
   }
   
+  
   labeldim <- prod(dim(labelcol))
   if (labeldim == 0) {
-    labelcol <- rep("", nrow(num_dates))
+    labels <- rep("", nrow(num_dates))
+  } else {
+    labels <- as.character(unlist(labelcol))
   }
   
   if(!all(names(num_dates) %in% c("start", "end"))) {
     names(num_dates) <- c("start", "end")[1:ncol(num_dates)]
   }
   
-  res <- dplyr::bind_cols(num_dates, label = labelcol, 
+  res <- dplyr::bind_cols(num_dates, label = labels, 
                           timeline = timeline, gy = get_year) %>%
     dplyr::mutate(entry = (dplyr::row_number())) %>%
     tidyr::pivot_longer(c(start, end), 
@@ -154,13 +158,13 @@ handle_dates <- function(dates, labelcol, timeline = T, get_year = F) {
     tidyr::nest(df = any_of(c("datetype", "date"))) %>%
     dplyr::group_by(entry) %>%
     dplyr::mutate(use_label = purrr::map_lgl(df, determine_labels),
-                  use_label = use_label | nchar(label) > 0,
+                  use_label = use_label | labeldim > 0,
                   use_span = purrr::map_lgl(df, determine_span),
                   label_text = purrr::map2_chr(df, timeline, make_labels),
-                  label = ifelse(nchar(label) == 0, label_text, label))  %>%
+                  label = ifelse(labeldim == 0, label_text, label))  %>%
     tidyr::unnest(df) %>%
     dplyr::mutate(
-      datechr = ifelse(date %% 1 == 0, as.character(date), fix_dd(date))
+      datechr = ifelse(date %% 1 == 0, as.character(date), fix_dd(date)),
     ) %>%
     dplyr::select(-date) %>%
     tidyr::pivot_wider(names_from = "datetype", values_from = "datechr") %>%
@@ -181,6 +185,7 @@ eval_date_command <- function(df) {
       if_else(df$use_span, "", "date"),
       if_else(df$use_label, "label", ""),
       "cventry",
+      # if_else(df$use_label, "n", ""), # Requires tweaks.tex macro
       if_else(df$use_span, "{{ {start} }}{{ {end} }}", "{{ {start} }}"),
       if_else(df$use_label, "{{ {label} }}", ""),
       if_else(df$timeline, "", "{{ {label} }}")
@@ -210,13 +215,13 @@ determine_span <- function(num_datevec) {
   length(unique(num_datevec)) > 1
 }
 
-make_labels <- function(df, timeline = T) {
+make_labels <- function(df, timeline = T, dateformat="%b-%y") {
   
   df <- df %>%
     select(date) %>%
     unique() %>%
     mutate(str = lubridate::date_decimal(date) %>% 
-             format.Date(., "%b %Y"),
+             format.Date(., dateformat),
            int = floor(date),
            use_int = date%%1 == 0,
            use_str = if_else(use_int, as.character(int), str)
@@ -252,7 +257,7 @@ check_date_format <- function(dates) {
   }
   
   if (sum(is.na(fixed_dates)) > 0) {
-    warning("Dates which are NA will be changed to 0, 
+    message("Dates which are NA will be changed to 0, 
             which is interpreted as 'current' by moderncvtimeline")
   }
   fixed_dates

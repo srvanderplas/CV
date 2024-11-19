@@ -1,9 +1,8 @@
 \documentclass[11pt, letterpaper, sans]{moderncv}
-\moderncvstyle{classic}
 \moderncvcolor{blue}
-
+\moderncvstyle{classic}
 % \usepackage[utf8]{inputenc}
-\usepackage[scale=0.85]{geometry}    % Width of the entire CV
+\usepackage[scale=0.80]{geometry}    % Width of the entire CV
 % \setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
 \usepackage{pdfpages}
 \usepackage{moderntimeline}
@@ -41,7 +40,11 @@
 % \renewbibmacro*{date}{\printtext[date]{\printdate}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Personal Information/Other Options
-\tlmaxdates{2005}{2026}              % Beginning and start of your timeline
+\tlmaxdates{2005}{2028}              % Beginning and start of your timeline
+
+% Fraction of the bar not to shade
+% Calc'd as (end year - current year)/(end year - start year). 
+\tlsetnotshadedfraction{.174} 
 
 % Personal Information
 \name{Susan}{Vanderplas}
@@ -64,7 +67,6 @@
 
 \begin{document}
 \makecvtitle
-\vspace{-1cm}
 
 
 \IfFileExists{tex-deps/edu.tex}{\input{tex-deps/edu.tex}}
