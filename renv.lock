@@ -130,6 +130,11 @@
       "Repository": "CRAN",
       "Hash": "680887028577f3fa2a81e410ed0d6e42"
     },
+    "fastmap": {
+      "Package": "fastmap",
+      "Version": "1.2.0",
+      "Source": "Repository"
+    },
     "generics": {
       "Package": "generics",
       "Version": "0.1.3",
