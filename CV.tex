@@ -36,8 +36,8 @@
 \intronote{donohoresponse}{Submitted as an invited response to Donoho's ``50 years of Data Science"}
 
 \intronote{vanderplasDesigningGraphicsRequires2021}{Submitted as an invited response to Hullman \& Gelman's  ``Designing for Interactive Exploratory Data Analysis Requires Theories of Graphical Inference"}
-% \DeclareFieldFormat{date}{\textbf{#1}}
-% \renewbibmacro*{date}{\printtext[date]{\printdate}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Personal Information/Other Options
 \tlmaxdates{2005}{2028}              % Beginning and start of your timeline
@@ -54,8 +54,6 @@
 % \phone[mobile]{515-509-6613}
 %\phone[fixed]{+55~(11)~3091~2722}
 \email{susan.vanderplas@unl.edu}
-% \email{srvanderplas@gmail.com}                % optional, remove / comment the line if not wanted
-% \email{srvander@iastate.edu}                % optional, remove / comment the line if not wanted
 \homepage{srvanderplas.github.io}                   % optional, remove / comment the line if not wanted
 %\social[linkedin]{}                          % optional, remove / comment the line if not wanted
 % \social[twitter]{srvanderplas}               % optional, remove / comment the line if not wanted
@@ -68,39 +66,26 @@
 \begin{document}
 \makecvtitle
 
-
 \IfFileExists{tex-deps/edu.tex}{\input{tex-deps/edu.tex}}
 
 \IfFileExists{tex-deps/exp.tex}{\input{tex-deps/exp.tex}}
 
 \section{Publications}
-\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.}
 \nocite{*}
-\printbibliography[heading=subbibliography,keyword=pr,title={Peer Reviewed Publications}]
+\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.}
+
+
+\citesinthissection{1}
+\printbibliography[keyword=bookch, heading=subbibliography, title={Book Chapters}]
 \smallskip
+
+\subsection{Peer Reviewed Publications}
+\input{tex-deps/papers_peer_reviewed.tex}
+\smallskip
+
+\citesinthissection{4}
 \printbibliography[heading=subbibliography,keyword=npr,resetnumbers=true,title={Other Publications}]
 \smallskip
-% \bibliographystyle{myplainyr}
-% \bibliography{publications}
-% \cvitem{Submitted Papers}{
-%     \begin{description}[style=unboxed]
-%     \item [A Plot is Worth a Thousand Tests: Assessing Residual Diagnostics with the Lineup Protocol] submitted to JCGS in May, revision accepted subject to edits in December 2023.
-%     \item [One Model that Fits Them All: Psychometrics with Generalized Linear Mixed Effects Models] Conference Publication. Accepted, Electronic Imaging 2024
-%     \item [Incorrect Statistical Reasoning in Guyll et al. Leads to Biased Claims about Strength of Forensic Evidence] Revision submitted to PNAS November 2023.
-%     \item [Perception and Cognitive Implications of Logarithmic Scales for Exponentially Increasing Data: Perceptual Sensitivity Tested with Statistical Lineups] submitted to JCGS in July 2023, revision submitted January 12, 2024.
-%     \item [Demonstrative Evidence and the Use of Algorithms in Jury Trials] submitted to JDS in August 2023, revision submitted January 22, 2024.
-%     \item [Evaluating Perceptual Judgements on 3D Printed Bar Charts] submitted to JDS in August 2023, revision submitted January 22, 2024.
-%     \item [Topographic Images of Breech Face Impressions on Cartridge Case Primer Surfaces] Data set. Submitted to Scientific Data, September 2023
-%     \item [Misuse of Statistical Method Results in Highly Biased Interpretation of Forensic Evidence in Guyll et al. (2023)] submitted to Law, Probability, and Risk, November 2023.
-%     \item [Can You See The Change? Change Point Detection Using Visual Inference] submitted to JCGS, November 2023.
-% %    \item [Testing in Statistical Graphics] A guide to human testing of the perception of statistical graphics using various experimental methods. %Submitted to TestVis 2022.
-%     % \item [A Convolutional Neural Network for Outsole Recognition] Use CNNs to automate identification of class characteristics in images of footwear outsoles. Revision stage.
-% %    \item [Bullet Signature Resampling] Method for resampling bullet signatures used to calculate match and non-match score distributions.% \href{https://github.com/srvanderplas/bulletsamplr}{Link to project}
-%     % \item [Longitudinal Shoe Database] Design a database for sharing longitudinal shoe wear data, including powder prints, 2D scans, 3D scans, pictures, and crime-scene style casts and prints. Submitted to Forensic Science International, Oct 2020.
-%     \end{description}
-% }
-
-    
 
 \IfFileExists{tex-deps/software.tex}{\input{tex-deps/software.tex}}
 
@@ -112,8 +97,7 @@
 
 \IfFileExists{tex-deps/teaching.tex}{\input{tex-deps/teaching.tex}}
 
-\IfFileExists{tex-deps/practice.tex}{\input{tex-deps/practice.tex}}
-
+% \IfFileExists{tex-deps/practice.tex}{\input{tex-deps/practice.tex}}
 % \IfFileExists{tex-deps/workshops.tex}{\input{tex-deps/workshops.tex}}
 
 \IfFileExists{tex-deps/mentoring.tex}{\input{tex-deps/mentoring.tex}}

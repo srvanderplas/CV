@@ -11,7 +11,7 @@ DATA = data/CV.xlsx
 BIB = data/CV.bib
 
 # These are essential prerequisites that have to be updated
-COMPONENTS = tex-deps/check
+COMPONENTS = tex-deps/check tweaks.tex
 # In order to have only one file dependency, we create a "check" file
 # in the dependency folder that is updated when the files are rewritten
 

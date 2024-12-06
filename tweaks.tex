@@ -30,12 +30,15 @@
   \usepackage[backend = biber,
               style   = authoryear-comp, 
               defernumbers,
-              sorting = none,
-              maxbibnames=99
+              sorting = ydnt,
+              maxbibnames=99,
+              uniquename=false,
+              giveninits
              ]{biblatex}  
   \newcounter{bibitemtotal}
   \newrobustcmd*{\mkbibdesc}[1]{%
   \number\numexpr\value{bibitemtotal}+1-#1\relax}
+%  \number\numexpr\value{bibitemtotal}#1\relax} % shows internal numbering system 
   \DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}
   \DeclareFieldFormat{labelnumberwidth}{#1}
   \newcommand{\printbibnumber}{%\hspace* here has no effect so I removed it
@@ -64,8 +67,9 @@
               style   = authoryear, 
               sorting = none,
               dashed = false,
-              firstinits = true,
-              maxbibnames=99
+              uniquename=false,
+              maxbibnames=99,
+              giveninits
              ]{biblatex}  
   \newcommand{\printbibnumber}{\relax} % do nothing   
   \setlength\labelkern{0ex} 
@@ -104,7 +108,9 @@
 \makeatother
 % ------------------------------------------------------------------------------
 % Notes at the end and hopefully on a new line and in footnotesize
-\DeclareFieldFormat{addendum}{\newline{\footnotesize\textbf{Contribution:}\addspace#1}}
+\DeclareFieldFormat{addendum}{%
+\newline{\footnotesize\textbf{Contribution:}\addspace#1}%
+}
 
 %-------------------------------------------------------------------------------
 % timeline for bibliography
@@ -150,6 +156,7 @@
   {\endlist}
   {\item}    
 
+
 % reverse numbering of publications
 % Count total number of entries in each refsection
 \AtDataInput{%
@@ -158,8 +165,52 @@
 %-------------------------------------------------------------------------------
 \makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
 
-%-------------------------------------------------------------------------------
-% Fix alignment of text labels
+%-- Count total number of entries -----------------------------------------
+% https://tex.stackexchange.com/questions/408086/mweb-doesnt-recognise-content-of-jobname-bib
+\makeatletter
+\newcommand{\citesinthissection}[1]{\xdef\@totalcites{#1}}
+% http://tex.stackexchange.com/q/66829/5764
+\newcounter{numbibentries}
+\renewbibmacro*{finentry}{\stepcounter{numbibentries}\finentry}
+% http://tex.stackexchange.com/q/123805/5764
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{% label format from numeric.bbx
+        \printfield{labelprefix}%
+        \number\numexpr\@totalcites-\abx@field@labelnumber+1\relax}. }
+     {\setlength{\topsep}{0pt}% layout parameters from moderncvstyleclassic.sty
+      \setlength{\labelwidth}{\hintscolumnwidth}%
+      \setlength{\labelsep}{\separatorcolumnwidth}%
+      \leftmargin\labelwidth%
+      \advance\leftmargin\labelsep}%
+      \sloppy\clubpenalty4000\widowpenalty4000}
+  {\endlist}
+  {\item}
+\makeatother
 
-%https://tex.stackexchange.com/questions/83571/moderntimeline-alignment-of-text-on-start-and-end-of-bars
-% 
+
+%-- Make cvitem labels align left -----------------------------------------
+% https://tex.stackexchange.com/questions/140635/left-align-the-date-for-all-cvitems
+\makeatletter
+
+% Create our lengths
+\newlength\boxsize
+\newlength\boxgap
+% Set them to current moderncv lengths
+\setlength{\boxsize}{0.175\textwidth}% == maincolumnwidth
+\setlength{\boxgap}{0.025\textwidth} % == separatorcolumnwidth
+
+\newcommand\mycvitem[3][0.25em]{%
+  \strut%  I prefer \strut; but it will be trumped by a
+  % sufficiently large value for #1 (default of 0.25em is from
+  % moderncv).  In fact, I'd get rid of it entirely, since you use #1
+  % to set the space that *follows* the entry, which I find counter-intuitive
+  \parbox{\boxsize}{#2}%
+  \hspace{\boxgap}%
+  \parbox[t]{\dimexpr\textwidth-\boxsize-\boxgap\relax}{#3}
+  \par\addvspace{#1}%
+}
+
+\makeatother
+
+

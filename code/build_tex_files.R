@@ -71,6 +71,57 @@ if (nrow(exp_data) > 0) {
     writeLines(con = "tex-deps/exp.tex")
 }
 
+# --- Process Papers --------------------------------------------------------
+
+bibliography <- bib2df::bib2df("data/CV.bib")
+bibliography <- bibliography %>% mutate(
+  YEAR = ifelse(is.na(YEAR), readr::parse_number(DATE), YEAR),
+  YEAR = as.numeric(YEAR)
+)
+
+cut_date <- 2019
+
+before_pr_pubs <- bibliography %>% 
+  slice(grep("bookch", KEYWORDS)) %>%
+  count() %>%
+  extract2("n")
+
+before_pubs <- bibliography %>% filter(YEAR <= cut_date) %>% 
+  slice(grep("pr", KEYWORDS)) %>%
+  slice(-grep("npr", KEYWORDS))
+
+
+after_pubs <- bibliography %>% filter(YEAR > cut_date) %>% 
+  slice(grep("pr", KEYWORDS)) %>%
+  slice(-grep("npr", KEYWORDS)) %>%
+  group_by(YEAR) %>% 
+  mutate(n = n()) %>% ungroup() %>%
+  nest_by(YEAR,n)
+
+after_pubs <- after_pubs %>% 
+  arrange(desc(YEAR)) %>% 
+  ungroup() %>% 
+  mutate(
+    nn = cumsum(n)
+  )
+
+# before_pr_pubs is a constant for the number of items listed 
+# before the peer reviewed papers section
+
+info <- purrr::map2(
+  after_pubs$YEAR, after_pubs$nn, 
+  .f = function(x, y) print_paper_years(x, numsection=y))
+
+older <- print_paper_years(
+  min(before_pubs$YEAR), 
+  max(before_pubs$YEAR), 
+  title=sprintf("pre %d", min(after_pubs$YEAR)), 
+  nrow(before_pubs) + max(after_pubs$nn))
+info[[length(info)+1]] <- older
+writeLines(unlist(info), con = "tex-deps/papers_peer_reviewed.tex")
+
+
+
 # --- Process Awards -----------------------------------------------------------
 if (nrow(award_data) > 0) {
   award_data %>%
