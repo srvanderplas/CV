@@ -74,17 +74,24 @@
 \nocite{*}
 \cvitem{}{\footnotesize Student advisees indicated with $^\ast$. Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.}
 
-
-\citesinthissection{1}
-\printbibliography[keyword=bookch, heading=subbibliography, title={Book Chapters}]
-\smallskip
-
 \subsection{Peer Reviewed Publications}
 \input{tex-deps/papers_peer_reviewed.tex}
 \smallskip
 
+\citesinthissection{1}
+\printbibliography[keyword=book,heading=subbibliography,resetnumbers=true, title={Books}]
+\smallskip
+
+\citesinthissection{1}
+\printbibliography[keyword=bookch,heading=subbibliography,resetnumbers=true, title={Book Chapters}]
+\smallskip
+
+\filbreak\citesinthissection{1}
+\printbibliography[keyword=letter,heading=subbibliography,resetnumbers=true,title={Letters}]
+\smallskip
+
 \citesinthissection{4}
-\printbibliography[heading=subbibliography,keyword=npr,resetnumbers=true,title={Other Publications}]
+\printbibliography[keyword=npr,heading=subbibliography,resetnumbers=true,title={Other Publications}]
 \smallskip
 
 \IfFileExists{tex-deps/software.tex}{\input{tex-deps/software.tex}}

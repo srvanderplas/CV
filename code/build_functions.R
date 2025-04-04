@@ -30,7 +30,7 @@ add_entry_bottom <- function(entries, new_entry) {
 
 
 make_heading <- function(heading_name, heading_type = "subsection") {
-  glue("\\{heading_type} {{{heading_name}}}")
+  glue("\\filbreak\\{heading_type} {{{heading_name}}}")
 }
 
 collapse_labels <- function(labelname, ...) {
@@ -275,7 +275,7 @@ print_paper_years <- function(year, year_to = year, title=year, numsection=0) {
       {}
     }
 }
-\\mycvitem{\\color{color1} YYYY}{}
+\\filbreak\\mycvitem{\\color{color1} YYYY}{}
 \\vspace{-19pt}
 \\citesinthissection{WWWW}
 \\printbibliography[check=yrXXXX, heading=none, env=bibliography, keyword=pr, title={YYYY}]

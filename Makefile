@@ -36,7 +36,7 @@ $(COMPONENTS): $(RCODE) $(DATA)
 
 
 %.pdf: %.tex $(BIB) $(COMPONENTS) 
-	env BIBINPUTS='./data:' latexmk -xelatex -bibtex -g -pv $< 
+	env BIBINPUTS='./data:' latexmk -f -xelatex -bibtex -g -pv $< 
  
 
 # -----------------------------------------------------------------------------

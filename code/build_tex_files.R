@@ -81,17 +81,23 @@ bibliography <- bibliography %>% mutate(
 
 cut_date <- 2019
 
-before_pr_pubs <- bibliography %>% 
-  slice(grep("bookch", KEYWORDS)) %>%
-  count() %>%
-  extract2("n")
+# 
+# before_pr_pubs <- bibliography %>% 
+#   slice(grep("book|letter", KEYWORDS)) %>%
+#   count() %>%
+#   extract2("n")
 
-before_pubs <- bibliography %>% filter(YEAR <= cut_date) %>% 
+before_pr_pubs <- 0
+
+before_pubs <- bibliography %>% 
+  filter(YEAR <= cut_date) %>% 
   slice(grep("pr", KEYWORDS)) %>%
   slice(-grep("npr", KEYWORDS))
 
 
-after_pubs <- bibliography %>% filter(YEAR > cut_date) %>% 
+after_pubs <- bibliography %>% 
+  filter(YEAR > cut_date) %>% 
+  filter(!grepl("book", KEYWORDS)) %>%
   slice(grep("pr", KEYWORDS)) %>%
   slice(-grep("npr", KEYWORDS)) %>%
   group_by(YEAR) %>% 
