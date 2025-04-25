@@ -18,7 +18,7 @@ jobs:
           
       - name: Install deps
         run: |
-          apt install libcurl4 libcurl4-openssl-dev
+          sudo apt install libcurl4 libcurl4-openssl-dev
       
       - name: Install R
         uses: r-lib/actions/setup-r@v2
