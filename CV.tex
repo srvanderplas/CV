@@ -3,7 +3,7 @@
 \moderncvstyle{classic}
 % \usepackage[utf8]{inputenc}
 \usepackage[scale=0.80]{geometry}    % Width of the entire CV
-% \setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
+\setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
 \usepackage{pdfpages}
 \usepackage{moderntimeline}
 \usepackage{xpatch} 
@@ -72,15 +72,16 @@
 
 \section{Publications}
 \nocite{*}
-\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.}
+\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. }
+% Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.
 
 \subsection{Peer Reviewed Publications}
 \input{tex-deps/papers_peer_reviewed.tex}
-\smallskip
+
 
 \citesinthissection{1}
 \printbibliography[keyword=book,heading=subbibliography,resetnumbers=true, title={Books}]
-\smallskip
+
 
 \citesinthissection{1}
 \printbibliography[keyword=bookch,heading=subbibliography,resetnumbers=true, title={Book Chapters}]

@@ -102,7 +102,8 @@ make_generic <- function(data,
   date_res$date_filled %>%
     clean_na(rep = "{0}") %>%
     paste0(., data$fields) %>%
-    clean_na()
+    clean_na() %>%
+    str_remove_all("NA")
 }
 
 #' Handle date formatting more intelligently

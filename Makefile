@@ -28,6 +28,7 @@ all: CV.pdf data/CV.bib
 $(COMPONENTS): $(RCODE) $(DATA)
 	Rscript "code/build_tex_files.R" \
 	echo 'Component files built' 
+	cp $(BIB) ./
 	touch $(COMPONENTS)
 
 # -----------------------------------------------------------------------------
@@ -36,7 +37,7 @@ $(COMPONENTS): $(RCODE) $(DATA)
 
 
 %.pdf: %.tex $(BIB) $(COMPONENTS) 
-	env BIBINPUTS='./data:' latexmk -f -xelatex -bibtex -g -pv $< 
+	env BIBINPUTS='./data:' latexmk -xelatex -bibtex -g -pv $< 
  
 
 # -----------------------------------------------------------------------------

@@ -37,6 +37,7 @@ if (nrow(edu_data) > 0) {
                  get_year = F) %>%
     add_heading(make_heading("Education", "section")) %>%
     add_spacing("\\medskip") %>%
+    iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/edu.tex")
 }
 
@@ -68,6 +69,7 @@ if (nrow(exp_data) > 0) {
     unlist() %>%
     add_heading(make_heading("Professional Experience", "section")) %>%
     add_spacing("\\medskip") %>%
+    iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/exp.tex")
 }
 
@@ -124,7 +126,10 @@ older <- print_paper_years(
   title=sprintf("pre %d", min(after_pubs$YEAR)), 
   nrow(before_pubs) + max(after_pubs$nn))
 info[[length(info)+1]] <- older
-writeLines(unlist(info), con = "tex-deps/papers_peer_reviewed.tex")
+
+unlist(info) %>%
+  iconv(to = "ASCII") %>%
+  writeLines(con = "tex-deps/papers_peer_reviewed.tex")
 
 
 
@@ -137,6 +142,7 @@ if (nrow(award_data) > 0) {
                  fieldnames = c("title", "organization", "other")) %>%
     add_heading(make_heading("Awards", "section")) %>%
     add_spacing("\\medskip") %>%
+    iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/awards.tex")
 }
 # --- Process Grants -----------------------------------------------------------
@@ -174,6 +180,7 @@ if (nrow(grant_data) > 0) {
     extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Grants", "section")) %>%
+    iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/grants.tex")
 }
 
@@ -202,6 +209,7 @@ if(nrow(talk_data) > 0) {
     unlist() %>%
     add_entry_top("\\cvitem{}{\\small\\faIcon{chalkboard} provides a link to slides, where available}") %>%
     add_heading(make_heading("Talks", "section")) %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/talks.tex")
 }
 
@@ -217,6 +225,7 @@ if (nrow(sw_data) > 0) {
     add_entry_top("\\cvitem{}{\\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}") %>%
     add_heading(make_heading("Software", "subsection")) %>%
     add_spacing("\\medskip") %>%
+    iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/software.tex")
 }
 # --- Process Teaching ---------------------------------------------------------
@@ -232,6 +241,7 @@ teach_data %>%
                fieldnames = c("course", "course_title", "location", "note")) %>%
   add_heading(make_heading("Teaching", "section")) %>%
   add_spacing("\\medskip") %>%
+  iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
   writeLines(con = "tex-deps/teaching.tex")
 
 
@@ -254,6 +264,7 @@ if(nrow(mentor_data) > 0) {
     magrittr::extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Mentoring", "section")) %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/mentoring.tex")
 }
 # --- Process Reviewing --------------------------------------------------------
@@ -289,6 +300,7 @@ if(nrow(service_data) > 0) {
     unlist() %>%
     add_heading(make_heading("Service", "section")) %>%
     add_entry_bottom(rev_txt) %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/service.tex")
 }
 
@@ -300,6 +312,7 @@ if(nrow(profdev_data) > 0) {
                  fieldnames = c("description", "ex1", "ex2", "ex3")) %>%
     add_heading(make_heading("Professional Development", "section")) %>%
     add_spacing("\\medskip") %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/profdev.tex")
 }
 
@@ -323,6 +336,7 @@ if(nrow(outreach_data) > 0) {
     magrittr::extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Outreach", "section")) %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/outreach.tex")
 }
 
@@ -345,6 +359,7 @@ if(nrow(workshop_data) > 0) {
     magrittr::extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Workshops", "subsection")) %>%
+    iconv(to = "ASCII", sub = "ASCII//TRANSLIT") %>%
     writeLines(con = "tex-deps/workshops.tex")
 }
 
