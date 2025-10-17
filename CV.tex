@@ -17,12 +17,11 @@
             citecolor=link}
 \usepackage{varwidth}
 \usepackage[normalem]{ulem}
-\usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{doi}% suppose to force DOI as verbatim
- 
-\clubpenalty=500
+\usepackage{needspace} 
+% \clubpenalty=500
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % New commands
 \input{tweaks.tex}
@@ -46,33 +45,33 @@
 \begin{document}
 \makecvtitle
 
-\IfFileExists{tex-deps/edu.tex}{\input{tex-deps/edu.tex}}
-\IfFileExists{tex-deps/exp.tex}{\input{tex-deps/exp.tex}}
+\input{tex-deps/edu.tex}
+\input{tex-deps/exp.tex}
 
 \section{Publications}
 \nocite{*}
-\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. }
 % Contribution percentages estimated from git contributions using \texttt{git fame} where possible. Not all projects have github repositories for which this is meaningful. Most of these papers are highly collaborative, and intellectual contributions are typically shared between all authors.
 
 \subsection{Peer Reviewed Publications}
+\cvitem{}{\footnotesize Student advisees indicated with $^\ast$. }
 \input{tex-deps/papers_peer_reviewed.tex}
 
-
-\citesinthissection{1}
-\printbibliography[keyword=book,heading=subbibliography,resetnumbers=true, title={Books}]
-
-
+\smallskip
 \citesinthissection{1}
 \printbibliography[keyword=bookch,heading=subbibliography,resetnumbers=true, title={Book Chapters}]
-\smallskip
 
-\filbreak\citesinthissection{1}
+\smallskip
+\citesinthissection{1}
 \printbibliography[keyword=letter,heading=subbibliography,resetnumbers=true,title={Letters}]
-\smallskip
 
-\filbreak\citesinthissection{4}
-\printbibliography[keyword=npr,heading=subbibliography,resetnumbers=true,title={Other Publications}]
 \smallskip
+\citesinthissection{4}
+\printbibliography[keyword=npr,heading=subbibliography,resetnumbers=true,title={Other Publications}]
+
+\medskip
+
+% \citesinthissection{1}
+% \printbibliography[keyword=book,heading=subbibliography,resetnumbers=true, title={Books}]
 
 \IfFileExists{tex-deps/software.tex}{\input{tex-deps/software.tex}}
 
@@ -80,7 +79,7 @@
 
 \IfFileExists{tex-deps/awards.tex}{\input{tex-deps/awards.tex}}
 
-\filbreak\IfFileExists{tex-deps/talks.tex}{\input{tex-deps/talks.tex}}
+\par\needspace{6\baselineskip}\IfFileExists{tex-deps/talks.tex}{\input{tex-deps/talks.tex}}
 
 \IfFileExists{tex-deps/teaching.tex}{\input{tex-deps/teaching.tex}}
 
@@ -91,8 +90,8 @@
 
 % \IfFileExists{tex-deps/outreach.tex} {\input{tex-deps/outreach.tex}}
 
-\IfFileExists{tex-deps/service.tex} {\input{tex-deps/service.tex}}
+\par\needspace{6\baselineskip}\IfFileExists{tex-deps/service.tex} {\input{tex-deps/service.tex}}
 
-\IfFileExists{tex-deps/profdev.tex} {\input{tex-deps/profdev.tex}}
+% \IfFileExists{tex-deps/profdev.tex} {\input{tex-deps/profdev.tex}}
 
 \end{document}

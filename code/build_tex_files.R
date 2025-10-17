@@ -220,8 +220,9 @@ if (nrow(sw_data) > 0) {
     arrange(desc(date_start)) %>%
     make_generic(datenames = c("date_start", "date_end"),
                  labelname = "datelabel",
-                 fieldnames = c("package", "description", "link"),
+                 fieldnames = c("package", "description", "", "", "link"),
                  get_year = F) %>%
+    
     add_entry_top("\\cvitem{}{\\footnotesize Dates show initial involvement; only packages which are no longer maintained have end dates.}") %>%
     add_heading(make_heading("Software", "subsection")) %>%
     add_spacing("\\medskip") %>%

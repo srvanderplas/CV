@@ -30,7 +30,7 @@ add_entry_bottom <- function(entries, new_entry) {
 
 
 make_heading <- function(heading_name, heading_type = "subsection") {
-  glue("\\filbreak\\{heading_type} {{{heading_name}}}")
+  glue("\\par\\needspace{{4\\baselineskip}}\\{heading_type} {{{heading_name}}}")
 }
 
 collapse_labels <- function(labelname, ...) {
@@ -90,10 +90,11 @@ make_generic <- function(data,
   
   # Escape latex characters in fields
   data <- data %>%
-    mutate(across(all_of(fieldnames), escapeLatexSpecials))
+    mutate(across(all_of(fieldnames[fieldnames!=""]), escapeLatexSpecials))
   
   # Create fields from data + template
   data$fields <- paste0("{{{", fieldnames, "}}}") %>%
+    str_replace(fixed("{{{}}}"), "{{}}") %>%
     glue_collapse() %>%
     glue_data(data, .) %>%
     paste0(., extra)
@@ -103,7 +104,7 @@ make_generic <- function(data,
     clean_na(rep = "{0}") %>%
     paste0(., data$fields) %>%
     clean_na() %>%
-    str_remove_all("NA")
+    str_replace_all("(\\W)NA(\\W)", "\\1\\2")
 }
 
 #' Handle date formatting more intelligently
@@ -276,7 +277,7 @@ print_paper_years <- function(year, year_to = year, title=year, numsection=0) {
       {}
     }
 }
-\\filbreak\\mycvitem{\\color{color1} YYYY}{}
+\\par\\needspace{4\\baselineskip}\\mycvitem{\\color{color1} YYYY}{}
 \\vspace{-19pt}
 \\citesinthissection{WWWW}
 \\printbibliography[check=yrXXXX, heading=none, env=bibliography, keyword=pr, title={YYYY}]
