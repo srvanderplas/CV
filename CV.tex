@@ -6,7 +6,7 @@
 \setlength{\hintscolumnwidth}{1.5in} % Width of the timeline on your left
 \usepackage{pdfpages}
 \usepackage{moderntimeline}
-\usepackage{xpatch} 
+\usepackage{xpatch}
 \usepackage{color, graphicx}
 \usepackage[unicode]{hyperref}
 \usepackage{xcolor}
@@ -20,14 +20,14 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{doi}% suppose to force DOI as verbatim
-\usepackage{needspace} 
+\usepackage{needspace}
 % \clubpenalty=500
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % New commands
 \input{tweaks.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bib Info
-\addbibresource{data/CV.bib}  
+\addbibresource{data/CV.bib}
 \intronote{donohoresponse}{Submitted as an invited response to Donoho's ``50 years of Data Science"}
 \intronote{vanderplasDesigningGraphicsRequires2021}{Submitted as an invited response to Hullman \& Gelman's  ``Designing for Interactive Exploratory Data Analysis Requires Theories of Graphical Inference"}
 
@@ -36,10 +36,11 @@
 \tlmaxdates{2005}{2030}              % Beginning and start of your timeline
 \input{personal-info.tex}
 
+\title{\emph{Curriculum Vitae}}
 
 % Fraction of the bar not to shade
-% Calc'd as (end year - current year)/(end year - start year). 
-\tlsetnotshadedfraction{.174} 
+% Calc'd as (end year - current year)/(end year - start year).
+\tlsetnotshadedfraction{.174}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -93,5 +94,40 @@
 \par\needspace{6\baselineskip}\IfFileExists{tex-deps/service.tex} {\input{tex-deps/service.tex}}
 
 % \IfFileExists{tex-deps/profdev.tex} {\input{tex-deps/profdev.tex}}
+
+
+\section{References}
+
+\begin{cvcolumns}
+    \cvcolumn{Alicia Carriquiry}{
+    Professor \\
+    Department of Statistics \\
+    Iowa State University \\
+    \emailsymbol alicia@iastate.edu\\
+    \phonesymbol 515-451-3322}
+    \cvcolumn{Dianne Cook}{
+    Professor\\
+    Department of Econometrics and \\
+    Business Statistics \\
+    Monash University \\
+    \emailsymbol dicook@monash.edu \\
+    \phonesymbol +61 (0)3990 52608\\
+    \hphantom{hello world}}
+\end{cvcolumns}
+\begin{cvcolumns}
+    \cvcolumn{Kimberly Stanke}{
+    Assistant Professor of Practice\\
+    Science Literacy and Data Analytics\\
+    Extension Specialist\\
+    University of Nebraska Lincoln\\
+    \emailsymbol kstanke2@unl.edu \\
+    \phonesymbol 810-955-7625}
+    \cvcolumn{Heike Hofmann}{
+    Professor \\
+    Department of Statistics \\
+    University of Nebraska Lincoln \\
+    \emailsymbol hhofmann4@unl.edu\\
+    \phonesymbol 515-294-8948}
+\end{cvcolumns}
 
 \end{document}
