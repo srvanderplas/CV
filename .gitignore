@@ -17,8 +17,8 @@
 *.xdv
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
-*.bbl
-*.bcf
+*.bbl*
+*.bcf*
 *.blg
 *-blx.aux
 *-blx.bib
@@ -91,3 +91,4 @@ sympy-plots-for-*.tex/
 *.xdy
 
 tex-deps/*
+CV.bbl-SAVE-ERROR
