@@ -267,20 +267,17 @@ check_date_format <- function(dates) {
 
 
 print_paper_years <- function(year, year_to = year, title=year, numsection=0) {
-  
-  latex_str = "
-\\defbibcheck{yrXXXX}{
+  latex_str = "\\defbibcheck{yrXXXX}{
   \\ifnumgreater{\\thefield{year}}{ZZZZ}
     {\\skipentry}
     {\\ifnumless{\\thefield{year}}{XXXX}
       {\\skipentry}
       {}
-    }
-}
+    }}
 \\par\\needspace{4\\baselineskip}\\mycvitem{\\color{color1} YYYY}{}
 \\vspace{-19pt}
 \\citesinthissection{WWWW}
-\\printbibliography[check=yrXXXX, heading=none, env=bibliography, keyword=pr, title={YYYY}]
-"
-gsub("WWWW", numsection, gsub("ZZZZ", year_to, gsub("YYYY", title, gsub("XXXX", year, latex_str))))
+\\printbibliography[check=yrXXXX, heading=none, env=bibliography, keyword=pr, title={YYYY}]"
+
+  gsub("WWWW", numsection, gsub("ZZZZ", year_to, gsub("YYYY", title, gsub("XXXX", year, latex_str))))
 }
