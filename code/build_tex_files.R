@@ -38,7 +38,7 @@ if (nrow(edu_data) > 0) {
       get_year = F
     ) %>%
     add_heading(make_heading("Education", "section")) %>%
-    add_spacing("\\medskip") %>%
+    # add_spacing("\\smallskip") %>%
     iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/edu.tex")
 }
@@ -74,7 +74,7 @@ if (nrow(exp_data) > 0) {
     extract2("texlines") %>%
     unlist() %>%
     add_heading(make_heading("Professional Experience", "section")) %>%
-    add_spacing("\\medskip") %>%
+    # add_spacing("\\smallskip") %>%
     iconv(to = "ASCII") %>%
     writeLines(con = "tex-deps/exp.tex")
 }
@@ -174,21 +174,22 @@ if (nrow(grant_data) > 0) {
       amount = if_else(subaward, amount_sub, amount_nosub),
       start = if_else(status != "Funded", year_applied, start),
       end = if_else(status != "Funded", year_applied, end)
-    )
+    ) |>
+    filter(status == "Funded")
 
   grant_data_fix %>%
-    filter(status != "Not Funded") %>%
+    # filter(status != "Not Funded") %>%
     nest(data = -status) %>%
     mutate(
-      header = make_heading(status),
+      # header = make_heading(status),
       texlines = purrr::map(data, ~ make_generic(.,
         datenames = c("start", "end"),
         fieldnames = c(
           "funding", "grant_title",
           "grant_role", "amount"
         )
-      )),
-      texlines = map2(texlines, header, add_heading)
+      )) # ,
+      # texlines = map2(texlines, header, add_heading)
     ) %>%
     unnest(status) %>%
     extract2("texlines") %>%
