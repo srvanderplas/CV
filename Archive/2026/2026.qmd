@@ -1,0 +1,67 @@
+---
+title: "Susan Vanderplas Teaching CV"
+author:
+  firstname: Susan
+  lastname: Vanderplas
+  # address: "Rämistrasse 101, CH-8092 Zürich, Switzerland, Zürich"
+  position: "Associate Professor, Mathematics & Statistics, USU"
+  contacts:
+    - icon: fa envelope
+      text: susan.vanderplas@usu.edu
+      url: "mailto:susan.vanderplas@usu.edu"
+    - icon: assets/icon/bi-house-fill.svg
+      text: srvanderplas.github.io
+      url: https://srvanderplas.github.io
+    - icon: fa brands orcid
+      text: 0000-0002-3803-0972
+      url: https://orcid.org/0000-0002-3803-0972
+    - icon: fa brands github
+      text: GitHub
+      url: https://github.com/srvanderplas
+    - icon: fa brands linkedin
+      text: LinkedIn
+      url: https://linkedin.com/in/srvanderplas
+format: awesomecv-typst
+brand:
+  typography: 
+    fonts:
+      - family: Roboto
+        source: google
+        weight: [100, 400, 700]
+      - family: Source Sans 3
+        source: google
+        weight: [100, 400, 700]
+        style: [normal, italic]
+    base: Source Sans 3
+  color:
+    primary: "#1a5c7f"
+    link: "#0F2439"
+  defaults: 
+    awesomecv-typst:
+      font-header: Roboto
+---
+
+
+## Education
+
+{{< yaml assets/yml/education.yml >}}
+
+## Work Experience
+
+{{< yaml assets/yml/work.yml >}}
+
+## Teaching
+
+{{< yaml assets/yml/teaching.yml >}}
+
+## Mentoring
+
+I have mentored graduate, undergraduate, and high school students, supporting summer projects, yearlong and summer undergraduate research projects, and graduate MS thesis and PhD dissertation projects. 
+
+<!-- ## Awards -->
+
+<!-- {{< yaml assets/yml/award.yml >}} -->
+
+<!-- ## Skills -->
+
+<!-- {{< yaml assets/yml/skill.yml >}} -->

@@ -1,0 +1,25 @@
+nppd:
+  title: Statistical Analyst
+  location: Brownville, NE
+  date: 2015-2018
+  description: Nebraska Public Power District, Cooper Nuclear Station
+isu:
+  title: Research Assistant Professor
+  location: Ames, IA
+  date: 2018-2019
+  description: Center for Statistics and Applications in Forensic Evidence, Iowa State University
+unl:
+  title: Assistant Professor
+  location: Lincoln, NE
+  date: 2020-2024
+  description: University of Nebraska -- Lincoln, Department of Statistics
+unl2:
+  title: Associate Professor
+  location: Lincoln, NE
+  date: 2025-2026
+  description: University of Nebraska -- Lincoln, Department of Statistics
+usu:
+  title: Associate Professor
+  location: Logan, UT
+  date: 2026-present
+  description: Utah State University, Department of Mathematics & Statistics

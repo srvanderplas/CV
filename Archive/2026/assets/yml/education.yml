@@ -1,0 +1,15 @@
+phd:
+  title: Ph.D. in Statistics
+  location: Ames, IA
+  date: 2015
+  description: Iowa State University
+master:
+  title: MS in Statistics
+  location: Ames, IA
+  date: 2011
+  description: Iowa State University
+bachelor:
+  title: BS in Psychology & Applied Mathematical Sciences
+  location: College Station, TX
+  date: 2009
+  description: Texas A&M University

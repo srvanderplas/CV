@@ -1,0 +1,91 @@
+textbook:
+  title: (OER) Statistical Computing in R and Python
+  description: Free, open educational resource hosted on GitHub for learning R and python for statistical computing. Initially developed as a graduate textbook, then reformulated to serve as a text for both graduate and undergraduate statistical computing courses.
+  details:
+    - Used at CalPoly, Arizona State University, Chadron State University, and University of Nebraska Lincoln.
+    - Worked with an undergraduate student to develop an R package to turn textbooks like this into audiobooks through Google Summer of Code. Package and audiobook development were successful but then were not allowed to be used due to Title II compliance concerns. 
+
+unlstat850:
+  title: Computing Tools for Statistics
+  description: Graduate 2-credit computing course for majors and nonmajors. Covered skills in statistical programming, document preparation, and data visualization. 
+  details:
+    - Developed hybrid flipped-classroom version in response to COVID. Evaluations were positive and students who previously struggled seemed to experience less programming anxiety.
+    - Redesigned class to teach R and python simultaneously (2022) 
+    - Initial course responsible for development of the OER
+    - Taught 2020 (R/SAS), 2021 (R/SAS), 2022, 2023, 2025
+
+unlstatcomputing:
+  title: Undergraduate Statistical Computing and Technical Skills Sequence
+  description: A four-course, ten-credit sequence teaching R and python programming for data wrangling, data visualization, web scraping and data management, and technical communication. Developed as a sequence using backwards design for each course. Project-based courses featuring flipped-classroom and traditional active-learning design patterns with significant project activities designed so that students graduate with a portfolio of projects to demonstrate technical competency. All courses used OERs, with most courses using Statistical Computing in R and Python, supplemented by other OER materials as available. 
+  details:
+    - Introduction to Statistical Computing (1 cr) - Taught 2022, 2023, 2024, 2025
+    - Statistical Computing I: Data Wrangling (3 cr) - Taught 2023, 2024. Project: Screencast the cleaning and exploratory data analysis of a publicly available dataset.
+    - Technical Skills for Statisticians (3 cr) - Taught 2025, 2026. Project 1: Create a portfolio featuring projects from past courses. Project 2: Write a business report addressing one of four questions, breaking down the question into analyzable components, and presenting the business case for a decision. 
+    - Statistical Computing II: Data Management and Visualization (3 cr) - Taught 2025. Project: Create an interactive data visualziation using publicly available data scraped from the internet, cleaned, and formatted appropriately. 
+# unlstat151:
+#   title: Introduction to Statistical Computing
+#   description: 1-hour first-year undergraduate computing course for majors. A basic introduction to programming, focused on general concepts and programming with data. 
+#   details:
+#     - Flipped classroom design, with weekly reading assignments and pre-class reading quizzes.
+#     - Taught 2022, 2023, 2024, 2025
+#     
+# unlstat251: 
+#   title: Statistical Computing I: Data Wrangling
+#   description: 3-hour Undergraduate second-year computing course for statistics and data science. Programming with data, data cleaning, and data visualization.
+#   details:
+#     - Course project: screencast analysis of a dataset
+#     - Flipped classroom design, with weekly reading assignments and pre-class reading quizzes.
+#     - Taught 2023, 2024
+#     
+# unlstat351:
+#   title: Statistical Computing II: Data Management and Visualization
+#   description: 3-hour Undergraduate third-year computing course for statistics and data science. Databases, non-rectangular data, web scraping, interactive data visualization.
+#   details:
+#     - Course project: Interactive web applet using data scraped from the internet.
+#     - Taught 2025
+# 
+# unlstat349:
+#   title: Technical Skills for Statisticians
+#   description: 3-hour Technical writing and communication course for statistics. Reproducible reporting, professional communication, presentations, and writing statistical reports. 
+#   details: 
+#     - Course project 1: Write a business report evaluating one of four scenarios.
+#     - Course project 2: Create a portfolio website showcasing your projects from previous and current courses.
+#     - Utilized dynamic document software (Quarto, Rmarkdown, Jupyter notebooks) to teach useful productivity skills for industry.
+#     - Taught 2025, 2026
+    
+unlstat992: 
+  title: Special Topics in Data Visualization
+  description: How to create good charts, theoretical basis for graph design, and how we test statistical graphics. 3 hour seminar.
+  details:
+    - Graduate MS/PhD seminar-style reading course offered in Fall 2024.
+
+unlstat892:
+  title: Writing in Statistics/TA Prep
+  description: 1-hour graduate seminar preparing students to teach statistics courses using reflective writing, simulation, and in-class active learning exercises.
+  
+unlstat892:
+  title: Data Technologies for Statistical Analysis
+  description: Development of statistical software packages and interactive web applications, using R and assorted R packages.
+  details:
+    - Graduate MS/PhD course, co-taught at UNL and Iowa State University in hybrid synchronous format. Unpaid overload to provide students with skills necessary for research.
+    - Taught 2023
+
+unlstat982:
+  title: Advanced Inference
+  description: Graduate statistical theory underlying inference methods, including decision theory, estimation, admissibility, large sample theory, properties of maximum likelihood estimators, and other estimation methods. 
+  details:
+    - Co-taught as unpaid overload with another instructor to ensure students could graduate on time.
+
+unlstat218:
+  title: Introduction to Statistics
+  description: General education quantitative literacy course using simulation-based methods to teach introductory statistics. 
+  details:
+    - Taught in-person/hybrid Spring 2020, online asynchronous 2021-2022
+    - Coordinated graduate TA led sections, 2023-2025.
+
+rworkshops:
+  title: A Week of R
+  description: A weeklong workshop introducing researchers and students to R for research data analysis, data visualization, and modeling. 
+  details:
+    - Taught as a graduate student at Iowa State, 2011-2015
+    - Coordinated the workshop at UNL, 2021-2023
