@@ -117,7 +117,7 @@ after_pubs <- after_pubs %>%
   arrange(desc(YEAR)) %>%
   ungroup() %>%
   mutate(
-    nn = cumsum(n) + 1
+    nn = cumsum(n) 
   )
 
 # before_pr_pubs is a constant for the number of items listed
